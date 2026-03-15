@@ -22,42 +22,48 @@ st.markdown("""
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.78);  
+    background: rgba(255, 255, 255, 0.88);
     z-index: -1;
     pointer-events: none;
 }
 
-/* Prevent any unwanted horizontal scroll */
 html, body, [data-testid="stAppViewContainer"], .stApp, .block-container, .main {
     overflow-x: hidden !important;
     max-width: 100vw !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
     margin: 0 !important;
 }
 
 div.row-widget.stHorizontal, .stColumns {
     margin: 0 !important;
     padding: 0 !important;
-    gap: 1rem !important;          
+    gap: 2rem !important;
 }
 
 [data-testid="stImageCoordinates"] img,
 img[src*="streamlit_image_coordinates"] {
     max-width: 100% !important;
-    width: 100% !important;
     height: auto !important;
     display: block;
     margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .big-title {
-    font-size: 3.4rem;             
+    font-size: clamp(2rem, 8vw, 3.5rem);
     font-weight: bold;
     color: #c8102e;
     text-align: center;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.45);
-    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+}
+
+.section-header {
+    text-align: center;
+    color: #1a1a1a;
+    margin-top: 1rem;
     width: 100%;
 }
 
@@ -67,13 +73,13 @@ img[src*="streamlit_image_coordinates"] {
     border-radius: 12px;
     border: 3px solid #c8102e;
     font-size: 1.05rem;
-    padding: 12px 14px;
-    box-shadow: 0 4px 8px rgba(200,16,46,0.18);
+    padding: 12px 10px;
+    box-shadow: 0 4px 8px rgba(200,16,46,0.15);
     transition: all 0.2s;
 }
 .stButton > button:hover {
     background-color: #ffebee;
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -87,58 +93,44 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
     st.session_state.vr_unlocked = False
 
-# ===================== HOME PAGE =====================
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
-    st.markdown('<p style="text-align:center; font-size:1.25rem; margin-bottom:1.8rem;">Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً</p>', unsafe_allow_html=True)
-    
-    st.markdown("### 🗺️ Click on a region / اضغط على جهة")
+    st.markdown('<div class="section-header"><b>Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً</b></div>', unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
 
     try:
         image = Image.open("morocco_regions_map.png")
-        target_w = 380                   
+        target_w = 600  
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
         image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
     except FileNotFoundError:
-        st.error("File 'morocco_regions_map.png' not found in repo root.")
-        st.info("Please commit and push the image file to GitHub.")
+        st.error("File 'morocco_regions_map.png' not found.")
         image = None
     except Exception as e:
-        st.error(f"Error loading image: {str(e)}")
+        st.error(f"Error: {str(e)}")
         image = None
 
     if image is not None:
-        map_col, legend_col = st.columns([4.5, 2])   
+        map_col, legend_col = st.columns([1.2, 1]) 
 
         with map_col:
             if streamlit_image_coordinates is not None:
-                click = streamlit_image_coordinates(
-                    image,
-                    key="morocco_region_map"
-                )
-                
+                click = streamlit_image_coordinates(image, key="morocco_region_map")
                 if click is not None:
-                    x = click["x"]
-                    y = click["y"]
-                    width = image.width
-                    height = image.height
-                    rel_x = x / width
-                    rel_y = y / height
-                    st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
-                    
+                    rel_x = click["x"] / image.width
+                    rel_y = click["y"] / image.height
                     if 0.28 <= rel_x <= 0.52 and 0.42 <= rel_y <= 0.68:
                         st.session_state.page = "marrakech_safi"
                         st.rerun()
                     else:
                         st.warning("Coming Soon / Bientôt disponible / قريباً")
             else:
-                st.warning("Interactive map unavailable (package not installed).")
                 st.image(image, use_container_width=True)
 
         with legend_col:
-            st.markdown("### 📋 Regions / الجهات")
+            st.markdown('<h3 style="text-align:center;">📋 Regions / الجهات</h3>', unsafe_allow_html=True)
             regions = [
                 ("01", "Tanger-Tétouan-Al Hoceïma", "#26C6C0"),
                 ("02", "Oriental", "#FF9F00"),
@@ -154,9 +146,9 @@ if st.session_state.page == "home":
                 ("12", "Eddakhla-Oued Ed-dahab", "#1E9BFF"),
             ]
             for num, name, color in regions:
-                dot_col, btn_col = st.columns([1, 5])
+                dot_col, btn_col = st.columns([0.15, 0.85])
                 with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:26px; height:26px; border-radius:50%; margin-top:0.4rem;"></div>', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:{color}; width:20px; height:20px; border-radius:50%; margin-top:12px;"></div>', unsafe_allow_html=True)
                 with btn_col:
                     if st.button(name, key=f"btn_{num}", use_container_width=True):
                         if name == "Marrakech-Safi":
@@ -165,79 +157,47 @@ if st.session_state.page == "home":
                         else:
                             st.warning("Coming Soon / Bientôt disponible / قريباً")
 
-# ===================== MARRAKECH-SAFI PAGE =====================
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
-    st.markdown("### 🗺️ Click on a province / اضغط على إقليم")
+    st.markdown('<h3 class="section-header">🗺️ Click on a province / اضغط على إقليم</h3>', unsafe_allow_html=True)
 
     try:
         image = Image.open("marrakech_safi.png")
-        target_w = 380
+        target_w = 500
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
         image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except FileNotFoundError:
-        st.error("File 'marrakech_safi.png' not found in repo root.")
-        st.info("Please commit and push the image file to GitHub.")
-        image = None
-    except Exception as e:
-        st.error(f"Error loading image: {str(e)}")
+    except Exception:
         image = None
 
     if image is not None:
-        if streamlit_image_coordinates is not None:
-            click = streamlit_image_coordinates(
-                image,
-                key="marrakech-safi"
-            )
-            
-            if click is not None:
-                x = click["x"]
-                y = click["y"]
-                width = image.width
-                height = image.height
-                rel_x = x / width
-                rel_y = y / height
-                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
-                
-                if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
-                    st.session_state.page = "marrakech"
-                    st.rerun()
-                else:
-                    st.warning("Coming Soon / Bientôt disponible / قريباً")
-        else:
-            st.warning("Interactive map unavailable (package not installed).")
-            st.image(image, use_container_width=True)
+        c1, c2, c3 = st.columns([1, 2, 1])
+        with c2:
+            if streamlit_image_coordinates is not None:
+                click = streamlit_image_coordinates(image, key="marrakech-safi")
+                if click is not None:
+                    rel_x = click["x"] / image.width
+                    rel_y = click["y"] / image.height
+                    if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
+                        st.session_state.page = "marrakech"
+                        st.rerun()
+                    else:
+                        st.warning("Coming Soon")
+            else:
+                st.image(image, use_container_width=True)
 
-    if st.button("⬅ Back to Regions Map / العودة إلى خريطة الجهات"):
+    if st.button("⬅ Back to Regions Map"):
         st.session_state.page = "home"
         st.rerun()
 
-# ===================== TREASURE HUNT PAGE =====================
 else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
-    st.caption("7 étapes • Suivez les indices sur le terrain")
-    if st.button("⬅ Back to Marrakech-Safi Map / العودة إلى خريطة مراكش-آسفي"):
+    if st.button("⬅ Back to Map"):
         st.session_state.page = "marrakech_safi"
         st.rerun()
-    progress = (len(st.session_state.unlocked_stops) / 7) * 100
-    st.progress(progress / 100)
+    progress = (len(st.session_state.unlocked_stops) / 7)
+    st.progress(progress)
     st.write(f"**Étape {st.session_state.current_stop}/7** | **نقاط : {st.session_state.score}**")
     m = folium.Map(location=[31.63, -7.99], zoom_start=12, tiles="CartoDB positron")
-    stops_coords = {
-        1: (31.6295, -7.9881, "🕌 Jamaâ el-Fnaâ"),
-        2: (31.6203, -7.9896, "🪦 Tombeaux Saadiens"),
-        3: (31.6289, -7.9894, "🕌 Mosquée Koutoubia"),
-        4: (31.6265, -7.9818, "🏰 Palais Bahia"),
-        5: (31.6375, -7.9767, "☕ Café Jardin Majorelle"),
-        7: (32.299, -9.227, "🏺 Atelier Poterie Safi")
-    }
-    for stop_num in st.session_state.unlocked_stops:
-        if stop_num != 6:
-            lat, lon, name = stops_coords[stop_num]
-            folium.Marker([lat, lon], popup=name, icon=folium.Icon(color="red", icon="star")).add_to(m)
-    if st.session_state.current_stop != 6 and st.session_state.current_stop in stops_coords:
-        lat, lon, _ = stops_coords[st.session_state.current_stop]
-        folium.Marker([lat, lon], popup="🎯 Vous êtes ici !", icon=folium.Icon(color="green", icon="flag")).add_to(m)
-    st_folium(m, width=700, height=400)
+    st_folium(m, width=1200, height=500)
