@@ -41,7 +41,11 @@ if st.session_state.page == "home":
     try:
         image_path = "morocco_regions_map.png"
         image = Image.open(image_path)
-        image = image.resize((600, 300))
+        w, h = image.size
+        target_w = 700
+        ratio = target_w / float(w)
+        new_h = int(h * ratio)
+        image = image.resize((target_w, new_h))
     except FileNotFoundError:
         st.error("File 'morocco_regions_map.png' not found in repo root.")
         st.info("Please commit and push the image file to GitHub.")
@@ -52,21 +56,21 @@ if st.session_state.page == "home":
     if image is not None:
         if streamlit_image_coordinates is not None:
             click = streamlit_image_coordinates(
-                    image,
-                    key="morocco_region_map"
-                )
+                image,
+                key="morocco_region_map"
+            )
             if click is not None:
                 x = click["x"]
                 y = click["y"]
                 st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
-                if 180 <= x <= 280 and 90 <= y <= 180:
+                if 220 <= x <= 420 and 140 <= y <= 280:
                     st.session_state.page = "marrakech_safi"
                     st.rerun()
                 else:
-                        st.warning("Coming Soon / Bientôt disponible / قريباً")
+                    st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
-                st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
-                st.image(image, use_container_width=True)
+            st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
+            st.image(image, use_container_width=True)
 
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
@@ -74,7 +78,11 @@ elif st.session_state.page == "marrakech_safi":
     try:
         image_path = "marrakech_safi.png"
         image = Image.open(image_path)
-        image = image.resize((300, 200))
+        w, h = image.size
+        target_w = 700
+        ratio = target_w / float(w)
+        new_h = int(h * ratio)
+        image = image.resize((target_w, new_h))
     except FileNotFoundError:
         st.error("File 'marrakech_safi.png' not found in repo root.")
         st.info("Please commit and push the image file to GitHub.")
@@ -92,7 +100,7 @@ elif st.session_state.page == "marrakech_safi":
                 x = click["x"]
                 y = click["y"]
                 st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
-                if 180 <= x <= 280 and 90 <= y <= 180:
+                if 220 <= x <= 420 and 140 <= y <= 280:
                     st.session_state.page = "marrakech"
                     st.rerun()
                 else:
