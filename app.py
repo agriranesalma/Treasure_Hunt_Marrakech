@@ -37,34 +37,34 @@ if "hunt_started" not in st.session_state:
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
     st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
-        st.markdown("### 🗺️ Click on a region / اضغط على جهة")
-        try:
-            image_path = "morocco_regions_map.png"
-            image = Image.open(image_path)
-            image = image.resize((300, 200))
-        except FileNotFoundError:
-            st.error("File 'morocco_regions_map.png' not found in repo root.")
-            st.info("Please commit and push the image file to GitHub.")
-            image = None
-        except Exception as e:
-            st.error(f"Error loading image: {str(e)}")
-            image = None
-        if image is not None:
-            if streamlit_image_coordinates is not None:
-                click = streamlit_image_coordinates(
+    st.markdown("### 🗺️ Click on a region / اضغط على جهة")
+    try:
+        image_path = "morocco_regions_map.png"
+        image = Image.open(image_path)
+        image = image.resize((300, 200))
+    except FileNotFoundError:
+        st.error("File 'morocco_regions_map.png' not found in repo root.")
+        st.info("Please commit and push the image file to GitHub.")
+        image = None
+    except Exception as e:
+        st.error(f"Error loading image: {str(e)}")
+        image = None
+    if image is not None:
+        if streamlit_image_coordinates is not None:
+            click = streamlit_image_coordinates(
                     image,
                     key="morocco_region_map"
                 )
-                if click is not None:
-                    x = click["x"]
-                    y = click["y"]
-                    st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
-                    if 180 <= x <= 280 and 90 <= y <= 180:
-                        st.session_state.page = "marrakech_safi"
-                        st.rerun()
-                    else:
+            if click is not None:
+                x = click["x"]
+                y = click["y"]
+                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
+                if 180 <= x <= 280 and 90 <= y <= 180:
+                    st.session_state.page = "marrakech_safi"
+                    st.rerun()
+                else:
                         st.warning("Coming Soon / Bientôt disponible / قريباً")
-            else:
+        else:
                 st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
                 st.image(image, use_container_width=True)
 
