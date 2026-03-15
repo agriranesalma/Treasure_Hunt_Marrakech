@@ -96,8 +96,46 @@ if st.session_state.page == "home":
         Hackathon prototype – only Marrakech-Safi is active.
         """)
 
+
+
+
+st.markdown("### 🗺️ Click on a region / اضغط على جهة")
+
+        try:
+            image_path = "marrakech_safi.png"
+            image = Image.open(image_path)
+            image = image.resize((700, 500)) 
+        except FileNotFoundError:
+            st.error("File 'marrakech_safi.png' not found in repo root.")
+            st.info("Please commit and push the image file to GitHub.")
+            image = None
+        except Exception as e:
+            st.error(f"Error loading image: {str(e)}")
+            image = None
+
+        if image is not None:
+            if streamlit_image_coordinates is not None:
+                click = streamlit_image_coordinates(
+                    image,
+                    key="morocco_region_map"
+                )
+
+                if click is not None:
+                    x = click["x"]
+                    y = click["y"]
+                    st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}") 
+
+                  
+                    if 180 <= x <= 280 and 90 <= y <= 180:
+                        st.session_state.page = "marrakech"
+                        st.rerun()
+                    else:
+                        st.warning("Coming Soon / Bientôt disponible / قريباً")
+            else:
+                st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
+                st.image(image, use_container_width=True)
 # MARRAKECH TREASURE HUNT 
-else:
+"""else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش-آسفي • Marrakech-Safi Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
 
@@ -129,5 +167,5 @@ else:
 
     # === CLUES & PUZZLES ( i will add this later, im tired and i will sleep)
     stop = st.session_state.current_stop
-    clues = { ... } 
+    clues = { ... } """
 
