@@ -3,4 +3,3 @@ pillow
 requests
 folium
 streamlit-folium
-streamlit.components.v1
