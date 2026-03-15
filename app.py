@@ -177,7 +177,7 @@ if st.session_state.page == "home":
                             st.toast("Coming Soon! / قريباً", icon="⏳")
 
 elif st.session_state.page == "marrakech_safi":
-    st.markdown('<h1 class="big-title">Marrakech</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
 
     try:
@@ -199,7 +199,6 @@ elif st.session_state.page == "marrakech_safi":
                 if click is not None:
                     rel_x = click["x"] / image.width
                     rel_y = click["y"] / image.height
-                    st.caption(f"Debug: clicked → **{rel_x:.2f}% , {rel_y:.2f}%**")
                     if 0.53 <= rel_x <= 0.62 and 0.41 <= rel_y <= 0.69:
                         st.session_state.page = "marrakech"
                         st.rerun()
