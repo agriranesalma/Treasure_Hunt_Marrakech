@@ -197,6 +197,8 @@ elif st.session_state.page == "marrakech_safi":
                     if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
                         st.session_state.page = "marrakech"
                         st.rerun()
+                    else:
+                        st.toast("Coming Soon! / قريباً", icon="⏳")
             else:
                 st.image(image, use_container_width=True)
 
