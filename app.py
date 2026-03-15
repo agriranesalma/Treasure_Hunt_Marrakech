@@ -41,7 +41,7 @@ st.markdown("""
 
 .big-title {
     font-family: 'Kaushan Script', cursive !important;
-    font-size: 5rem !important; 
+    font-size: 7rem !important; 
     font-weight: 900 !important;
     text-align: center !important;
     background: linear-gradient(to right, #e31e24 40%, #ffffff 50%, #006400 60%) !important;
