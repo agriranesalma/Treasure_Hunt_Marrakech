@@ -199,6 +199,7 @@ elif st.session_state.page == "marrakech_safi":
                 if click is not None:
                     rel_x = click["x"] / image.width
                     rel_y = click["y"] / image.height
+                    st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
                     if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
                         st.session_state.page = "marrakech"
                         st.rerun()
