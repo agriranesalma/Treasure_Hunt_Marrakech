@@ -1,6 +1,6 @@
-streamlit
-pillow
+streamlit>=1.38.0
+pillow>=10.0.0
 requests
-folium
-streamlit-folium
-streamlit-image-coordinates
+folium>=0.17.0
+streamlit-folium>=0.23.0
+streamlit-image-coordinates>=0.1.6
