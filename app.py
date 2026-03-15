@@ -12,12 +12,12 @@ st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 @keyframes gentleGlow {
-    0% { text-shadow: 0 0 50px rgba(255,255,255,0.4), 0 0 80px rgba(227,30,36,0.3); }
-    50% { text-shadow: 0 0 80px rgba(255,255,255,0.6), 0 0 110px rgba(0,100,0,0.4); }
-    100% { text-shadow: 0 0 50px rgba(255,255,255,0.4), 0 0 80px rgba(227,30,36,0.3); }
+    0% { text-shadow: 0 0 50px rgba(255,255,255,0.2); }
+    50% { text-shadow: 0 0 100px rgba(255,255,255,0.5); }
+    100% { text-shadow: 0 0 50px rgba(255,255,255,0.2); }
 }
 
 .stApp {
@@ -33,49 +33,56 @@ st.markdown("""
 }
 
 .main .block-container {
-    padding-top: 1rem !important;
-    padding-left: 5% !important;
-    padding-right: 5% !important;
+    padding-top: 0rem !important;
+    padding-left: 3% !important;
+    padding-right: 3% !important;
+    max-width: 95% !important;
 }
 
 .big-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(6rem, 28vw, 18rem);
-    font-weight: 400;
+    font-family: 'Kaushan Script', cursive;
+    font-size: clamp(8rem, 35vw, 25rem);
+    font-weight: 900;
     text-align: center;
     background: linear-gradient(to right,
         #e31e24 0%,
-        #e31e24 42%,   
+        #e31e24 45%,   
         #ffffff 48%,   
         #ffffff 52%,
-        #006400 58%,   
+        #006400 55%,   
         #006400 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* This stroke makes the handwriting look "thicker" */
-    -webkit-text-stroke: 3px rgba(255,255,255,0.1);
-    margin: 0;
+    /* Massive thickness boost */
+    -webkit-text-stroke: 5px rgba(255,255,255,0.1);
+    text-shadow: 
+        0px 4px 10px rgba(0,0,0,0.5),
+        0px 10px 30px rgba(0,0,0,0.3);
+    margin-top: -2rem;
+    margin-bottom: -3rem;
     padding: 0;
-    line-height: 0.9;
-    filter: drop-shadow(0 0 30px rgba(0,0,0,0.5));
-    animation: gentleGlow 5s infinite ease-in-out;
+    line-height: 1.1;
+    display: block;
+    width: 100%;
+    animation: gentleGlow 6s infinite ease-in-out;
 }
 
 .tag-subtitle {
-    font-size: clamp(1.4rem, 4vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 800;
     text-align: center;
-    color: #ffffff;
-    text-shadow: 0 5px 15px rgba(0,0,0,1);
-    margin: -20px 0 4rem 0;
-    letter-spacing: 3px;
+    color: white !important;
+    text-shadow: 2px 2px 15px rgba(0,0,0,1);
+    margin-bottom: 4rem;
+    letter-spacing: 2px;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
 }
 
 [data-testid="stImageCoordinates"] img,
@@ -84,25 +91,25 @@ img[src*="streamlit_image_coordinates"] {
     height: auto !important;
     display: block;
     margin: 0 auto;
-    border-radius: 25px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
 .stButton > button {
     background-color: rgba(255, 255, 255, 0.05);
     color: white !important;
     border-radius: 15px;
-    border: 2px solid #e31e24;
-    font-size: 1.2rem;
-    padding: 15px 20px;
-    backdrop-filter: blur(12px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid #e31e24;
+    font-size: 1.3rem;
+    padding: 18px 25px;
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease;
 }
 
 .stButton > button:hover {
     background-color: #e31e24;
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 15px 30px rgba(227,30,36,0.6);
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(227,30,36,0.5);
 }
 
 h1, h2, h3, p, span, label, .stMarkdown {
@@ -126,7 +133,7 @@ if st.session_state.page == "home":
 
     try:
         image = Image.open("morocco_regions_map.png")
-        target_w = 650
+        target_w = 700
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
@@ -135,7 +142,7 @@ if st.session_state.page == "home":
         image = None
 
     if image is not None:
-        map_col, legend_col = st.columns([1.6, 1])
+        map_col, legend_col = st.columns([1.8, 1])
 
         with map_col:
             if streamlit_image_coordinates is not None:
@@ -168,7 +175,7 @@ if st.session_state.page == "home":
             for num, name, color in regions:
                 dot_col, btn_col = st.columns([0.1, 0.9])
                 with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:16px; height:16px; border-radius:50%; margin-top:14px;"></div>', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:{color}; width:18px; height:18px; border-radius:50%; margin-top:16px;"></div>', unsafe_allow_html=True)
                 with btn_col:
                     if st.button(name, key=f"btn_{num}", use_container_width=True):
                         if name == "Marrakech-Safi":
@@ -181,7 +188,7 @@ elif st.session_state.page == "marrakech_safi":
 
     try:
         image = Image.open("marrakech_safi.png")
-        target_w = 500
+        target_w = 600
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
