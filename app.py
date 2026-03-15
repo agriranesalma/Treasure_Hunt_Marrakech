@@ -12,9 +12,15 @@ st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout
 
 st.markdown("""
 <style>
+@keyframes gentleGlow {
+    0% { text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 0 70px rgba(227,30,36,0.2); }
+    50% { text-shadow: 0 0 60px rgba(255,255,255,0.5), 0 0 90px rgba(0,100,0,0.3); }
+    100% { text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 0 70px rgba(227,30,36,0.2); }
+}
+
 .stApp {
-    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-                url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+    background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
+                url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop')
                 no-repeat center center fixed;
     background-size: cover;
     color: white !important;
@@ -30,12 +36,44 @@ st.markdown("""
     padding-right: 5% !important;
 }
 
-h1, h2, h3, p, span, label, .stMarkdown {
-    color: white !important;
+.big-title {
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 900;
+    text-align: center;
+    background: linear-gradient(to right,
+        #e31e24 0%,
+        #e31e24 40%,   
+        #ffffff 48%,   
+        #ffffff 52%,
+        #006400 60%,   
+        #006400 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    margin: 1rem 0;
+    line-height: 1.2;
+    animation: gentleGlow 4s infinite ease-in-out;
 }
 
-div.row-widget.stHorizontal, .stColumns {
-    gap: 2rem !important;
+.tag-subtitle {
+    font-size: clamp(1rem, 2vw, 1.6rem);
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    margin: 0.5rem 0 2rem 0;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.section-header {
+    text-align: center;
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: 600;
+    color: white !important;
 }
 
 [data-testid="stImageCoordinates"] img,
@@ -48,37 +86,26 @@ img[src*="streamlit_image_coordinates"] {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.big-title {
-    font-size: clamp(2.2rem, 8vw, 3.8rem);
-    font-weight: bold;
-    color: #ff2a4b !important;
-    text-align: center;
-    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
-    margin-bottom: 1.5rem;
-}
-
-.section-header {
-    text-align: center;
-    margin-top: 1rem;
-    width: 100%;
-}
-
 .stButton > button {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.08);
     color: white !important;
     border-radius: 12px;
-    border: 2px solid #ff2a4b;
-    font-size: 1.05rem;
-    padding: 12px 10px;
-    backdrop-filter: blur(5px);
+    border: 2px solid #e31e24;
+    font-size: 1rem;
+    padding: 10px 8px;
+    backdrop-filter: blur(8px);
     transition: all 0.3s;
 }
 
 .stButton > button:hover {
-    background-color: #ff2a4b;
+    background-color: #e31e24;
     color: white !important;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255,42,75,0.4);
+    box-shadow: 0 8px 20px rgba(227,30,36,0.4);
+}
+
+h1, h2, h3, p, span, label, .stMarkdown {
+    color: white !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -92,8 +119,8 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
 
 if st.session_state.page == "home":
-    st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="section-header"><b>Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً</b></div>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Trésor Marocain</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً</div>', unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
 
     try:
@@ -142,7 +169,7 @@ if st.session_state.page == "home":
             for num, name, color in regions:
                 dot_col, btn_col = st.columns([0.1, 0.9])
                 with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:18px; height:18px; border-radius:50%; margin-top:14px;"></div>', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:{color}; width:16px; height:16px; border-radius:50%; margin-top:14px;"></div>', unsafe_allow_html=True)
                 with btn_col:
                     if st.button(name, key=f"btn_{num}", use_container_width=True):
                         if name == "Marrakech-Safi":
@@ -150,7 +177,8 @@ if st.session_state.page == "home":
                             st.rerun()
 
 elif st.session_state.page == "marrakech_safi":
-    st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Click on a province / اضغط على إقليم</h3>', unsafe_allow_html=True)
 
     try:
@@ -182,7 +210,8 @@ elif st.session_state.page == "marrakech_safi":
         st.rerun()
 
 else:
-    st.markdown('<h1 class="big-title">🕌 مغامرة مراكش</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Marrakech</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">🕌 مغامرة مراكش</div>', unsafe_allow_html=True)
     if st.button("⬅ Back"):
         st.session_state.page = "marrakech_safi"
         st.rerun()
