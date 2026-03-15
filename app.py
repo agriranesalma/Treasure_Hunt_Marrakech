@@ -173,6 +173,8 @@ if st.session_state.page == "home":
                         if name == "Marrakech-Safi":
                             st.session_state.page = "marrakech_safi"
                             st.rerun()
+                        else:
+                            st.toast("Coming Soon! / قريباً", icon="⏳")
 
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">Marrakech</h1>', unsafe_allow_html=True)
