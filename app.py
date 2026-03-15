@@ -5,12 +5,14 @@ from io import BytesIO
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
+
 try:
     from streamlit_image_coordinates import streamlit_image_coordinates
 except ImportError:
     streamlit_image_coordinates = None
 
 st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout="wide", page_icon="🕌")
+
 st.markdown("""
 <style>
 .stApp {
@@ -20,8 +22,7 @@ st.markdown("""
     background-attachment: fixed;
 }
 .big-title {font-size: 3.2rem; font-weight: bold; color: #c8102e; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.3);}
-.clue-box {background: #f4f0e8; padding: 25px; border-radius: 15px; border: 4px solid #c8102e; margin: 15px 0;}
-.success {color: #006400; font-weight: bold;}
+.map-container {max-width: 100%; margin: 0 auto;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -34,18 +35,20 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
     st.session_state.vr_unlocked = False
 
+# ===================== HOME - REGIONS MAP =====================
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
     st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
     st.markdown("### 🗺️ Click on a region / اضغط على جهة")
+
     try:
         image_path = "morocco_regions_map.png"
         image = Image.open(image_path)
+        target_w = 500
         w, h = image.size
-        target_w = 700
         ratio = target_w / float(w)
         new_h = int(h * ratio)
-        image = image.resize((target_w, new_h))
+        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
     except FileNotFoundError:
         st.error("File 'morocco_regions_map.png' not found in repo root.")
         st.info("Please commit and push the image file to GitHub.")
@@ -53,36 +56,65 @@ if st.session_state.page == "home":
     except Exception as e:
         st.error(f"Error loading image: {str(e)}")
         image = None
+
     if image is not None:
         if streamlit_image_coordinates is not None:
-            click = streamlit_image_coordinates(
-                image,
-                key="morocco_region_map"
-            )
+           
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                click = streamlit_image_coordinates(image, key="morocco_region_map")
+            
             if click is not None:
                 x = click["x"]
                 y = click["y"]
-                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
-                if 220 <= x <= 420 and 140 <= y <= 280:
+                width = image.width
+                height = image.height
+                rel_x = x / width
+                rel_y = y / height
+                
+                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%** (size {width}×{height})")
+                
+        
+                if 0.28 <= rel_x <= 0.52 and 0.42 <= rel_y <= 0.68:
                     st.session_state.page = "marrakech_safi"
                     st.rerun()
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
-            st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
-            st.image(image, use_container_width=True)
+            st.warning("Interactive map unavailable. Use buttons below instead.")
+    
+        st.image(image, use_container_width=True)
 
+    # ===================== FALLBACK BUTTONS  =====================
+    st.markdown("**Or click a region below / أو اضغط على جهة أدناه**")
+    regions = [
+        "Tanger-Tétouan-Al Hoceïma", "Oriental", "Fès-Meknès", "Rabat-Salé-Kénitra",
+        "Béni Mellal-Khénifra", "Casablanca-Settat", "Marrakech-Safi", "Drâa-Tafilalet",
+        "Souss-Massa", "Guelmim-Oued Noun", "Laâyoune-Sakia El Hamra", "Dakhla-Oued Ed-Dahab"
+    ]
+    cols = st.columns(3)
+    for i, region in enumerate(regions):
+        with cols[i % 3]:
+            if st.button(region, key=f"reg_{i}", use_container_width=True):
+                if region == "Marrakech-Safi":
+                    st.session_state.page = "marrakech_safi"
+                    st.rerun()
+                else:
+                    st.warning("Coming Soon / Bientôt disponible / قريباً")
+
+# ===================== MARRAKECH-SAFI PROVINCES MAP =====================
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
     st.markdown("### 🗺️ Click on a province / اضغط على إقليم")
+
     try:
         image_path = "marrakech_safi.png"
         image = Image.open(image_path)
+        target_w = 500
         w, h = image.size
-        target_w = 700
         ratio = target_w / float(w)
         new_h = int(h * ratio)
-        image = image.resize((target_w, new_h))
+        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
     except FileNotFoundError:
         st.error("File 'marrakech_safi.png' not found in repo root.")
         st.info("Please commit and push the image file to GitHub.")
@@ -90,38 +122,52 @@ elif st.session_state.page == "marrakech_safi":
     except Exception as e:
         st.error(f"Error loading image: {str(e)}")
         image = None
+
     if image is not None:
         if streamlit_image_coordinates is not None:
-            click = streamlit_image_coordinates(
-                image,
-                key="marrakech-safi"
-            )
+            col1, col2, col3 = st.columns([1, 3, 1])
+            with col2:
+                click = streamlit_image_coordinates(image, key="marrakech-safi")
+            
             if click is not None:
                 x = click["x"]
                 y = click["y"]
-                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}")
-                if 220 <= x <= 420 and 140 <= y <= 280:
+                width = image.width
+                height = image.height
+                rel_x = x / width
+                rel_y = y / height
+                
+                st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
+                
+      
+                if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
                     st.session_state.page = "marrakech"
                     st.rerun()
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
-            st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
-            st.image(image, use_container_width=True)
+            st.warning("Interactive map unavailable. Use buttons below instead.")
+        
+        st.image(image, use_container_width=True)
+
     if st.button("⬅ Back to Regions Map / العودة إلى خريطة الجهات"):
         st.session_state.page = "home"
         st.rerun()
 
+# ===================== MARRAKECH TREASURE HUNT =====================
 else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
     if st.button("⬅ Back to Marrakech-Safi Map / العودة إلى خريطة مراكش-آسفي"):
         st.session_state.page = "marrakech_safi"
         st.rerun()
+    
     progress = (len(st.session_state.unlocked_stops) / 7) * 100
     st.progress(progress / 100)
     st.write(f"**Étape {st.session_state.current_stop}/7** | **نقاط : {st.session_state.score}**")
+    
     m = folium.Map(location=[31.63, -7.99], zoom_start=12, tiles="CartoDB positron")
+   
     stops_coords = {
         1: (31.6295, -7.9881, "🕌 Jamaâ el-Fnaâ"),
         2: (31.6203, -7.9896, "🪦 Tombeaux Saadiens"),
@@ -138,5 +184,3 @@ else:
         lat, lon, _ = stops_coords[st.session_state.current_stop]
         folium.Marker([lat, lon], popup="🎯 Vous êtes ici !", icon=folium.Icon(color="green", icon="flag")).add_to(m)
     st_folium(m, width=700, height=400)
-    stop = st.session_state.current_stop
-    clues = { ... }
