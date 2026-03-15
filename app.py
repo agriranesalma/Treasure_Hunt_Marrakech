@@ -12,14 +12,16 @@ st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout
 
 st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 @keyframes gentleGlow {
-    0% { text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 0 70px rgba(227,30,36,0.2); }
-    50% { text-shadow: 0 0 60px rgba(255,255,255,0.5), 0 0 90px rgba(0,100,0,0.3); }
-    100% { text-shadow: 0 0 40px rgba(255,255,255,0.3), 0 0 70px rgba(227,30,36,0.2); }
+    0% { text-shadow: 0 0 50px rgba(255,255,255,0.4), 0 0 80px rgba(227,30,36,0.3); }
+    50% { text-shadow: 0 0 80px rgba(255,255,255,0.6), 0 0 110px rgba(0,100,0,0.4); }
+    100% { text-shadow: 0 0 50px rgba(255,255,255,0.4), 0 0 80px rgba(227,30,36,0.3); }
 }
 
 .stApp {
-    background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)),
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
                 url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop')
                 no-repeat center center fixed;
     background-size: cover;
@@ -31,48 +33,49 @@ st.markdown("""
 }
 
 .main .block-container {
-    padding-top: 2rem !important;
+    padding-top: 1rem !important;
     padding-left: 5% !important;
     padding-right: 5% !important;
 }
 
 .big-title {
-    font-size: clamp(3.5rem, 15vw, 11rem);
-    font-weight: 900;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(6rem, 28vw, 18rem);
+    font-weight: 400;
     text-align: center;
     background: linear-gradient(to right,
         #e31e24 0%,
-        #e31e24 40%,   
+        #e31e24 42%,   
         #ffffff 48%,   
         #ffffff 52%,
-        #006400 60%,   
+        #006400 58%,   
         #006400 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: 8px;
+    /* This stroke makes the handwriting look "thicker" */
+    -webkit-text-stroke: 3px rgba(255,255,255,0.1);
     margin: 0;
     padding: 0;
-    line-height: 1;
-    animation: gentleGlow 4s infinite ease-in-out;
+    line-height: 0.9;
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.5));
+    animation: gentleGlow 5s infinite ease-in-out;
 }
 
 .tag-subtitle {
-    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    font-size: clamp(1.4rem, 4vw, 2.5rem);
     font-weight: 700;
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(0,0,0,0.9);
-    margin: -10px 0 3rem 0;
-    letter-spacing: 2px;
+    text-shadow: 0 5px 15px rgba(0,0,0,1);
+    margin: -20px 0 4rem 0;
+    letter-spacing: 3px;
 }
 
 .section-header {
     text-align: center;
-    margin-top: 1rem;
-    width: 100%;
-    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 [data-testid="stImageCoordinates"] img,
@@ -81,26 +84,25 @@ img[src*="streamlit_image_coordinates"] {
     height: auto !important;
     display: block;
     margin: 0 auto;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .stButton > button {
     background-color: rgba(255, 255, 255, 0.05);
     color: white !important;
-    border-radius: 12px;
+    border-radius: 15px;
     border: 2px solid #e31e24;
-    font-size: 1.1rem;
-    padding: 12px 15px;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .stButton > button:hover {
     background-color: #e31e24;
-    color: white !important;
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(227,30,36,0.5);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(227,30,36,0.6);
 }
 
 h1, h2, h3, p, span, label, .stMarkdown {
@@ -133,7 +135,7 @@ if st.session_state.page == "home":
         image = None
 
     if image is not None:
-        map_col, legend_col = st.columns([1.5, 1])
+        map_col, legend_col = st.columns([1.6, 1])
 
         with map_col:
             if streamlit_image_coordinates is not None:
