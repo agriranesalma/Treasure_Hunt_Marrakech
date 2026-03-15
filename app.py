@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import requests
-from io import BytesIO
+
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
