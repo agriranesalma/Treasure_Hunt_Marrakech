@@ -26,6 +26,7 @@ st.markdown("""
     z-index: -1;
     pointer-events: none;
 }
+html, body, .stApp { overflow-x: hidden !important; max-width: 100vw !important; }
 .big-title {font-size: 3.2rem; font-weight: bold; color: #c8102e; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);}
 .stButton > button {
     background-color: #f8f8f8;
@@ -53,7 +54,6 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
     st.session_state.vr_unlocked = False
 
-# ===================== REGIONS MAP (HOME) =====================
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
     st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
@@ -61,7 +61,7 @@ if st.session_state.page == "home":
 
     try:
         image = Image.open("morocco_regions_map.png")
-        target_w = 500
+        target_w = 380
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
@@ -96,9 +96,8 @@ if st.session_state.page == "home":
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
             st.warning("Interactive map unavailable (package not installed).")
-            st.image(image, use_container_width=True)  
+            st.image(image, use_container_width=True)
 
-    # ===================== PRETTY COLORED LEGEND + BUTTONS =====================
     st.markdown("### 📋 Tap a region below / اضغط على جهة أدناه")
     regions = [
         ("01", "Tanger-Tétouan-Al Hoceïma", "#26C6C0"),
@@ -126,14 +125,13 @@ if st.session_state.page == "home":
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
 
-# ===================== MARRAKECH-SAFI PROVINCES =====================
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
     st.markdown("### 🗺️ Click on a province / اضغط على إقليم")
 
     try:
         image = Image.open("marrakech_safi.png")
-        target_w = 500
+        target_w = 380
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
@@ -168,13 +166,12 @@ elif st.session_state.page == "marrakech_safi":
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
             st.warning("Interactive map unavailable (package not installed).")
-            st.image(image, use_container_width=True) 
+            st.image(image, use_container_width=True)
 
     if st.button("⬅ Back to Regions Map / العودة إلى خريطة الجهات"):
         st.session_state.page = "home"
         st.rerun()
 
-# ===================== MARRAKECH TREASURE HUNT =====================
 else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
