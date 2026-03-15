@@ -187,7 +187,8 @@ elif st.session_state.page == "marrakech_safi":
         ratio = target_w / float(w)
         new_h = int(h * ratio)
         image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except:
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
         image = None
 
     if image is not None:
