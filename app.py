@@ -46,7 +46,7 @@ if st.session_state.page == "home":
         
         st.write("Click on a region to start the adventure.")
 
-        image = Image.open("/Users/salma/Desktop/treasure hunt/morocco_regions_map.png")
+        image = Image.open("morocco_regions_map.png")
         image= image.resize((600,400))
         click = streamlit_image_coordinates(image)
 
