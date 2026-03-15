@@ -5,7 +5,10 @@ from io import BytesIO
 import folium
 from streamlit_folium import st_folium
 import streamlit.components.v1 as components
-
+try:
+    from streamlit_image_coordinates import streamlit_image_coordinates
+except ImportError:
+    streamlit_image_coordinates = None
 # ===================== CONFIG + BACKGROUND =====================
 st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout="wide", page_icon="🕌")
 
@@ -42,33 +45,42 @@ if st.session_state.page == "home":
     col_map, col_about = st.columns([1.6, 1])
 
     with col_map:
-        st.markdown("### 🗺️ Click on a region to start / اضغط على جهة لبدء المغامرة")
+        with col_map:
+        st.markdown("### 🗺️ Click on a region / اضغط على جهة")
 
         try:
-            image = Image.open("morocco_regions_map.png")
+            image_path = "morocco_regions_map.png"
+            image = Image.open(image_path)
             image = image.resize((700, 500)) 
-            click = streamlit_image_coordinates(
-                image,
-                key="region_map_click"   
-            )
         except FileNotFoundError:
-            st.error("Image 'morocco_regions_map.png' not found in repo root. Please upload it to GitHub.")
-            click = None
+            st.error("File 'morocco_regions_map.png' not found in repo root.")
+            st.info("Please commit and push the image file to GitHub.")
+            image = None
         except Exception as e:
-            st.error(f"Error loading image: {e}")
-            click = None
+            st.error(f"Error loading image: {str(e)}")
+            image = None
 
-        if click is not None:
-            x = click["x"]
-            y = click["y"]
-            st.caption(f"Clicked at: x={x:.0f}, y={y:.0f}")
+        if image is not None:
+            if streamlit_image_coordinates is not None:
+                click = streamlit_image_coordinates(
+                    image,
+                    key="morocco_region_map"
+                )
 
-           
-            if 180 <= x <= 280 and 90 <= y <= 170:  
-                st.session_state.page = "marrakech"
-                st.rerun()
+                if click is not None:
+                    x = click["x"]
+                    y = click["y"]
+                    st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}") 
+
+                  
+                    if 180 <= x <= 280 and 90 <= y <= 180:
+                        st.session_state.page = "marrakech"
+                        st.rerun()
+                    else:
+                        st.warning("Coming Soon / Bientôt disponible / قريباً")
             else:
-                st.warning("Coming Soon / Bientôt disponible / قريباً")
+                st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
+                st.image(image, use_container_width=True)
     with col_about:
         st.markdown("### ℹ️ About the Adventure / عن المغامرة")
         st.write("""
