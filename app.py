@@ -13,31 +13,28 @@ st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout
 st.markdown("""
 <style>
 .stApp {
-    background-image: url("https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop");
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                url('https://images.unsplash.com/photo-1559925523-10de9e23cf90?q=80&w=1064&auto=format&fit=crop')
+                no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-.stApp::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.88);
-    z-index: -1;
-    pointer-events: none;
+    color: white !important;
 }
 
-html, body, [data-testid="stAppViewContainer"], .stApp, .block-container, .main {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+.main .block-container {
+    padding-top: 5rem !important;
     padding-left: 5% !important;
     padding-right: 5% !important;
-    margin: 0 !important;
+}
+
+h1, h2, h3, p, span, label, .stMarkdown {
+    color: white !important;
 }
 
 div.row-widget.stHorizontal, .stColumns {
-    margin: 0 !important;
-    padding: 0 !important;
     gap: 2rem !important;
 }
 
@@ -48,38 +45,40 @@ img[src*="streamlit_image_coordinates"] {
     display: block;
     margin: 0 auto;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
 .big-title {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: clamp(2.2rem, 8vw, 3.8rem);
     font-weight: bold;
-    color: #c8102e;
+    color: #ff2a4b !important;
     text-align: center;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    margin-bottom: 1rem;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
+    margin-bottom: 1.5rem;
 }
 
 .section-header {
     text-align: center;
-    color: #1a1a1a;
     margin-top: 1rem;
     width: 100%;
 }
 
 .stButton > button {
-    background-color: #f8f8f8;
-    color: #1a1a1a;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white !important;
     border-radius: 12px;
-    border: 3px solid #c8102e;
+    border: 2px solid #ff2a4b;
     font-size: 1.05rem;
     padding: 12px 10px;
-    box-shadow: 0 4px 8px rgba(200,16,46,0.15);
-    transition: all 0.2s;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
 }
+
 .stButton > button:hover {
-    background-color: #ffebee;
-    transform: scale(1.02);
+    background-color: #ff2a4b;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,42,75,0.4);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -91,7 +90,6 @@ if "hunt_started" not in st.session_state:
     st.session_state.current_stop = 1
     st.session_state.unlocked_stops = [1]
     st.session_state.score = 0
-    st.session_state.vr_unlocked = False
 
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
@@ -100,20 +98,16 @@ if st.session_state.page == "home":
 
     try:
         image = Image.open("morocco_regions_map.png")
-        target_w = 600  
+        target_w = 600
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
         image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except FileNotFoundError:
-        st.error("File 'morocco_regions_map.png' not found.")
-        image = None
-    except Exception as e:
-        st.error(f"Error: {str(e)}")
+    except:
         image = None
 
     if image is not None:
-        map_col, legend_col = st.columns([1.2, 1]) 
+        map_col, legend_col = st.columns([1.4, 1])
 
         with map_col:
             if streamlit_image_coordinates is not None:
@@ -125,7 +119,7 @@ if st.session_state.page == "home":
                         st.session_state.page = "marrakech_safi"
                         st.rerun()
                     else:
-                        st.warning("Coming Soon / Bientôt disponible / قريباً")
+                        st.warning("Coming Soon / قريباً")
             else:
                 st.image(image, use_container_width=True)
 
@@ -146,16 +140,14 @@ if st.session_state.page == "home":
                 ("12", "Eddakhla-Oued Ed-dahab", "#1E9BFF"),
             ]
             for num, name, color in regions:
-                dot_col, btn_col = st.columns([0.15, 0.85])
+                dot_col, btn_col = st.columns([0.1, 0.9])
                 with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:20px; height:20px; border-radius:50%; margin-top:12px;"></div>', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:{color}; width:18px; height:18px; border-radius:50%; margin-top:14px;"></div>', unsafe_allow_html=True)
                 with btn_col:
                     if st.button(name, key=f"btn_{num}", use_container_width=True):
                         if name == "Marrakech-Safi":
                             st.session_state.page = "marrakech_safi"
                             st.rerun()
-                        else:
-                            st.warning("Coming Soon / Bientôt disponible / قريباً")
 
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
@@ -168,7 +160,7 @@ elif st.session_state.page == "marrakech_safi":
         ratio = target_w / float(w)
         new_h = int(h * ratio)
         image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except Exception:
+    except:
         image = None
 
     if image is not None:
@@ -182,8 +174,6 @@ elif st.session_state.page == "marrakech_safi":
                     if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
                         st.session_state.page = "marrakech"
                         st.rerun()
-                    else:
-                        st.warning("Coming Soon")
             else:
                 st.image(image, use_container_width=True)
 
@@ -192,12 +182,10 @@ elif st.session_state.page == "marrakech_safi":
         st.rerun()
 
 else:
-    st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
-    if st.button("⬅ Back to Map"):
+    st.markdown('<h1 class="big-title">🕌 مغامرة مراكش</h1>', unsafe_allow_html=True)
+    if st.button("⬅ Back"):
         st.session_state.page = "marrakech_safi"
         st.rerun()
-    progress = (len(st.session_state.unlocked_stops) / 7)
-    st.progress(progress)
-    st.write(f"**Étape {st.session_state.current_stop}/7** | **نقاط : {st.session_state.score}**")
-    m = folium.Map(location=[31.63, -7.99], zoom_start=12, tiles="CartoDB positron")
+    st.progress(len(st.session_state.unlocked_stops) / 7)
+    m = folium.Map(location=[31.63, -7.99], zoom_start=12)
     st_folium(m, width=1200, height=500)
