@@ -22,7 +22,7 @@ st.markdown("""
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.68);  /* reduced background opacity */
+    background: rgba(255, 255, 255, 0.68);
     z-index: -1;
     pointer-events: none;
 }
@@ -96,8 +96,7 @@ if st.session_state.page == "home":
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
             st.warning("Interactive map unavailable (package not installed).")
-        
-        st.image(image, use_container_width=True)
+            st.image(image, use_container_width=True)  
 
     # ===================== PRETTY COLORED LEGEND + BUTTONS =====================
     st.markdown("### 📋 Tap a region below / اضغط على جهة أدناه")
@@ -169,8 +168,7 @@ elif st.session_state.page == "marrakech_safi":
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
             st.warning("Interactive map unavailable (package not installed).")
-        
-        st.image(image, use_container_width=True)
+            st.image(image, use_container_width=True) 
 
     if st.button("⬅ Back to Regions Map / العودة إلى خريطة الجهات"):
         st.session_state.page = "home"
