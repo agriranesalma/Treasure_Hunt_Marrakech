@@ -22,12 +22,12 @@ st.markdown("""
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.68);
+    background: rgba(255, 255, 255, 0.78);  
     z-index: -1;
     pointer-events: none;
 }
 
-/* Force no horizontal scroll anywhere */
+/* Prevent any unwanted horizontal scroll */
 html, body, [data-testid="stAppViewContainer"], .stApp, .block-container, .main {
     overflow-x: hidden !important;
     max-width: 100vw !important;
@@ -36,14 +36,12 @@ html, body, [data-testid="stAppViewContainer"], .stApp, .block-container, .main 
     margin: 0 !important;
 }
 
-/* Remove padding/margin from columns and rows */
 div.row-widget.stHorizontal, .stColumns {
     margin: 0 !important;
     padding: 0 !important;
-    gap: 0.5rem !important;
+    gap: 1rem !important;          
 }
 
-/* Make sure the interactive image never overflows */
 [data-testid="stImageCoordinates"] img,
 img[src*="streamlit_image_coordinates"] {
     max-width: 100% !important;
@@ -54,11 +52,13 @@ img[src*="streamlit_image_coordinates"] {
 }
 
 .big-title {
-    font-size: 3.2rem;
+    font-size: 3.4rem;             
     font-weight: bold;
     color: #c8102e;
     text-align: center;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.45);
+    margin-bottom: 1.2rem;
+    width: 100%;
 }
 
 .stButton > button {
@@ -67,13 +67,13 @@ img[src*="streamlit_image_coordinates"] {
     border-radius: 12px;
     border: 3px solid #c8102e;
     font-size: 1.05rem;
-    padding: 12px 10px;
-    box-shadow: 0 4px 8px rgba(200,16,46,0.15);
+    padding: 12px 14px;
+    box-shadow: 0 4px 8px rgba(200,16,46,0.18);
     transition: all 0.2s;
 }
 .stButton > button:hover {
     background-color: #ffebee;
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -87,15 +87,16 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
     st.session_state.vr_unlocked = False
 
-# ===================== HOME  =====================
+# ===================== HOME PAGE =====================
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
-    st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
+    st.markdown('<p style="text-align:center; font-size:1.25rem; margin-bottom:1.8rem;">Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً</p>', unsafe_allow_html=True)
+    
     st.markdown("### 🗺️ Click on a region / اضغط على جهة")
 
     try:
         image = Image.open("morocco_regions_map.png")
-        target_w = 340  
+        target_w = 380                   
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
@@ -109,7 +110,7 @@ if st.session_state.page == "home":
         image = None
 
     if image is not None:
-        map_col, legend_col = st.columns([3, 1.8])  
+        map_col, legend_col = st.columns([4.5, 2])   
 
         with map_col:
             if streamlit_image_coordinates is not None:
@@ -155,7 +156,7 @@ if st.session_state.page == "home":
             for num, name, color in regions:
                 dot_col, btn_col = st.columns([1, 5])
                 with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:24px; height:24px; border-radius:50%;"></div>', unsafe_allow_html=True)
+                    st.markdown(f'<div style="background:{color}; width:26px; height:26px; border-radius:50%; margin-top:0.4rem;"></div>', unsafe_allow_html=True)
                 with btn_col:
                     if st.button(name, key=f"btn_{num}", use_container_width=True):
                         if name == "Marrakech-Safi":
@@ -171,7 +172,7 @@ elif st.session_state.page == "marrakech_safi":
 
     try:
         image = Image.open("marrakech_safi.png")
-        target_w = 340
+        target_w = 380
         w, h = image.size
         ratio = target_w / float(w)
         new_h = int(h * ratio)
@@ -213,7 +214,7 @@ elif st.session_state.page == "marrakech_safi":
         st.session_state.page = "home"
         st.rerun()
 
-# ===================== MARRAKECH TREASURE HUNT =====================
+# ===================== TREASURE HUNT PAGE =====================
 else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
