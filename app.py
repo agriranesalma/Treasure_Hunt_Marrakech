@@ -40,33 +40,20 @@ st.markdown("""
 }
 
 .big-title {
-    font-family: 'Kaushan Script', cursive;
-    font-size: clamp(8rem, 35vw, 25rem);
-    font-weight: 900;
-    text-align: center;
-    background: linear-gradient(to right,
-        #e31e24 0%,
-        #e31e24 45%,   
-        #ffffff 48%,   
-        #ffffff 52%,
-        #006400 55%,   
-        #006400 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* Massive thickness boost */
-    -webkit-text-stroke: 5px rgba(255,255,255,0.1);
-    text-shadow: 
-        0px 4px 10px rgba(0,0,0,0.5),
-        0px 10px 30px rgba(0,0,0,0.3);
-    margin-top: -2rem;
-    margin-bottom: -3rem;
-    padding: 0;
-    line-height: 1.1;
-    display: block;
-    width: 100%;
-    animation: gentleGlow 6s infinite ease-in-out;
+    font-family: 'Kaushan Script', cursive !important;
+    font-size: 18rem !important; /* Increase this to 20rem or 25rem if needed */
+    font-weight: 900 !important;
+    text-align: center !important;
+    background: linear-gradient(to right, #e31e24 40%, #ffffff 50%, #006400 60%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    display: block !important;
+    width: 100% !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    -webkit-text-stroke: 4px rgba(255,255,255,0.1);
 }
 
 .tag-subtitle {
