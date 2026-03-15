@@ -44,16 +44,25 @@ if st.session_state.page == "home":
     with col_map:
         st.markdown("### 🗺️ Carte des 12 régions / خريطة الـ12 جهة")
         
-        
-        map_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Carte_Administrative_Maroc_2023.png/960px-Carte_Administrative_Maroc_2023.png"
-        try:
-            img_data = requests.get(map_url, timeout=5).content
-            image = Image.open(BytesIO(img_data))
-            st.image(image, use_container_width=True)
-        except:
-            st.image("https://via.placeholder.com/700x400/ffcc00/8B0000?text=Carte+du+Maroc", use_container_width=True)
+        st.write("Click on a region to start the adventure.")
 
-        st.markdown("### Cliquez sur Marrakech-Safi pour commencer")
+        image = Image.open("/Users/salma/Desktop/treasure hunt/morocco_regions_map.png")
+        image= image.resize((600,400))
+        click = streamlit_image_coordinates(image)
+
+        if click is not None:
+
+            x = click["x"]
+            y = click["y"]
+
+            # Marrakech coordinates
+            if 205 <= x <= 234 and 119 <= y <= 141:
+                st.session_state.page = "marrakech"
+                st.rerun()
+
+            else:
+                st.warning("Coming Soon / Bientôt disponible / قريباً")
+
 
         regions = [
             ("Tanger-Tétouan-Al Hoceïma", "طنجة-تطوان-الحسيمة"),
