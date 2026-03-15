@@ -42,53 +42,45 @@ if st.session_state.page == "home":
     col_map, col_about = st.columns([1.6, 1])
 
     with col_map:
-        st.markdown("### 🗺️ Carte des 12 régions / خريطة الـ12 جهة")
-        
-        st.write("Click on a region to start the adventure.")
+        st.markdown("### 🗺️ Click on a region to start / اضغط على جهة لبدء المغامرة")
 
-        image = Image.open("morocco_regions_map.png")
-        image= image.resize((600,400))
-        click = streamlit_image_coordinates(image)
+        m = folium.Map(location=[28.5, -9], zoom_start=5, tiles="CartoDB positron")
 
-        if click is not None:
+        regions_clickable = {
+            "Marrakech-Safi": [31.63, -8.0],
+            "Casablanca-Settat": [33.53, -7.61],
+            "Rabat-Salé-Kénitra": [34.02, -6.83],
+            "Fès-Meknès": [34.03, -5.00],
+        }
 
-            x = click["x"]
-            y = click["y"]
+        for name, coord in regions_clickable.items():
+            color = "green" if name == "Marrakech-Safi" else "gray"
+            folium.Marker(
+                location=coord,
+                popup=folium.Popup(
+                    f"<b>{name}</b><br>"
+                    "<small>Click to start (only Marrakech-Safi available)</small>",
+                    max_width=200
+                ),
+                icon=folium.Icon(color=color, icon="star" if name == "Marrakech-Safi" else "lock")
+            ).add_to(m)
 
-            # Marrakech coordinates
-            if 205 <= x <= 234 and 119 <= y <= 141:
+        output = st_folium(
+            m,
+            width=700,
+            height=500,
+            returned_objects=["last_object_clicked"]
+        )
+
+        clicked = output.get("last_object_clicked")
+        if clicked:
+           
+            lat, lng = clicked["lat"], clicked["lng"]
+            if 30.0 < lat < 33.0 and -9.5 < lng < -6.5: 
                 st.session_state.page = "marrakech"
                 st.rerun()
-
             else:
                 st.warning("Coming Soon / Bientôt disponible / قريباً")
-
-
-        regions = [
-            ("Tanger-Tétouan-Al Hoceïma", "طنجة-تطوان-الحسيمة"),
-            ("L'Oriental", "الشرق"),
-            ("Fès-Meknès", "فاس-مكناس"),
-            ("Rabat-Salé-Kénitra", "الرباط-سلا-القنيطرة"),
-            ("Béni Mellal-Khénifra", "بني ملال-خنيفرة"),
-            ("Casablanca-Settat", "الدار البيضاء-سطات"),
-            ("**Marrakech-Safi**", "**مراكش-آسفي**"),
-            ("Drâa-Tafilalet", "درعة-تافيلالت"),
-            ("Souss-Massa", "سوس-ماسة"),
-            ("Guelmim-Oued Noun", "كلميم-واد نون"),
-            ("Laâyoune-Sakia El Hamra", "العيون-الساقية الحمراء"),
-            ("Dakhla-Oued Ed-Dahab", "الداخلة-وادي الذهب"),
-        ]
-
-        cols = st.columns(4)
-        for i, (fr, ar) in enumerate(regions):
-            with cols[i % 4]:
-                if "**Marrakech-Safi**" in fr:
-                    if st.button(f"🕌 {fr}\n{ar}", key="marrakech_btn", use_container_width=True, type="primary"):
-                        st.session_state.page = "marrakech"
-                        st.rerun()
-                else:
-                    st.button(f"🔒 {fr}\n{ar}", disabled=True, use_container_width=True)
-
     with col_about:
         st.markdown("### ℹ️ About the Adventure / عن المغامرة")
         st.write("""
