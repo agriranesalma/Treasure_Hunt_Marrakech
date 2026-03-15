@@ -37,8 +37,6 @@ if "hunt_started" not in st.session_state:
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
     st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
-    col_map, col_about = st.columns([1.6, 1])
-    with col_map:
         st.markdown("### 🗺️ Click on a region / اضغط على جهة")
         try:
             image_path = "morocco_regions_map.png"
@@ -69,17 +67,6 @@ if st.session_state.page == "home":
             else:
                 st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
                 st.image(image, use_container_width=True)
-    with col_about:
-        st.markdown("### ℹ️ About the Adventure / عن المغامرة")
-        st.write("""
-        **Moroccan Cultural Treasure Hunt**
-        **Chasse au Trésor Culturel Marocaine**
-        **مغامرة البحث عن الكنز الثقافي المغربي**
-        Follow clues across Marrakech-Safi, discover historical sites,
-        cultural stories, and partner cafés/shops.
-        Solve puzzles → get secret codes → win prizes (including VR!).
-        Hackathon prototype – only Marrakech-Safi is active.
-        """)
 
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
