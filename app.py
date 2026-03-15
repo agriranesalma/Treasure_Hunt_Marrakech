@@ -46,7 +46,7 @@ if st.session_state.page == "home":
 
     with col_map:
         with col_map:
-        st.markdown("### 🗺️ Click on a region / اضغط على جهة")
+            st.markdown("### 🗺️ Click on a region / اضغط على جهة")
 
         try:
             image_path = "morocco_regions_map.png"
