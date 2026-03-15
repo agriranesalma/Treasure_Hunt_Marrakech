@@ -116,7 +116,7 @@ if image is not None:
     if streamlit_image_coordinates is not None:
         click = streamlit_image_coordinates(
                         image,
-                        key="morocco_region_map"
+                        key="marrakech-safi"
                     )
     
         if click is not None:
