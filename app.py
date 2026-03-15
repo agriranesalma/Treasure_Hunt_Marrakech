@@ -44,39 +44,27 @@ if st.session_state.page == "home":
     with col_map:
         st.markdown("### 🗺️ Click on a region to start / اضغط على جهة لبدء المغامرة")
 
-        m = folium.Map(location=[28.5, -9], zoom_start=5, tiles="CartoDB positron")
+        try:
+            image = Image.open("morocco_regions_map.png")
+            image = image.resize((700, 500)) 
+            click = streamlit_image_coordinates(
+                image,
+                key="region_map_click"   
+            )
+        except FileNotFoundError:
+            st.error("Image 'morocco_regions_map.png' not found in repo root. Please upload it to GitHub.")
+            click = None
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+            click = None
 
-        regions_clickable = {
-            "Marrakech-Safi": [31.63, -8.0],
-            "Casablanca-Settat": [33.53, -7.61],
-            "Rabat-Salé-Kénitra": [34.02, -6.83],
-            "Fès-Meknès": [34.03, -5.00],
-        }
+        if click is not None:
+            x = click["x"]
+            y = click["y"]
+            st.caption(f"Clicked at: x={x:.0f}, y={y:.0f}")
 
-        for name, coord in regions_clickable.items():
-            color = "green" if name == "Marrakech-Safi" else "gray"
-            folium.Marker(
-                location=coord,
-                popup=folium.Popup(
-                    f"<b>{name}</b><br>"
-                    "<small>Click to start (only Marrakech-Safi available)</small>",
-                    max_width=200
-                ),
-                icon=folium.Icon(color=color, icon="star" if name == "Marrakech-Safi" else "lock")
-            ).add_to(m)
-
-        output = st_folium(
-            m,
-            width=700,
-            height=500,
-            returned_objects=["last_object_clicked"]
-        )
-
-        clicked = output.get("last_object_clicked")
-        if clicked:
            
-            lat, lng = clicked["lat"], clicked["lng"]
-            if 30.0 < lat < 33.0 and -9.5 < lng < -6.5: 
+            if 180 <= x <= 280 and 90 <= y <= 170:  
                 st.session_state.page = "marrakech"
                 st.rerun()
             else:
