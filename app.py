@@ -140,9 +140,7 @@ if st.session_state.page == "home":
                     rel_x = click["x"] / image.width
                     rel_y = click["y"] / image.height
                     
-                    st.code(f"X: {rel_x:.3f}, Y: {rel_y:.3f}") 
-                    
-                    if 0.28 <= rel_x <= 0.52 and 0.42 <= rel_y <= 0.68:
+                    if 0.47 <= rel_x <= 0.61 and 0.28 <= rel_y <= 0.38:
                         st.session_state.page = "marrakech_safi"
                         st.rerun()
             else:
