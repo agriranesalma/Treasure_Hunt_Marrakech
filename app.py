@@ -93,7 +93,7 @@ if st.session_state.page == "home":
                     rel_y = y / height
                     st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
                     
-                    if 0.28 <= rel_x <= 0.52 and 0.42 <= rel_y <= 0.68:
+                    if 0.47 <= rel_x <= 0.61 and 0.29 <= rel_y <= 0.38:
                         st.session_state.page = "marrakech_safi"
                         st.rerun()
                     else:
