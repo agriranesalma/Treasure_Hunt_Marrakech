@@ -62,6 +62,7 @@ st.markdown("""
     text-align: center;
     color: white !important;
     text-shadow: 2px 2px 15px rgba(0,0,0,1);
+    margin-top: 4rem !important;
     margin-bottom: 4rem;
     letter-spacing: 2px;
 }
