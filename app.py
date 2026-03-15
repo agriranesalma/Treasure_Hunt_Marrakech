@@ -112,9 +112,9 @@ except Exception as e:
     st.error(f"Error loading image: {str(e)}")
     image = None
     
-    if image is not None:
-        if streamlit_image_coordinates is not None:
-            click = streamlit_image_coordinates(
+if image is not None:
+    if streamlit_image_coordinates is not None:
+        click = streamlit_image_coordinates(
                         image,
                         key="morocco_region_map"
                     )
@@ -122,7 +122,7 @@ except Exception as e:
         if click is not None:
              x = click["x"]
              y = click["y"]
-            st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}") 
+             st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f}") 
     
                       
              if 180 <= x <= 280 and 90 <= y <= 180:
