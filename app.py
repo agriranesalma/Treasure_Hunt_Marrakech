@@ -134,7 +134,7 @@ if image is not None:
             st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
             st.image(image, use_container_width=True)
 # MARRAKECH TREASURE HUNT 
-"""else:
+else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش-آسفي • Marrakech-Safi Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
 
@@ -166,5 +166,5 @@ if image is not None:
 
     # === CLUES & PUZZLES ( i will add this later, im tired and i will sleep)
     stop = st.session_state.current_stop
-    clues = { ... } """
+    clues = { ... } 
 
