@@ -43,7 +43,7 @@ if st.session_state.page == "home":
         try:
             image_path = "morocco_regions_map.png"
             image = Image.open(image_path)
-            image = image.resize((200, 100))
+            image = image.resize((200, 200))
         except FileNotFoundError:
             st.error("File 'morocco_regions_map.png' not found in repo root.")
             st.info("Please commit and push the image file to GitHub.")
