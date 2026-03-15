@@ -43,7 +43,7 @@ if st.session_state.page == "home":
         try:
             image_path = "morocco_regions_map.png"
             image = Image.open(image_path)
-            image = image.resize((700, 500))
+            image = image.resize((400, 200))
         except FileNotFoundError:
             st.error("File 'morocco_regions_map.png' not found in repo root.")
             st.info("Please commit and push the image file to GitHub.")
@@ -87,7 +87,7 @@ elif st.session_state.page == "marrakech_safi":
     try:
         image_path = "marrakech_safi.png"
         image = Image.open(image_path)
-        image = image.resize((700, 500))
+        image = image.resize((300, 200))
     except FileNotFoundError:
         st.error("File 'marrakech_safi.png' not found in repo root.")
         st.info("Please commit and push the image file to GitHub.")
