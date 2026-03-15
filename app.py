@@ -1,10 +1,7 @@
 import streamlit as st
 from PIL import Image
-import requests
-from io import BytesIO
 import folium
 from streamlit_folium import st_folium
-import streamlit.components.v1 as components
 
 try:
     from streamlit_image_coordinates import streamlit_image_coordinates
@@ -21,7 +18,29 @@ st.markdown("""
     background-position: center;
     background-attachment: fixed;
 }
-.big-title {font-size: 3.2rem; font-weight: bold; color: #c8102e; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.3);}
+.stApp::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.68);  /* reduced background opacity */
+    z-index: -1;
+    pointer-events: none;
+}
+.big-title {font-size: 3.2rem; font-weight: bold; color: #c8102e; text-align: center; text-shadow: 2px 2px 8px rgba(0,0,0,0.4);}
+.stButton > button {
+    background-color: #f8f8f8;
+    color: #1a1a1a;
+    border-radius: 12px;
+    border: 3px solid #c8102e;
+    font-size: 1.05rem;
+    padding: 12px 10px;
+    box-shadow: 0 4px 8px rgba(200,16,46,0.15);
+    transition: all 0.2s;
+}
+.stButton > button:hover {
+    background-color: #ffebee;
+    transform: scale(1.03);
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -34,14 +53,14 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
     st.session_state.vr_unlocked = False
 
+# ===================== REGIONS MAP (HOME) =====================
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">🇲🇦 كنز المغرب • Trésor Marocain</h1>', unsafe_allow_html=True)
     st.markdown("**Explore Morocco culturally • Découvrez le Maroc culturellement • اكتشف المغرب ثقافياً**")
     st.markdown("### 🗺️ Click on a region / اضغط على جهة")
 
     try:
-        image_path = "morocco_regions_map.png"
-        image = Image.open(image_path)
+        image = Image.open("morocco_regions_map.png")
         target_w = 500
         w, h = image.size
         ratio = target_w / float(w)
@@ -57,7 +76,7 @@ if st.session_state.page == "home":
 
     if image is not None:
         if streamlit_image_coordinates is not None:
-            col1, col2, col3 = st.columns([1, 3, 1])
+            col1, col2, col3 = st.columns([1, 4, 1])
             with col2:
                 click = streamlit_image_coordinates(image, key="morocco_region_map")
             
@@ -68,7 +87,6 @@ if st.session_state.page == "home":
                 height = image.height
                 rel_x = x / width
                 rel_y = y / height
-                
                 st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
                 
                 if 0.28 <= rel_x <= 0.52 and 0.42 <= rel_y <= 0.68:
@@ -77,32 +95,45 @@ if st.session_state.page == "home":
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
-            st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
-            st.image(image, use_container_width=True)
+            st.warning("Interactive map unavailable (package not installed).")
+        
+        st.image(image, use_container_width=True)
 
-    st.markdown("**Or click a region below / أو اضغط على جهة أدناه**")
+    # ===================== PRETTY COLORED LEGEND + BUTTONS =====================
+    st.markdown("### 📋 Tap a region below / اضغط على جهة أدناه")
     regions = [
-        "Tanger-Tétouan-Al Hoceïma", "Oriental", "Fès-Meknès", "Rabat-Salé-Kénitra",
-        "Béni Mellal-Khénifra", "Casablanca-Settat", "Marrakech-Safi", "Drâa-Tafilalet",
-        "Souss-Massa", "Guelmim-Oued Noun", "Laâyoune-Sakia El Hamra", "Dakhla-Oued Ed-Dahab"
+        ("01", "Tanger-Tétouan-Al Hoceïma", "#26C6C0"),
+        ("02", "Oriental", "#FF9F00"),
+        ("03", "Fès-Meknès", "#34C76F"),
+        ("04", "Rabat-Salé-Kénitra", "#E03E3E"),
+        ("05", "Béni Mellal-Khénifra", "#2C5F7A"),
+        ("06", "Casablanca-Settat", "#7A8A9C"),
+        ("07", "Marrakech-Safi", "#FF9F00"),
+        ("08", "Drâa-Tafilalet", "#5EB8FF"),
+        ("09", "Souss-Massa", "#00C9A0"),
+        ("10", "Guelmim-Oued Noun", "#FFCB4E"),
+        ("11", "Laâyoune-Sakia El Hamra", "#9B59B5"),
+        ("12", "Eddakhla-Oued Ed-dahab", "#1E9BFF"),
     ]
-    cols = st.columns(3)
-    for i, region in enumerate(regions):
-        with cols[i % 3]:
-            if st.button(region, key=f"reg_{i}", use_container_width=True):
-                if region == "Marrakech-Safi":
+    for num, name, color in regions:
+        col_dot, col_btn = st.columns([1, 6])
+        with col_dot:
+            st.markdown(f'<div style="background:{color}; width:28px; height:28px; border-radius:50%;"></div>', unsafe_allow_html=True)
+        with col_btn:
+            if st.button(name, key=f"btn_{num}", use_container_width=True):
+                if name == "Marrakech-Safi":
                     st.session_state.page = "marrakech_safi"
                     st.rerun()
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
 
+# ===================== MARRAKECH-SAFI PROVINCES =====================
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">📍 Marrakech-Safi • مراكش آسفي</h1>', unsafe_allow_html=True)
     st.markdown("### 🗺️ Click on a province / اضغط على إقليم")
 
     try:
-        image_path = "marrakech_safi.png"
-        image = Image.open(image_path)
+        image = Image.open("marrakech_safi.png")
         target_w = 500
         w, h = image.size
         ratio = target_w / float(w)
@@ -118,7 +149,7 @@ elif st.session_state.page == "marrakech_safi":
 
     if image is not None:
         if streamlit_image_coordinates is not None:
-            col1, col2, col3 = st.columns([1, 3, 1])
+            col1, col2, col3 = st.columns([1, 4, 1])
             with col2:
                 click = streamlit_image_coordinates(image, key="marrakech-safi")
             
@@ -129,7 +160,6 @@ elif st.session_state.page == "marrakech_safi":
                 height = image.height
                 rel_x = x / width
                 rel_y = y / height
-                
                 st.caption(f"Debug: clicked at x={x:.0f}, y={y:.0f} → **{rel_x:.2f}% , {rel_y:.2f}%**")
                 
                 if 0.25 <= rel_x <= 0.55 and 0.35 <= rel_y <= 0.65:
@@ -138,13 +168,15 @@ elif st.session_state.page == "marrakech_safi":
                 else:
                     st.warning("Coming Soon / Bientôt disponible / قريباً")
         else:
-            st.warning("Interactive map unavailable (package not installed). Use buttons below instead.")
-            st.image(image, use_container_width=True)
+            st.warning("Interactive map unavailable (package not installed).")
+        
+        st.image(image, use_container_width=True)
 
     if st.button("⬅ Back to Regions Map / العودة إلى خريطة الجهات"):
         st.session_state.page = "home"
         st.rerun()
 
+# ===================== MARRAKECH TREASURE HUNT =====================
 else:
     st.markdown('<h1 class="big-title">🕌 مغامرة مراكش • Marrakech Treasure Hunt</h1>', unsafe_allow_html=True)
     st.caption("7 étapes • Suivez les indices sur le terrain")
