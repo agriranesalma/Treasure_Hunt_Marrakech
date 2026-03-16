@@ -212,18 +212,58 @@ elif st.session_state.page == "marrakech_safi":
         st.session_state.page = "home"
         st.rerun()
 
-else:
+else: 
     st.markdown('<h1 class="big-title">Adventure</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">🕌 مغامرة مراكش</div>', unsafe_allow_html=True)
-    if st.button("⬅ Back"):
+    st.markdown(f'<div class="tag-subtitle">🕌 مغامرة مراكش – المحطة {st.session_state.current_stop}</div>', unsafe_allow_html=True)
+
+    if st.button("⬅ Back to Marrakech-Safi Map"):
         st.session_state.page = "marrakech_safi"
+        st.session_state.hunt_started = False
         st.rerun()
-    st.progress(len(st.session_state.unlocked_stops) / 7)
 
-    st.markdown("### 🧞 Scan the AR Treasure")
+    # Progress bar
+    total_stops = 7  
+    st.progress(st.session_state.current_stop / total_stops)
 
-    components.iframe(
-    "https://mywebar.com/p/Project_0_ckwoq2vq9l",
-    height=700,
-    scrolling=True
-    )
+    col_left, col_mid, col_right = st.columns([1, 4, 1])
+
+    with col_mid:
+        st.markdown("### 🧞 Scan the AR Treasure")
+
+        webar_urls = [
+            "https://mywebar.com/p/Project_0_ckwoq2vq9l",   # stop 1
+            "https://mywebar.com/p/another-project-uuid-2", # stop 2
+            "https://mywebar.com/p/another-project-uuid-3", 
+        ]
+
+        url_index = min(st.session_state.current_stop - 1, len(webar_urls) - 1)
+        current_webar_url = webar_urls[url_index] if webar_urls else "https://mywebar.com/p/Project_0_ckwoq2vq9l"
+
+        components.iframe(
+            current_webar_url,
+            height=700,
+            scrolling=True
+        )
+
+    # ── Navigation buttons ───────────────────────────────────────────────
+    btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
+
+    with btn_col1:
+        if st.session_state.current_stop > 1:
+            if st.button("← Previous", use_container_width=True):
+                st.session_state.current_stop -= 1
+                st.rerun()
+
+    with btn_col2:
+        st.markdown(f"**Stop {st.session_state.current_stop} / {total_stops}**", unsafe_allow_html=True)
+
+    with btn_col3:
+        if st.session_state.current_stop < total_stops:
+            if st.button("Next →", type="primary", use_container_width=True):
+                st.session_state.current_stop += 1
+                # Optionally unlock next stop for progress tracking
+                if st.session_state.current_stop not in st.session_state.unlocked_stops:
+                    st.session_state.unlocked_stops.append(st.session_state.current_stop)
+                st.rerun()
+        else:
+            st.success("🎉 Congratulations! You completed all stops!")
