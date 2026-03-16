@@ -116,7 +116,7 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
 
 if st.session_state.page == "home":
-    st.markdown('<h1 class="big-title">Trésor Marocain</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
 
