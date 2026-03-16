@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import folium
 from streamlit_folium import st_folium
+import streamlit.components.v1 as components
 
 try:
     from streamlit_image_coordinates import streamlit_image_coordinates
@@ -218,5 +219,11 @@ else:
         st.session_state.page = "marrakech_safi"
         st.rerun()
     st.progress(len(st.session_state.unlocked_stops) / 7)
-    m = folium.Map(location=[31.63, -7.99], zoom_start=12)
-    st_folium(m, width=1200, height=500)
+
+    st.markdown("### 🧞 Scan the AR Treasure")
+
+    components.iframe(
+    "https://mywebar.com/p/Project_0_ckwoq2vq9l",
+    height=700,
+    scrolling=True
+    )
