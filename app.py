@@ -116,8 +116,8 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
 if "stop_answers" not in st.session_state:
     st.session_state.stop_answers = {}
-if "stop1_started" not in st.session_state:
-    st.session_state.stop1_started = False
+if "stop1_phase" not in st.session_state:
+    st.session_state.stop1_phase = "intro"
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url = "https://mywebar.com/p/Project_1_to00xjn24"
 # ====================== STOP DATA (add more stops here later) ======================
