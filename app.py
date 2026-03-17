@@ -116,6 +116,8 @@ if "hunt_started" not in st.session_state:
     st.session_state.score = 0
 if "stop_answers" not in st.session_state:
     st.session_state.stop_answers = {}
+if "stop1_started" not in st.session_state:
+    st.session_state.stop1_started = False
 # ====================== STOP DATA (add more stops here later) ======================
 stops_data = {
     1: {
