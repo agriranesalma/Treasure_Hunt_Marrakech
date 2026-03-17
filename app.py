@@ -264,19 +264,18 @@ else:
         ]
 
         url_index = min(st.session_state.current_stop - 1, len(webar_urls) - 1)
-        current_webar_url = webar_urls[url_index] if webar_urls else "https://mywebar.com/p/Project_0_ckwoq2vq9l"
+        current_webar_url = webar_urls[url_index]
+        components.iframe(current_webar_url, height=700, scrolling=True)
 
-        components.iframe(
-            current_webar_url,
-            height=700,
-            scrolling=True
-        )
+     
     st.markdown("---")
     current = st.session_state.current_stop
     show_riddle = True
+    # ==================== SPECIAL INTRO FOR STOP 1 ONLY ====================
     if current == 1 and not st.session_state.stop1_started:
         st.markdown("### 👋 Welcome Traveler!")
         st.info("The AR Genie just welcomed you and explained the treasure hunt.\n\nReady to begin your first puzzle?")
+        st.info("لقد رحّب بك الجني وشرح لك لعبة البحث عن الكنز.\n\nهل أنت مستعد لبدء أول لغز؟")
         if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
             st.session_state.stop1_started = True
             st.rerun()
