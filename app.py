@@ -137,7 +137,7 @@ stops_data = {
         "correct_mini": "B) Orange",
         "mini_explanation": "Marrakech’s Jemaa el-Fna is famous for its fresh orange juice stalls."
     }
-    # Example for stop 2 (just copy-paste and fill):
+    # Example for stop 2 :
     # 2: { "riddle_options": [...], "correct_riddle": "...", ... }
 }
 if st.session_state.page == "home":
@@ -201,7 +201,7 @@ if st.session_state.page == "home":
                             st.rerun()
                         else:
                             st.toast("Coming Soon! / قريباً", icon="⏳")
-
+# ====================== MARRAKECH-SAFI MAP ======================
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
@@ -236,7 +236,7 @@ elif st.session_state.page == "marrakech_safi":
     if st.button("⬅ Back to Regions Map"):
         st.session_state.page = "home"
         st.rerun()
-
+# ====================== ADVENTURE PAGE ======================
 else: 
     st.markdown('<h1 class="big-title">Adventure</h1>', unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">🕌 مغامرة مراكش – المحطة {st.session_state.current_stop}</div>', unsafe_allow_html=True)
@@ -257,8 +257,8 @@ else:
 
         webar_urls = [
             "https://mywebar.com/p/Project_0_ckwoq2vq9l",   # stop 1
-            "https://mywebar.com/p/another-project-uuid-2", # stop 2
-            "https://mywebar.com/p/another-project-uuid-3", 
+            "https://mywebar.com/p/Project_1_to00xjn24", # stop 2
+            "https://mywebar.com/p/another-project-uuid-3", #stop 3
         ]
 
         url_index = min(st.session_state.current_stop - 1, len(webar_urls) - 1)
@@ -271,8 +271,16 @@ else:
         )
     st.markdown("---")
     current = st.session_state.current_stop
-
-    if current in stops_data:
+    show_riddle = True
+    if current == 1 and not st.session_state.stop1_started:
+        st.markdown("### 👋 Welcome Traveler!")
+        st.info("The AR Genie just welcomed you and explained the treasure hunt.\n\nReady to begin your first puzzle?")
+        if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
+            st.session_state.stop1_started = True
+            st.rerun()
+        show_riddle = False
+        
+    if show_riddle and current in stops_data:
         stop = stops_data[current]
 
         if current not in st.session_state.stop_answers:
