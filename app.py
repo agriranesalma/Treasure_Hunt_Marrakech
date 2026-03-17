@@ -275,8 +275,8 @@ else:
 
     # ==================== PAGE 1: INTRO (welcome + Let's Start) ====================
     if current == 1 and phase == "intro":
-        st.info("The Genie is happy for your arrival .click the button below to go to start **the adventure**.")
-        st.info("يسعد الجني بقدومك. اضغط على الزر أدناه لبدء رحلتك في المغامرة.")
+        st.info("The Genie is happy for your arrival\nclick the button below to go to start **the adventure**.")
+        st.info("يسعد الجني بقدومك\n اضغط على الزر أدناه لبدء رحلتك في المغامرة.")
         if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
             st.session_state.stop1_phase = "puzzle"
             st.rerun()
