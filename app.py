@@ -118,6 +118,8 @@ if "stop_answers" not in st.session_state:
     st.session_state.stop_answers = {}
 if "stop1_started" not in st.session_state:
     st.session_state.stop1_started = False
+welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
+riddle_url = "https://mywebar.com/p/Project_1_to00xjn24"
 # ====================== STOP DATA (add more stops here later) ======================
 stops_data = {
     1: {
@@ -240,67 +242,60 @@ elif st.session_state.page == "marrakech_safi":
         st.rerun()
 # ====================== ADVENTURE PAGE ======================
 else: 
-    st.markdown('<h1 class="big-title">Adventure</h1>', unsafe_allow_html=True)
-    st.markdown(f'<div class="tag-subtitle">🕌 مغامرة مراكش – المحطة {st.session_state.current_stop}</div>', unsafe_allow_html=True)
+    current = st.session_state.current_stop
+    phase = st.session_state.stop1_phase if current == 1 else "puzzle"
+    
+if current == 1 and phase == "intro":
+        st.markdown('<h1 class="big-title">Stop 1 – Welcome</h1>', unsafe_allow_html=True)
+        st.markdown('<div class="tag-subtitle">🧞 مرحبا بالمسافر • Welcome Traveler</div>', unsafe_allow_html=True)
+    else:
+        st.markdown('<h1 class="big-title">Stop 1 – Jemaa el-Fna Puzzle</h1>', unsafe_allow_html=True)
+        st.markdown('<div class="tag-subtitle">🕌 المحطة الأولى • اللغز</div>', unsafe_allow_html=True)
 
     if st.button("⬅ Back to Marrakech-Safi Map"):
         st.session_state.page = "marrakech_safi"
-        st.session_state.hunt_started = False
+        st.session_state.stop1_phase = "intro"   # reset for next time
         st.rerun()
 
-    # Progress bar
-    total_stops = 7  
-    st.progress(st.session_state.current_stop / total_stops)
+    total_stops = 7
+    st.progress(current / total_stops)
     st.markdown(f'<h3 style="text-align: center; color: #e31e24;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
+
     col_left, col_mid, col_right = st.columns([1, 4, 1])
 
     with col_mid:
         st.markdown("### 🧞 Scan the AR Treasure")
 
-        webar_urls = [
-            "https://mywebar.com/p/Project_0_ckwoq2vq9l",   # stop 1
-            "https://mywebar.com/p/Project_1_to00xjn24", # stop 2
-            "https://mywebar.com/p/another-project-uuid-3", #stop 3
-        ]
-
-        url_index = min(st.session_state.current_stop - 1, len(webar_urls) - 1)
-        current_webar_url = webar_urls[url_index]
+        if current == 1 and phase == "intro":
+            current_webar_url = welcome_url          # ← Intro page
+        else:
+            current_webar_url = riddle_url           # ← Puzzle page (different link!)
         components.iframe(current_webar_url, height=700, scrolling=True)
 
      
     st.markdown("---")
-    current = st.session_state.current_stop
-    show_riddle = True
     # ==================== SPECIAL INTRO FOR STOP 1 ONLY ====================
-    if current == 1 and not st.session_state.stop1_started:
+    if current == 1 and phase=="intro":
         st.markdown("### 👋 Welcome Traveler!")
         st.info("The AR Genie just welcomed you and explained the treasure hunt.\n\nReady to begin your first puzzle?")
         st.info("لقد رحّب بك الجني وشرح لك لعبة البحث عن الكنز.\n\nهل أنت مستعد لبدء أول لغز؟")
         if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
             st.session_state.stop1_started = True
             st.rerun()
-        show_riddle = False
         
-    if show_riddle and current in stops_data:
-        stop = stops_data[current]
+    elif current == 1 and phase == "puzzle" and current in stops_data:
+        stop = stops_data[1]
 
-        if current not in st.session_state.stop_answers:
-            st.session_state.stop_answers[current] = {
-                "riddle": None,
-                "mini": None,
-                "riddle_scored": False,
-                "mini_scored": False
-            }
-        answers = st.session_state.stop_answers[current]
+        if 1 not in st.session_state.stop_answers:
+            st.session_state.stop_answers[1] = {"riddle": None, "mini": None, "riddle_scored": False, "mini_scored": False}
+        answers = st.session_state.stop_answers[1]
 
-        # ── RIDDLE (AR Genie already read it) ──
         st.subheader("🧩 Click your answer to the AR puzzle")
         if answers["riddle"] is None:
             c1, c2 = st.columns(2)
             for i, opt in enumerate(stop["riddle_options"]):
-                col = c1 if i % 2 == 0 else c2
-                with col:
-                    if st.button(opt, use_container_width=True, key=f"r_{current}_{i}"):
+                with (c1 if i % 2 == 0 else c2):
+                    if st.button(opt, use_container_width=True, key=f"r1_{i}"):
                         answers["riddle"] = opt
                         if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
                             answers["riddle_scored"] = True
@@ -311,24 +306,17 @@ else:
                 st.success(f"✅ Correct! The legendary place is **{stop['correct_riddle']}**")
             else:
                 st.error(f"❌ You chose {answers['riddle']}. The correct answer is {stop['correct_riddle']}")
-                if st.button("🔄 Try Riddle Again", key=f"retry_r_{current}"):
-                    answers["riddle"] = None
-                    st.rerun()
+                if st.button("🔄 Try Riddle Again"): answers["riddle"] = None; st.rerun()
+            st.markdown("**📖 Learning Moment**"); st.info(stop["learning"])
 
-            st.markdown("**📖 Learning Moment**")
-            st.info(stop["learning"])
-
-        # ── MINI-CHALLENGE (only after riddle) ──
         if answers["riddle"] is not None:
             st.subheader("🔍 Mini-Challenge: Observation")
             st.write(stop["mini_question"])
-
             if answers["mini"] is None:
                 c1, c2 = st.columns(2)
                 for i, opt in enumerate(stop["mini_options"]):
-                    col = c1 if i % 2 == 0 else c2
-                    with col:
-                        if st.button(opt, use_container_width=True, key=f"m_{current}_{i}"):
+                    with (c1 if i % 2 == 0 else c2):
+                        if st.button(opt, use_container_width=True, key=f"m1_{i}"):
                             answers["mini"] = opt
                             if opt == stop["correct_mini"] and not answers["mini_scored"]:
                                 answers["mini_scored"] = True
@@ -339,33 +327,28 @@ else:
                     st.success(f"✅ Yes! {stop['mini_explanation']}")
                 else:
                     st.error(f"❌ Not quite. The answer is {stop['correct_mini']}")
-                    if st.button("🔄 Try Mini Again", key=f"retry_m_{current}"):
-                        answers["mini"] = None
-                        st.rerun()
+                    if st.button("🔄 Try Mini Again"): answers["mini"] = None; st.rerun()
 
-    else:
-        st.info("🌟 More treasure stops, riddles, and AR surprises coming soon for stops 2–7!\n\nThe journey continues…")
+    elif current > 1:
+        st.info("Stops 2–7 coming soon – same structure (one AR link per stop).")
 
     st.markdown("---")
-    # ── Navigation buttons ───────────────────────────────────────────────
+
+    # Navigation
     btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
-
     with btn_col1:
-        if st.session_state.current_stop > 1:
-            if st.button("← Previous", use_container_width=True):
-                st.session_state.current_stop -= 1
-                st.rerun()
-
+        if current > 1 and st.button("← Previous", use_container_width=True):
+            st.session_state.current_stop -= 1
+            if current == 2: st.session_state.stop1_phase = "puzzle"  # stay on puzzle when going back
+            st.rerun()
     with btn_col2:
-        st.markdown(f"**Stop {st.session_state.current_stop} / {total_stops}**", unsafe_allow_html=True)
-
+        st.markdown(f"**Stop {current} / {total_stops}**", unsafe_allow_html=True)
     with btn_col3:
-        if st.session_state.current_stop < total_stops:
+        if current < total_stops:
             if st.button("Next →", type="primary", use_container_width=True):
                 st.session_state.current_stop += 1
-                # Optionally unlock next stop for progress tracking
                 if st.session_state.current_stop not in st.session_state.unlocked_stops:
                     st.session_state.unlocked_stops.append(st.session_state.current_stop)
                 st.rerun()
         else:
-            st.success("🎉 Congratulations! You completed all stops!")
+            st.success("🎉 Congratulations! You completed the Marrakech-Safi Treasure Hunt!")
