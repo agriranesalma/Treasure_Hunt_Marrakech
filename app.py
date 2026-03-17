@@ -249,7 +249,7 @@ else:
         st.markdown('<h1 class="big-title">Stop 1 – Welcome</h1>', unsafe_allow_html=True)
         st.markdown('<div class="tag-subtitle">🧞 مرحبًا بك أيها المسافر • Welcome Traveler</div>', unsafe_allow_html=True)
     else:
-        st.markdown('<h1 class="big-title">Stop 1 – Jemaa el-Fna Puzzle</h1>', unsafe_allow_html=True)
+        st.markdown('<h1 class="big-title">First stop . Puzzle</h1>', unsafe_allow_html=True)
         st.markdown('<div class="tag-subtitle">🕌 المحطة الأولى • اللغز</div>', unsafe_allow_html=True)
 
     if st.button("⬅ Back to Marrakech-Safi Map"):
