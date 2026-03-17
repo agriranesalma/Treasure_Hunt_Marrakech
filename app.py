@@ -247,7 +247,7 @@ else:
     
     if current == 1 and phase == "intro":
         st.markdown('<h1 class="big-title">Stop 1 – Welcome</h1>', unsafe_allow_html=True)
-        st.markdown('<div class="tag-subtitle">🧞 مرحبا بالمسافر • Welcome Traveler</div>', unsafe_allow_html=True)
+        st.markdown('<div class="tag-subtitle">🧞 مرحبًا بك أيها المسافر • Welcome Traveler</div>', unsafe_allow_html=True)
     else:
         st.markdown('<h1 class="big-title">Stop 1 – Jemaa el-Fna Puzzle</h1>', unsafe_allow_html=True)
         st.markdown('<div class="tag-subtitle">🕌 المحطة الأولى • اللغز</div>', unsafe_allow_html=True)
@@ -275,7 +275,8 @@ else:
 
     # ==================== PAGE 1: INTRO (welcome + Let's Start) ====================
     if current == 1 and phase == "intro":
-        st.info("The AR Genie is telling you the welcome story and explaining the adventure.\n\nWhen he finishes, click the button below to go to the **real puzzle page**.")
+        st.info("The Genie is happy for your arrival .click the button below to go to start **the adventure**.")
+        st.info("يسعد الجني بقدومك. اضغط على الزر أدناه لبدء رحلتك في المغامرة.")
         if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
             st.session_state.stop1_phase = "puzzle"
             st.rerun()
