@@ -114,6 +114,8 @@ if "hunt_started" not in st.session_state:
     st.session_state.current_stop = 1
     st.session_state.unlocked_stops = [1]
     st.session_state.score = 0
+if "stop_answers" not in st.session_state:
+    st.session_state.stop_answers = {}
 # ====================== STOP DATA (add more stops here later) ======================
 stops_data = {
     1: {
