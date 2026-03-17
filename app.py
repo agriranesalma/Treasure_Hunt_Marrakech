@@ -245,7 +245,7 @@ else:
     current = st.session_state.current_stop
     phase = st.session_state.stop1_phase if current == 1 else "puzzle"
     
-if current == 1 and phase == "intro":
+    if current == 1 and phase == "intro":
         st.markdown('<h1 class="big-title">Stop 1 – Welcome</h1>', unsafe_allow_html=True)
         st.markdown('<div class="tag-subtitle">🧞 مرحبا بالمسافر • Welcome Traveler</div>', unsafe_allow_html=True)
     else:
@@ -261,28 +261,26 @@ if current == 1 and phase == "intro":
     st.progress(current / total_stops)
     st.markdown(f'<h3 style="text-align: center; color: #e31e24;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
 
+    # ==================== AR IFRAME – switches automatically between the two links ====================
     col_left, col_mid, col_right = st.columns([1, 4, 1])
-
     with col_mid:
         st.markdown("### 🧞 Scan the AR Treasure")
-
         if current == 1 and phase == "intro":
             current_webar_url = welcome_url          # ← Intro page
         else:
             current_webar_url = riddle_url           # ← Puzzle page (different link!)
         components.iframe(current_webar_url, height=700, scrolling=True)
 
-     
     st.markdown("---")
-    # ==================== SPECIAL INTRO FOR STOP 1 ONLY ====================
-    if current == 1 and phase=="intro":
-        st.markdown("### 👋 Welcome Traveler!")
-        st.info("The AR Genie just welcomed you and explained the treasure hunt.\n\nReady to begin your first puzzle?")
-        st.info("لقد رحّب بك الجني وشرح لك لعبة البحث عن الكنز.\n\nهل أنت مستعد لبدء أول لغز؟")
+
+    # ==================== PAGE 1: INTRO (welcome + Let's Start) ====================
+    if current == 1 and phase == "intro":
+        st.info("The AR Genie is telling you the welcome story and explaining the adventure.\n\nWhen he finishes, click the button below to go to the **real puzzle page**.")
         if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
-            st.session_state.stop1_started = True
+            st.session_state.stop1_phase = "puzzle"
             st.rerun()
-        
+
+    # ==================== PAGE 2: PUZZLE (different WebAR link + clickable answers) ====================
     elif current == 1 and phase == "puzzle" and current in stops_data:
         stop = stops_data[1]
 
