@@ -120,7 +120,7 @@ if "stop1_phase" not in st.session_state:
     st.session_state.stop1_phase = "intro"
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url = "https://mywebar.com/p/Project_1_to00xjn24"
-# ====================== STOP DATA (add more stops here later) ======================
+# ====================== STOP DATA (i will add more stops here later) ======================
 stops_data = {
     1: {
         "riddle_options": [
@@ -181,18 +181,18 @@ if st.session_state.page == "home":
         with legend_col:
             st.markdown('<h3 style="text-align:center;">📋 Regions / الجهات</h3>', unsafe_allow_html=True)
             regions = [
-                ("01", "Tanger-Tétouan-Al Hoceïma", "#26C6C0"),
-                ("02", "Oriental", "#FF9F00"),
-                ("03", "Fès-Meknès", "#34C76F"),
-                ("04", "Rabat-Salé-Kénitra", "#E03E3E"),
-                ("05", "Béni Mellal-Khénifra", "#2C5F7A"),
-                ("06", "Casablanca-Settat", "#7A8A9C"),
-                ("07", "Marrakech-Safi", "#FF9F00"),
-                ("08", "Drâa-Tafilalet", "#5EB8FF"),
+                ("01", "Tanger-Tétouan-Al Hoceïma", "#06b6ad"),
+                ("02", "Oriental", "#e9711d"),
+                ("03", "Fès-Meknès", "#2e8b58"),
+                ("04", "Rabat-Salé-Kénitra", "#d7292a"),
+                ("05", "Béni Mellal-Khénifra", "#404064"),
+                ("06", "Casablanca-Settat", "#656474"),
+                ("07", "Marrakech-Safi", "#db8e3d"),
+                ("08", "Drâa-Tafilalet", "#79c779"),
                 ("09", "Souss-Massa", "#00C9A0"),
-                ("10", "Guelmim-Oued Noun", "#FFCB4E"),
-                ("11", "Laâyoune-Sakia El Hamra", "#9B59B5"),
-                ("12", "Eddakhla-Oued Ed-dahab", "#1E9BFF"),
+                ("10", "Guelmim-Oued Noun", "#c9ab34"),
+                ("11", "Laâyoune-Sakia El Hamra", "#8d3267"),
+                ("12", "Eddakhla-Oued Ed-dahab", "#51aadc"),
             ]
             for num, name, color in regions:
                 dot_col, btn_col = st.columns([0.1, 0.9])
