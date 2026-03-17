@@ -114,7 +114,30 @@ if "hunt_started" not in st.session_state:
     st.session_state.current_stop = 1
     st.session_state.unlocked_stops = [1]
     st.session_state.score = 0
-
+# ====================== STOP DATA (add more stops here later) ======================
+stops_data = {
+    1: {
+        "riddle_options": [
+            "A) Bab Agnaou",
+            "B) Jemaa el-Fna",
+            "C) Mouassine Square",
+            "D) Koutoubia Gardens"
+        ],
+        "correct_riddle": "B) Jemaa el-Fna",
+        "learning": """Jemaa el-Fna is the heart of Marrakech’s medina. For over 800 years, people have gathered here for storytelling circles (halqa), musicians, and entertainers. In fact, in 2001 UNESCO declared Jemaa el-Fna a “Masterpiece of the Oral and Intangible Heritage of Humanity” because of its living traditions. At dusk, dozens of food stalls and performers appear – changing the atmosphere completely.""",
+        "mini_question": "Look around the square: one drink is sold from many orange juice stalls. What fruit is used for the famous orange juice here?",
+        "mini_options": [
+            "A) Pomegranate",
+            "B) Orange",
+            "C) Lemon",
+            "D) Peach"
+        ],
+        "correct_mini": "B) Orange",
+        "mini_explanation": "Marrakech’s Jemaa el-Fna is famous for its fresh orange juice stalls."
+    }
+    # Example for stop 2 (just copy-paste and fill):
+    # 2: { "riddle_options": [...], "correct_riddle": "...", ... }
+}
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
@@ -224,7 +247,7 @@ else:
     # Progress bar
     total_stops = 7  
     st.progress(st.session_state.current_stop / total_stops)
-
+    st.markdown(f'<h3 style="text-align: center; color: #e31e24;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     col_left, col_mid, col_right = st.columns([1, 4, 1])
 
     with col_mid:
@@ -244,7 +267,75 @@ else:
             height=700,
             scrolling=True
         )
+    st.markdown("---")
+    current = st.session_state.current_stop
 
+    if current in stops_data:
+        stop = stops_data[current]
+
+        if current not in st.session_state.stop_answers:
+            st.session_state.stop_answers[current] = {
+                "riddle": None,
+                "mini": None,
+                "riddle_scored": False,
+                "mini_scored": False
+            }
+        answers = st.session_state.stop_answers[current]
+
+        # ── RIDDLE (AR Genie already read it) ──
+        st.subheader("🧩 Click your answer to the AR puzzle")
+        if answers["riddle"] is None:
+            c1, c2 = st.columns(2)
+            for i, opt in enumerate(stop["riddle_options"]):
+                col = c1 if i % 2 == 0 else c2
+                with col:
+                    if st.button(opt, use_container_width=True, key=f"r_{current}_{i}"):
+                        answers["riddle"] = opt
+                        if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
+                            answers["riddle_scored"] = True
+                            st.session_state.score += 25
+                        st.rerun()
+        else:
+            if answers["riddle"] == stop["correct_riddle"]:
+                st.success(f"✅ Correct! The legendary place is **{stop['correct_riddle']}**")
+            else:
+                st.error(f"❌ You chose {answers['riddle']}. The correct answer is {stop['correct_riddle']}")
+                if st.button("🔄 Try Riddle Again", key=f"retry_r_{current}"):
+                    answers["riddle"] = None
+                    st.rerun()
+
+            st.markdown("**📖 Learning Moment**")
+            st.info(stop["learning"])
+
+        # ── MINI-CHALLENGE (only after riddle) ──
+        if answers["riddle"] is not None:
+            st.subheader("🔍 Mini-Challenge: Observation")
+            st.write(stop["mini_question"])
+
+            if answers["mini"] is None:
+                c1, c2 = st.columns(2)
+                for i, opt in enumerate(stop["mini_options"]):
+                    col = c1 if i % 2 == 0 else c2
+                    with col:
+                        if st.button(opt, use_container_width=True, key=f"m_{current}_{i}"):
+                            answers["mini"] = opt
+                            if opt == stop["correct_mini"] and not answers["mini_scored"]:
+                                answers["mini_scored"] = True
+                                st.session_state.score += 15
+                            st.rerun()
+            else:
+                if answers["mini"] == stop["correct_mini"]:
+                    st.success(f"✅ Yes! {stop['mini_explanation']}")
+                else:
+                    st.error(f"❌ Not quite. The answer is {stop['correct_mini']}")
+                    if st.button("🔄 Try Mini Again", key=f"retry_m_{current}"):
+                        answers["mini"] = None
+                        st.rerun()
+
+    else:
+        st.info("🌟 More treasure stops, riddles, and AR surprises coming soon for stops 2–7!\n\nThe journey continues…")
+
+    st.markdown("---")
     # ── Navigation buttons ───────────────────────────────────────────────
     btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
 
