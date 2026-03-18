@@ -1,40 +1,31 @@
 import streamlit as st
 from PIL import Image
-import folium
-from streamlit_folium import st_folium
 import streamlit.components.v1 as components
 
-try:
-    from streamlit_image_coordinates import streamlit_image_coordinates
-except ImportError:
-    streamlit_image_coordinates = None
+# ---------------- PAGE CONFIG ----------------
+st.set_page_config(
+    page_title="كنز المغرب • Trésor Marocain",
+    layout="wide",
+    page_icon="🗺️"
+)
 
-st.set_page_config(page_title="كنز المغرب • Trésor Marocain", layout="wide", page_icon="🕌")
-
+# ---------------- THEME / CSS ----------------
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
-@keyframes gentleGlow {
-    0% { text-shadow: 0 0 50px rgba(255,255,255,0.2); }
-    50% { text-shadow: 0 0 100px rgba(255,255,255,0.5); }
-    100% { text-shadow: 0 0 50px rgba(255,255,255,0.2); }
-}
-
 .stApp {
-    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+    background: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
                 url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop')
                 no-repeat center center fixed;
     background-size: cover;
     color: white !important;
 }
 
-[data-testid="stHeader"] {
-    background: transparent !important;
-}
+[data-testid="stHeader"] { background: transparent !important; }
 
 .main .block-container {
-    padding-top: 0rem !important;
+    padding-top: 0.5rem !important;
     padding-left: 3% !important;
     padding-right: 3% !important;
     max-width: 95% !important;
@@ -42,7 +33,7 @@ st.markdown("""
 
 .big-title {
     font-family: 'Kaushan Script', cursive !important;
-    font-size: 5rem !important; 
+    font-size: clamp(2.8rem, 7vw, 5rem) !important;
     font-weight: 900 !important;
     text-align: center !important;
     background: linear-gradient(to right, #e31e24 40%, #ffffff 50%, #006400 60%) !important;
@@ -51,443 +42,357 @@ st.markdown("""
     background-clip: text !important;
     display: block !important;
     width: 100% !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important;
-    -webkit-text-stroke: 4px rgba(255,255,255,0.1);
+    line-height: 1.15 !important;
+    margin-bottom: 0.2rem !important;
 }
 
 .tag-subtitle {
-    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
     font-weight: 800;
     text-align: center;
     color: white !important;
     text-shadow: 2px 2px 15px rgba(0,0,0,1);
-    margin-top: 4rem !important;
-    margin-bottom: 4rem;
-    letter-spacing: 2px;
+    margin-top: 0.4rem !important;
+    margin-bottom: 1.4rem !important;
+    letter-spacing: 1px;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
+.magic-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,215,0,0.22);
+    border-radius: 24px;
+    padding: 1.1rem 1.2rem;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    margin: 0.6rem 0;
 }
 
-[data-testid="stImageCoordinates"] img,
-img[src*="streamlit_image_coordinates"] {
-    max-width: 100% !important;
-    height: auto !important;
-    display: block;
-    margin: 0 auto;
-    border-radius: 30px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+.magic-card h3, .magic-card h4, .magic-card p, .magic-card li {
+    color: white !important;
 }
 
 .stButton > button {
     background-color: rgba(255, 255, 255, 0.05);
     color: white !important;
-    border-radius: 15px;
-    border: 3px solid #e31e24;
-    font-size: 1.3rem;
-    padding: 18px 25px;
-    backdrop-filter: blur(15px);
-    transition: all 0.4s ease;
+    border-radius: 14px;
+    border: 2px solid #e31e24;
+    font-size: 1.05rem;
+    padding: 0.9rem 1rem;
+    transition: all 0.25s ease;
 }
-
 .stButton > button:hover {
     background-color: #e31e24;
-    transform: scale(1.05);
-    box-shadow: 0 20px 40px rgba(227,30,36,0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(227,30,36,0.35);
 }
-
-h1, h2, h3, p, span, label, .stMarkdown {
-    color: white !important;
+.stTextInput input {
+    border-radius: 12px !important;
 }
-.gps-tracker {
-    display: inline-block;
-    background: linear-gradient(90deg, #00c853, #00ff88);
-    color: #000;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    box-shadow: 0 0 25px #00ff88;
-    animation: pulse 2s infinite;
-    text-align: center;
-    margin: 15px auto;
-    letter-spacing: 1px;
+.notice {
+    background: rgba(0,200,83,0.12);
+    border: 1px solid rgba(0,200,83,0.28);
+    border-radius: 18px;
+    padding: 0.9rem 1rem;
+    margin: 0.7rem 0;
+}
+.small-center {
+    text-align:center;
+    opacity:0.95;
 }
 </style>
 """, unsafe_allow_html=True)
-# ====================== SESSION STATE ======================
+
+# ---------------- SESSION STATE ----------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
-if "hunt_started" not in st.session_state:
-    st.session_state.hunt_started = False
+
+if "current_stop" not in st.session_state:
     st.session_state.current_stop = 1
-    st.session_state.unlocked_stops = [1]
+
+if "score" not in st.session_state:
     st.session_state.score = 0
+
 if "stop_answers" not in st.session_state:
     st.session_state.stop_answers = {}
+
 if "stop1_phase" not in st.session_state:
-    st.session_state.stop1_phase = "intro"
+    st.session_state.stop1_phase = "welcome"   # welcome -> riddle -> story -> code_gate
+
+if "hunt_started" not in st.session_state:
+    st.session_state.hunt_started = False
+
+# ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
-webar_urls = {
-    2: "https://mywebar.com/p/stop2-cafe-koutoubia",    
-    3: "https://mywebar.com/p/stop3-artisanal",          
-    4: "https://mywebar.com/p/stop4-fontaine-saadian",  
-    5: "https://mywebar.com/p/stop5-bahia-palace",        
-    6: "https://mywebar.com/p/stop6-pottery-workshop"     
-}
-# ====================== STOP DATA (i will add more stops here later) ======================
+
+# One reusable code for all partner businesses in the hackathon
+PARTNER_ACCESS_CODE = "KENZQUEST2026"
+
+# ---------------- STOP 1 CONTENT ----------------
 stops_data = {
-    1: {  # Jemaa el-Fna (Stop 1)
-        "riddle_options": ["A) Bab Agnaou", "B) Jemaa el-Fna", "C) Mouassine Square", "D) Koutoubia Gardens"],
-        "correct_riddle": "B) Jemaa el-Fna",
-        "learning": """Jemaa el-Fna is the heart of Marrakech’s medina. For over 800 years, people have gathered here for storytelling circles (halqa), musicians, and entertainers. In fact, in 2001 UNESCO declared Jemaa el-Fna a “Masterpiece of the Oral and Intangible Heritage of Humanity” because of its living traditions. At dusk, dozens of food stalls and performers appear – changing the atmosphere completely.""",
-        "mini_question": "Look around the square: one drink is sold from many orange juice stalls. What fruit is used for the famous orange juice here?",
-        "mini_options": ["A) Pomegranate", "B) Orange", "C) Lemon", "D) Peach"],
-        "correct_mini": "B) Orange",
-        "mini_explanation": "Marrakech’s Jemaa el-Fna is famous for its fresh orange juice stalls.",
-        "clue": "Merchants once stopped here after long caravan journeys. Today, travelers still rest nearby for something sweet and refreshing. Head to the first resting place of explorers: **Café de France** (established 1912).",
-        "code_required": True,
-        "correct_code": "treasureCafe2026"
-    },
-    2: {  # Café de France → Koutoubia Mosque
-        "title": "Stop 2 – Café de France",
-        "riddle_options": ["A) Menara Gardens", "B) Koutoubia Mosque", "C) Bab Agnaou", "D) Saadian Tombs"],
-        "correct_riddle": "B) Koutoubia Mosque",
-        "learning": "The Koutoubia Mosque is the largest mosque in Marrakech and its minaret is the symbol of the city. Built in the 12th century, it stands 77 meters tall and is visible from almost everywhere in the medina.",
-        "mini_question": "Atop Koutoubia’s minaret are five golden orbs. How many can you spot from below?",
-        "mini_options": ["A) 3", "B) 4", "C) 5", "D) 7"],
-        "correct_mini": "C) 5",
-        "mini_explanation": "There are 5 golden balls (orbs) atop the minaret – a classic Moroccan architectural detail.",
-        "clue": "Next stop: Artisanal Marrakech – Ensemble Artisanal (look for Artisanetshop)"
-    },
-    3: {  # Artisanetshop – Ensemble Artisanal
-        "title": "Stop 3 – Artisanetshop",
-        "description": """Nestled in the lively heart of ENSEMBLE ARTISANAL MARRAKECH, Artisanetshop has proudly showcased the beauty of traditional Moroccan craftsmanship since 1976. As a top-notch gift shop, we offer a stunning array of handmade wooden artistry that invites you to dive into the rich heritage of Moroccan woodwork. Our family-run business, guided by the respected Ghouat family, has been honing the craft of woodwork for generations. Each piece is carefully crafted with love and attention to detail, sharing a tale of Moroccan culture and creativity.""",
-        "riddle_options": ["A) Almoravids", "B) Marinids", "C) Saadians", "D) Alaouites"],
-        "correct_riddle": "A) Almoravids",
-        "learning": "Marrakech was founded in 1070 by the Almoravids. They were Berber tribesmen from the Sahara who made Marrakesh their capital and built the first city walls and palace. This started the golden era of trans-Saharan trade.",
-        "clue": "Enjoy Marrakech’s famous slow-cooked flavors next. Follow the scent of spices to **La Fontaine des Épices**."
-    },
-    4: {  # La Fontaine des Épices → Saadian Tombs
-        "title": "Stop 4 – La Fontaine des Épices",
-        "riddle_options": ["A) Ahmed al-Mansur", "B) Moulay Ismail", "C) Youssef Ibn Tashfin", "D) Hassan I"],
-        "correct_riddle": "A) Ahmed al-Mansur",
-        "learning": """These tombs date to the reign of Sultan Ahmad al-Mansur of the Saadian dynasty (late 1500s). They are famed for exquisite Moroccan craftsmanship – zellige tile mosaics, carved cedar, and marble columns. After answering, reveal a photo of the Chamber of Twelve Columns.""",
-        "mini_question": "The lower walls of the Chamber of the Mihrab are covered in colorful geometric tiles. What is the name of this traditional Moroccan mosaic tile?",
-        "mini_options": ["A) Granite", "B) Zellige (tile)", "C) Stained glass", "D) Cedar wood"],
-        "correct_mini": "B) Zellige (tile)",
-        "mini_explanation": "Zellige tiles are the hallmark of Moroccan architecture – hand-cut and glazed in vibrant colors.",
-        "clue": "Next stop: Bahia Palace"
-    },
-    5: {  # Bahia Palace
-        "title": "Stop 5 – Bahia Palace",
-        "riddle_options": ["A) El Badi Palace", "B) Bahia Palace", "C) Dar Si Said", "D) Royal Palace"],
-        "correct_riddle": "B) Bahia Palace",
-        "learning": "The Bahia Palace (meaning 'the beautiful') was built in the late 19th century by Si Moussa and his son Ba Ahmed. It is one of the most stunning examples of Moroccan architecture with 160 rooms, intricate zellige, cedar ceilings, and lush gardens.",
-        "mini_question": "The main riad courtyard of Bahia Palace is famous for its central feature surrounded by orange trees. What is it?",
-        "mini_options": ["A) A marble throne", "B) A large fountain", "C) A swimming pool", "D) A library"],
-        "correct_mini": "B) A large fountain",
-        "mini_explanation": "The central courtyard has a beautiful fountain surrounded by orange trees and flowers – a perfect example of Moroccan riad design."
-    },
-    6: {  # Last stop – Pottery Workshop Lamsaty
-        "title": "Stop 6 – Workshop Lamsaty",
-        "special": True,
-        "message": "🎉 You reached the final treasure! Enjoy a **handmade pottery & embroidery course** at a special reduced rate thanks to the app.",
-        "discount_code": "KENZ POTTERY2026",
-        "certificate_text": "Congratulations!\nYou completed Kenz Quest – Trésor Marocain\nCertificate of Cultural Adventure\nWorkshop: Lamsaty Handmade Pottery & Embroidery\nDate: March 2026\nYou supported local artisans and learned Moroccan history!\n"
+    1: {
+        "title": "Jemaa el-Fna — The Open-Air Theater",
+        "riddle": "I am a stage without a curtain, a book without pages, and a kitchen that never sleeps. I change my face when the sun sets, but my voice has remained the same for 800 years. Where am I?",
+        "riddle_options": [
+            "A) Koutoubia Gardens",
+            "B) Bab Agnaou",
+            "C) Jemaa el-Fna",
+            "D) Mouassine Square",
+            "E) Bahia Palace",
+            "F) Saadian Tombs"
+        ],
+        "correct_riddle": "C) Jemaa el-Fna",
+        "hook": "You are standing in the world’s oldest social media platform. Before TikTok, there was the Halqa. For centuries, storytellers, musicians, poets, healers, acrobats, and performers used this square to upload memory into people’s minds.",
+        "unesco": "In 1985, the Medina of Marrakech was inscribed as a World Heritage Site, and in 2001 Jemaa el-Fna was proclaimed a Masterpiece of the Oral and Intangible Heritage of Humanity.",
+        "atmosphere": "By day, the square lives through orange juice stalls, spices, street games, and movement. By night, it turns into a glowing stage of drums, Gnaoua rhythms, storytellers, herbalists, and crowd-formed circles of wonder.",
+        "gnawa": "Among the sounds that make the square unforgettable is Gnaoua music: hypnotic, spiritual, and rooted in deep memory. In your story world, one of the songs can salute Lalla Aïcha Hamdouchia as a symbol of dignity, courage, and resistance carried through oral tradition.",
+        "genie_speech": (
+            "Listen carefully, traveler. This square has never been silent when Morocco needed its voice. "
+            "In the 1950s, under the weight of the Protectorate, places like this helped carry the pulse of resistance, "
+            "union, and national awareness. Songs, gatherings, and shared memory kept the Moroccan spirit standing tall. "
+            "A square can be a theater—but it can also be a shield."
+        ),
+        "national_memory": (
+            "This moment also connects to national memory: the 68th anniversary of HM King Mohammed V’s historic visit "
+            "to M’Hamid El Ghizlane and the southern provinces, as well as the commemoration of the last foreign soldier’s "
+            "departure from the Moroccan Sahara. These milestones speak to sovereignty, continuity, and territorial unity."
+        ),
+        "legend": (
+            "And there is a circle of protection around Marrakech: the Seven Saints. "
+            "Rooted in the tradition associated with Abu al-Abbas al-Sabti, this spiritual journey helped shape the city’s memory, "
+            "identity, and blessing."
+        ),
+        "transition": (
+            "The caravans trading here came from the deep south. Let’s follow the Silver Path to find where the desert meets the city."
+        ),
+        "next_stop": "Hassani Silver Filigree Artisanat",
+        "next_stop_label": "Hassani Silver Filigree Artisanat",
+        "next_stop_intro": "The next stop is a Hassani Silver Filigree artisanat, where the treasure changes from stories to craft."
     }
 }
-if st.session_state.page == "home":
-    st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
-    st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
 
-    try:
-        image = Image.open("morocco_regions_map.png")
-        target_w = 700
-        w, h = image.size
-        ratio = target_w / float(w)
-        new_h = int(h * ratio)
-        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except:
-        image = None
+# ---------------- HELPERS ----------------
+def render_webar(url, height=680):
+    components.iframe(url, height=height, scrolling=True)
 
-    if image is not None:
-        map_col, legend_col = st.columns([1.8, 1])
+def init_answer_state(stop_num):
+    if stop_num not in st.session_state.stop_answers:
+        st.session_state.stop_answers[stop_num] = {
+            "riddle": None,
+            "unlocked": False
+        }
 
-        with map_col:
-            if streamlit_image_coordinates is not None:
-                click = streamlit_image_coordinates(image, key="morocco_region_map")
-                
-                if click:
-                    rel_x = click["x"] / image.width
-                    rel_y = click["y"] / image.height
-                    
-                    if 0.47 <= rel_x <= 0.61 and 0.28 <= rel_y <= 0.38:
-                        st.session_state.page = "marrakech_safi"
-                        st.rerun()
-                    else:
-                        st.toast("Coming Soon! / قريباً", icon="⏳")
-            else:
-                st.image(image, use_container_width=True)
+def show_welcome_page():
+    st.markdown('<h1 class="big-title">Welcome Traveler • مرحبًا بك أيها المسافر</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">🧞 The Genie is waiting for you</div>', unsafe_allow_html=True)
 
-        with legend_col:
-            st.markdown('<h3 style="text-align:center;">📋 Regions / الجهات</h3>', unsafe_allow_html=True)
-            regions = [
-                ("01", "Tanger-Tétouan-Al Hoceïma", "#06b6ad"),
-                ("02", "Oriental", "#e9711d"),
-                ("03", "Fès-Meknès", "#2e8b58"),
-                ("04", "Rabat-Salé-Kénitra", "#d7292a"),
-                ("05", "Béni Mellal-Khénifra", "#404064"),
-                ("06", "Casablanca-Settat", "#656474"),
-                ("07", "Marrakech-Safi", "#db8e3d"),
-                ("08", "Drâa-Tafilalet", "#82a0dc"),
-                ("09", "Souss-Massa", "#79c779"),
-                ("10", "Guelmim-Oued Noun", "#c9ab34"),
-                ("11", "Laâyoune-Sakia El Hamra", "#8d3267"),
-                ("12", "Eddakhla-Oued Ed-dahab", "#51aadc"),
-            ]
-            for num, name, color in regions:
-                dot_col, btn_col = st.columns([0.1, 0.9])
-                with dot_col:
-                    st.markdown(f'<div style="background:{color}; width:18px; height:18px; border-radius:50%; margin-top:16px;"></div>', unsafe_allow_html=True)
-                with btn_col:
-                    if st.button(name, key=f"btn_{num}", use_container_width=True):
-                        if name == "Marrakech-Safi":
-                            st.session_state.page = "marrakech_safi"
-                            st.rerun()
-                        else:
-                            st.toast("Coming Soon! / قريباً", icon="⏳")
-# ====================== MARRAKECH-SAFI MAP ======================
-elif st.session_state.page == "marrakech_safi":
-    st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
+    col1, col2 = st.columns([1.2, 1])
 
-    try:
-        image = Image.open("marrakech_safi.png")
-        target_w = 600
-        w, h = image.size
-        ratio = target_w / float(w)
-        new_h = int(h * ratio)
-        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
-    except Exception as e:
-        st.error(f"Error loading image: {e}")
-        image = None
+    with col1:
+        st.markdown("""
+        <div class="magic-card">
+            <h3>🌟 Your journey begins here</h3>
+            <p>The Genie is excited to guide you through Morocco’s living memory. She is asking:</p>
+            <p><strong>“Are you ready for the journey?”</strong></p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    if image is not None:
-        c1, c2, c3 = st.columns([1, 2, 1])
-        with c2:
-            if streamlit_image_coordinates is not None:
-                click = streamlit_image_coordinates(image, key="marrakech-safi")
-                if click is not None:
-                    rel_x = click["x"] / image.width
-                    rel_y = click["y"] / image.height
-                    if 0.53 <= rel_x <= 0.62 and 0.41 <= rel_y <= 0.69:
-                        st.session_state.page = "marrakech"
-                        st.rerun()
-                    else:
-                        st.toast("Coming Soon! / قريباً", icon="⏳")
-            else:
-                st.image(image, use_container_width=True)
+        st.markdown("""
+        <div class="notice">
+            <strong>Privacy notice:</strong> We do not store images of your face; no data is collected.
+        </div>
+        """, unsafe_allow_html=True)
 
-    if st.button("⬅ Back to Regions Map"):
-        st.session_state.page = "home"
-        st.rerun()
-# ====================== ADVENTURE PAGE ======================
-else: 
-    current = st.session_state.current_stop
-    phase = st.session_state.stop1_phase if current == 1 else "puzzle"
-    
-    if current == 1 and phase == "intro":
-        st.markdown('<h1 class="big-title">🧞</h1>', unsafe_allow_html=True)
-        st.markdown('<div class="tag-subtitle"> مرحبًا بك أيها المسافر • Welcome Traveler</div>', unsafe_allow_html=True)
-    else:
-        st.markdown('<h1 class="big-title">First stop . Puzzle</h1>', unsafe_allow_html=True)
-        st.markdown('<div class="tag-subtitle">🕌 المحطة الأولى • اللغز</div>', unsafe_allow_html=True)
-
-    if st.button("⬅ Back to Marrakech-Safi Map"):
-        st.session_state.page = "marrakech_safi"
-        st.session_state.stop1_phase = "intro"   # reset for next time
-        st.rerun()
-
-    total_stops = 7
-    st.progress(current / total_stops)
-    st.markdown(f'<h3 style="text-align: center; color: #e31e24;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
-
-    st.markdown('<div class="gps-tracker">📍 GPS Tracking Active • تتبع GPS نمط</div>', unsafe_allow_html=True)
-
-    # ==================== AR IFRAME – switches automatically between the two links ====================
-    col_left, col_mid, col_right = st.columns([1, 4, 1])
-    with col_mid:
-        st.markdown("### 🧞 Scan the AR Treasure")
-        if current == 1 and phase == "intro":
-            current_webar_url = welcome_url          # ← Intro page
-        else:
-            current_webar_url = riddle_url_stop1          
-        components.iframe(current_webar_url, height=700, scrolling=True)
-
-    st.markdown("---")
-
-    # ==================== PAGE 1: INTRO (welcome + Let's Start) ====================
-    if current == 1 and phase == "intro":
-        st.info("The Genie is happy for your arrival !    click the button below to go to start **the adventure**.")
-        st.info("يسعد الجني بقدومك !   اضغط على الزر أدناه لبدء رحلتك في المغامرة.")
-        if st.button("🚀 Let's Start – أبدأ المغامرة", type="primary", use_container_width=True):
-            st.session_state.stop1_phase = "puzzle"
+        if st.button("🚀 Start the Adventure", type="primary", use_container_width=True):
+            st.session_state.stop1_phase = "riddle"
             st.rerun()
 
-    # ==================== PAGE 2: PUZZLE (different WebAR link + clickable answers) ====================
-    elif current == 1 and phase == "puzzle" and current in stops_data:
-        stop = stops_data[1]
+    with col2:
+        st.markdown("### 🪄 WebAR Genie")
+        render_webar(welcome_url, height=620)
 
-        if 1 not in st.session_state.stop_answers:
-            st.session_state.stop_answers[1] = {"riddle": None, "mini": None, "riddle_scored": False, "mini_scored": False}
-        answers = st.session_state.stop_answers[1]
+def show_entry_riddle():
+    stop = stops_data[1]
+    init_answer_state(1)
+    answers = st.session_state.stop_answers[1]
 
-        st.subheader("🧩 Click your answer to the AR puzzle")
+    st.markdown('<h1 class="big-title">🧩 The First Riddle</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Solve the mystery to reveal the first stop</div>', unsafe_allow_html=True)
+
+    col1, col2 = st.columns([1, 1])
+
+    with col1:
+        st.markdown(f"""
+        <div class="magic-card">
+            <h3>Riddle</h3>
+            <p style="font-size:1.15rem; line-height:1.8;">{stop["riddle"]}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
         if answers["riddle"] is None:
-            c1, c2 = st.columns(2)
+            st.subheader("Choose one answer")
+            cols = st.columns(2)
             for i, opt in enumerate(stop["riddle_options"]):
-                with (c1 if i % 2 == 0 else c2):
-                    if st.button(opt, use_container_width=True, key=f"r1_{i}"):
+                with cols[i % 2]:
+                    if st.button(opt, key=f"stop1_riddle_{i}", use_container_width=True):
                         answers["riddle"] = opt
-                        if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
-                            answers["riddle_scored"] = True
+                        if opt == stop["correct_riddle"]:
                             st.session_state.score += 25
+                            answers["unlocked"] = True
                         st.rerun()
         else:
             if answers["riddle"] == stop["correct_riddle"]:
-                st.success(f"✅ Correct! The legendary place is **{stop['correct_riddle']}**")
+                st.success("✅ Correct! You found the place.")
+                st.session_state.stop1_phase = "story"
+                st.rerun()
             else:
-                st.error(f"❌ You chose {answers['riddle']}. The correct answer is {stop['correct_riddle']}")
-                if st.button("🔄 Try Riddle Again"): answers["riddle"] = None; st.rerun()
-            st.markdown("**📖 Learning Moment**"); st.info(stop["learning"])
+                st.error("❌ Not this one. Try again.")
+                if st.button("🔄 Try again", key="retry_stop1_riddle"):
+                    answers["riddle"] = None
+                    st.rerun()
 
-        if answers["riddle"] is not None:
-            st.subheader("🔍 Mini-Challenge: Observation")
-            st.write(stop["mini_question"])
-            if answers["mini"] is None:
-                c1, c2 = st.columns(2)
-                for i, opt in enumerate(stop["mini_options"]):
-                    with (c1 if i % 2 == 0 else c2):
-                        if st.button(opt, use_container_width=True, key=f"m1_{i}"):
-                            answers["mini"] = opt
-                            if opt == stop["correct_mini"] and not answers["mini_scored"]:
-                                answers["mini_scored"] = True
-                                st.session_state.score += 15
-                            st.rerun()
-            else:
-                if answers["mini"] == stop["correct_mini"]:
-                    st.success(f"✅ Yes! {stop['mini_explanation']}")
-                else:
-                    st.error(f"❌ Not quite. The answer is {stop['correct_mini']}")
-                    if st.button("🔄 Try Mini Again"): answers["mini"] = None; st.rerun()
+    with col2:
+        st.markdown("### 🧞 The Genie watches the square")
+        render_webar(riddle_url_stop1, height=620)
 
-    elif current in stops_data:
-        stop = stops_data[current]
+def show_stop1_story():
+    stop = stops_data[1]
 
-        if current not in st.session_state.stop_answers:
-            st.session_state.stop_answers[current] = {"riddle": None, "mini": None, "riddle_scored": False, "mini_scored": False}
-        answers = st.session_state.stop_answers[current]
+    st.markdown(f'<h1 class="big-title">{stop["title"]}</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">✨ A square of memory, music, and resistance</div>', unsafe_allow_html=True)
 
-        # Description for Artisanetshop
-        if "description" in stop:
-            st.markdown("**🛍️ Welcome to Artisanetshop**")
-            st.info(stop["description"])
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>⭐ Hook</h3>
+        <p>{stop["hook"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # Riddle
-        if "riddle_options" in stop:
-            st.subheader("🧩 Click your answer to the AR puzzle")
-            if answers["riddle"] is None:
-                c1, c2 = st.columns(2)
-                for i, opt in enumerate(stop["riddle_options"]):
-                    with (c1 if i % 2 == 0 else c2):
-                        if st.button(opt, use_container_width=True, key=f"r{current}_{i}"):
-                            answers["riddle"] = opt
-                            if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
-                                answers["riddle_scored"] = True
-                                st.session_state.score += 25
-                            st.rerun()
-            else:
-                if answers["riddle"] == stop["correct_riddle"]:
-                    st.success(f"✅ Correct! **{stop['correct_riddle']}**")
-                else:
-                    st.error(f"❌ The correct answer is {stop['correct_riddle']}")
-                    if st.button("🔄 Try Riddle Again", key=f"retry_r{current}"): answers["riddle"] = None; st.rerun()
-                    st.markdown("**📖 Learning Moment**")
-                    st.info(stop["learning"])
-                if "learning" in stop:
-                    st.markdown("**📖 Learning Moment**")
-                    st.info(stop["learning"])
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🏛️ UNESCO Memory</h3>
+        <p>{stop["unesco"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # Mini-Challenge
-        if answers["riddle"] is not None and "mini_question" in stop:
-            st.subheader("🔍 Mini-Challenge")
-            st.write(stop["mini_question"])
-            if answers["mini"] is None:
-                c1, c2 = st.columns(2)
-                for i, opt in enumerate(stop["mini_options"]):
-                    with (c1 if i % 2 == 0 else c2):
-                        if st.button(opt, use_container_width=True, key=f"m{current}_{i}"):
-                            answers["mini"] = opt
-                            if opt == stop["correct_mini"] and not answers["mini_scored"]:
-                                answers["mini_scored"] = True
-                                st.session_state.score += 15
-                            st.rerun()
-            else:
-                if answers["mini"] == stop["correct_mini"]:
-                    st.success(f"✅ Yes! {stop['mini_explanation']}")
-                else:
-                    st.error(f"❌ The answer is {stop['correct_mini']}")
-                    if st.button("🔄 Try Mini Again", key=f"retry_m{current}"): answers["mini"] = None; st.rerun()
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🎶 What you hear in the square</h3>
+        <p>{stop["atmosphere"]}</p>
+        <p>{stop["gnawa"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # Clue to next stop
-        if "clue" in stop:
-            st.markdown("**🧭 Clue to Next Stop**")
-            st.info(stop["clue"])
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🧞 The Genie’s speech</h3>
+        <p>{stop["genie_speech"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # SPECIAL LAST STOP – POTTERY WORKSHOP
-        if current == 6 and "special" in stop:
-            st.success(stop["message"])
-            st.markdown(f"**Your discount code for Lamsaty Workshop:**\n\n**{stop['discount_code']}**")
-            st.info("Show this code at the workshop for 20% off your pottery & embroidery class!")
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🇲🇦 National memory</h3>
+        <p>{stop["national_memory"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-            # Downloadable Certificate
-            if st.button("🎁 Download Certificate & Souvenir"):
-                st.download_button(
-                    label="📥 Download Certificate (TXT)",
-                    data=stop["certificate_text"],
-                    file_name="Kenz_Quest_Certificate.txt",
-                    mime="text/plain"
-                )
-            st.snow()
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🔱 The Legend of the Seven Saints</h3>
+        <p>{stop["legend"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div class="magic-card">
+        <h3>🛤️ Transition</h3>
+        <p>{stop["transition"]}</p>
+        <p><strong>Next stop:</strong> {stop["next_stop_intro"]}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.info("✨ To continue, use the partner code at the next artisan stop.")
+
+def show_partner_code_gate(next_label, next_stop_num):
+    st.markdown('<h2 class="big-title">🔐 Silver Path Gate</h2>', unsafe_allow_html=True)
+    st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>Enter the shared hackathon code to open the next stop.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    code = st.text_input("Enter code", placeholder="e.g. KENZQUEST2026", key=f"code_gate_{next_stop_num}")
+    if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
+        if code.strip() == PARTNER_ACCESS_CODE:
+            st.session_state.current_stop = next_stop_num
+            st.session_state.stop1_phase = "welcome"  # reset for future revisits
+            st.session_state.score += 10
+            st.success("✅ Unlocked!")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect code. Try again.")
+
+# ---------------- ROUTING ----------------
+if st.session_state.page == "home":
+    st.markdown('<h1 class="big-title">Kenz Quest • مهمة الكنز</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
+    st.info("Click Marrakech-Safi to begin your treasure hunt.")
+    if st.button("Enter Marrakech-Safi"):
+        st.session_state.page = "marrakech_safi"
+        st.rerun()
+
+elif st.session_state.page == "marrakech_safi":
+    st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
+    st.write("Your map-click logic can stay here.")
+    if st.button("Start the Marrakech quest"):
+        st.session_state.page = "adventure"
+        st.session_state.current_stop = 1
+        st.session_state.stop1_phase = "welcome"
+        st.rerun()
+
+else:
+    current = st.session_state.current_stop
+    total_stops = 7
+
+    st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
+    st.progress(current / total_stops)
+
+    if current == 1:
+        phase = st.session_state.stop1_phase
+        if phase == "welcome":
+            show_welcome_page()
+        elif phase == "riddle":
+            show_entry_riddle()
+        elif phase == "story":
+            show_stop1_story()
+            st.markdown("---")
+            if st.button("Continue to the Silver Path →", type="primary", use_container_width=True):
+                st.session_state.current_stop = 2
+                st.rerun()
+
+            # Optional: if you want the code gate right after the story
+            st.markdown("### 🔐 Partner business gate")
+            show_partner_code_gate(
+                next_label=stops_data[1]["next_stop_label"],
+                next_stop_num=2
+            )
 
     else:
-        st.info("🌟 More stops coming soon!")
+        st.success(f"Stop {current} page goes here.")
 
     st.markdown("---")
-
-    # Navigation
-    btn_col1, btn_col2, btn_col3 = st.columns([1, 1, 1])
-    with btn_col1:
+    c1, c2, c3 = st.columns([1, 1, 1])
+    with c1:
         if current > 1 and st.button("← Previous", use_container_width=True):
             st.session_state.current_stop -= 1
-            if current == 2: st.session_state.stop1_phase = "puzzle"  # stay on puzzle when going back
             st.rerun()
-    with btn_col2:
-        st.markdown(f"**Stop {current} / {total_stops}**", unsafe_allow_html=True)
-    with btn_col3:
-        if current < total_stops:
-            if st.button("Next →", type="primary", use_container_width=True):
-                st.session_state.current_stop += 1
-                if st.session_state.current_stop not in st.session_state.unlocked_stops:
-                    st.session_state.unlocked_stops.append(st.session_state.current_stop)
-                st.rerun()
-        else:
-            st.success("🎉 Congratulations! You completed the Marrakech-Safi Treasure Hunt!")
+    with c2:
+        st.markdown(f"<p style='text-align:center;'><strong>Stop {current} / {total_stops}</strong></p>", unsafe_allow_html=True)
+    with c3:
+        if current < total_stops and st.button("Next →", type="primary", use_container_width=True):
+            st.session_state.current_stop += 1
+            st.rerun()
