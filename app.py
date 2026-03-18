@@ -261,6 +261,8 @@ else:
     st.progress(current / total_stops)
     st.markdown(f'<h3 style="text-align: center; color: #e31e24;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
 
+    st.markdown('<div class="gps-tracker">📍 GPS Tracking Active • تتبع GPS نشط</div>', unsafe_allow_html=True)
+
     # ==================== AR IFRAME – switches automatically between the two links ====================
     col_left, col_mid, col_right = st.columns([1, 4, 1])
     with col_mid:
