@@ -305,8 +305,8 @@ else:
     phase = st.session_state.stop1_phase if current == 1 else "puzzle"
     
     if current == 1 and phase == "intro":
-        st.markdown('<h1 class="big-title">Stop 1 – Welcome</h1>', unsafe_allow_html=True)
-        st.markdown('<div class="tag-subtitle">🧞 مرحبًا بك أيها المسافر • Welcome Traveler</div>', unsafe_allow_html=True)
+        st.markdown('<h1 class="big-title">🧞</h1>', unsafe_allow_html=True)
+        st.markdown('<div class="tag-subtitle"> مرحبًا بك أيها المسافر • Welcome Traveler</div>', unsafe_allow_html=True)
     else:
         st.markdown('<h1 class="big-title">First stop . Puzzle</h1>', unsafe_allow_html=True)
         st.markdown('<div class="tag-subtitle">🕌 المحطة الأولى • اللغز</div>', unsafe_allow_html=True)
@@ -466,7 +466,7 @@ else:
                     file_name="Kenz_Quest_Certificate.txt",
                     mime="text/plain"
                 )
-            st.balloons()
+            st.snow()
 
     else:
         st.info("🌟 More stops coming soon!")
