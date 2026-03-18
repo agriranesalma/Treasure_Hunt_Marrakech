@@ -402,25 +402,29 @@ else:
             st.info(stop["description"])
 
         # Riddle
-        st.subheader("🧩 Click your answer to the AR puzzle")
-        if answers["riddle"] is None:
-            c1, c2 = st.columns(2)
-            for i, opt in enumerate(stop["riddle_options"]):
-                 with (c1 if i % 2 == 0 else c2):
-                     if st.button(opt, use_container_width=True, key=f"r{current}_{i}"):
-                        answers["riddle"] = opt
-                        if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
-                            answers["riddle_scored"] = True
-                            st.session_state.score += 25
-                        st.rerun()
-        else:
-            if answers["riddle"] == stop["correct_riddle"]:
-                st.success(f"✅ Correct! **{stop['correct_riddle']}**")
+        if "riddle_options" in stop:
+            st.subheader("🧩 Click your answer to the AR puzzle")
+            if answers["riddle"] is None:
+                c1, c2 = st.columns(2)
+                for i, opt in enumerate(stop["riddle_options"]):
+                    with (c1 if i % 2 == 0 else c2):
+                        if st.button(opt, use_container_width=True, key=f"r{current}_{i}"):
+                            answers["riddle"] = opt
+                            if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
+                                answers["riddle_scored"] = True
+                                st.session_state.score += 25
+                            st.rerun()
             else:
-                st.error(f"❌ The correct answer is {stop['correct_riddle']}")
-                if st.button("🔄 Try Riddle Again", key=f"retry_r{current}"): answers["riddle"] = None; st.rerun()
-            st.markdown("**📖 Learning Moment**")
-            st.info(stop["learning"])
+                if answers["riddle"] == stop["correct_riddle"]:
+                    st.success(f"✅ Correct! **{stop['correct_riddle']}**")
+                else:
+                    st.error(f"❌ The correct answer is {stop['correct_riddle']}")
+                    if st.button("🔄 Try Riddle Again", key=f"retry_r{current}"): answers["riddle"] = None; st.rerun()
+                    st.markdown("**📖 Learning Moment**")
+                    st.info(stop["learning"])
+                if "learning" in stop:
+                    st.markdown("**📖 Learning Moment**")
+                    st.info(stop["learning"])
 
         # Mini-Challenge
         if answers["riddle"] is not None and "mini_question" in stop:
