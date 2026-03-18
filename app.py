@@ -104,9 +104,23 @@ img[src*="streamlit_image_coordinates"] {
 h1, h2, h3, p, span, label, .stMarkdown {
     color: white !important;
 }
+.gps-tracker {
+    display: inline-block;
+    background: linear-gradient(90deg, #00c853, #00ff88);
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    box-shadow: 0 0 25px #00ff88;
+    animation: pulse 2s infinite;
+    text-align: center;
+    margin: 15px auto;
+    letter-spacing: 1px;
+}
 </style>
 """, unsafe_allow_html=True)
-
+# ====================== SESSION STATE ======================
 if "page" not in st.session_state:
     st.session_state.page = "home"
 if "hunt_started" not in st.session_state:
@@ -119,30 +133,75 @@ if "stop_answers" not in st.session_state:
 if "stop1_phase" not in st.session_state:
     st.session_state.stop1_phase = "intro"
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
-riddle_url = "https://mywebar.com/p/Project_1_to00xjn24"
+riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
+webar_urls = {
+    2: "https://mywebar.com/p/stop2-cafe-koutoubia",    
+    3: "https://mywebar.com/p/stop3-artisanal",          
+    4: "https://mywebar.com/p/stop4-fontaine-saadian",  
+    5: "https://mywebar.com/p/stop5-bahia-palace",        
+    6: "https://mywebar.com/p/stop6-pottery-workshop"     
+}
 # ====================== STOP DATA (i will add more stops here later) ======================
 stops_data = {
-    1: {
-        "riddle_options": [
-            "A) Bab Agnaou",
-            "B) Jemaa el-Fna",
-            "C) Mouassine Square",
-            "D) Koutoubia Gardens"
-        ],
+    1: {  # Jemaa el-Fna (Stop 1)
+        "riddle_options": ["A) Bab Agnaou", "B) Jemaa el-Fna", "C) Mouassine Square", "D) Koutoubia Gardens"],
         "correct_riddle": "B) Jemaa el-Fna",
         "learning": """Jemaa el-Fna is the heart of Marrakech’s medina. For over 800 years, people have gathered here for storytelling circles (halqa), musicians, and entertainers. In fact, in 2001 UNESCO declared Jemaa el-Fna a “Masterpiece of the Oral and Intangible Heritage of Humanity” because of its living traditions. At dusk, dozens of food stalls and performers appear – changing the atmosphere completely.""",
         "mini_question": "Look around the square: one drink is sold from many orange juice stalls. What fruit is used for the famous orange juice here?",
-        "mini_options": [
-            "A) Pomegranate",
-            "B) Orange",
-            "C) Lemon",
-            "D) Peach"
-        ],
+        "mini_options": ["A) Pomegranate", "B) Orange", "C) Lemon", "D) Peach"],
         "correct_mini": "B) Orange",
-        "mini_explanation": "Marrakech’s Jemaa el-Fna is famous for its fresh orange juice stalls."
+        "mini_explanation": "Marrakech’s Jemaa el-Fna is famous for its fresh orange juice stalls.",
+        "clue": "Merchants once stopped here after long caravan journeys. Today, travelers still rest nearby for something sweet and refreshing. Head to the first resting place of explorers: **Café de France** (established 1912).",
+        "code_required": True,
+        "correct_code": "treasureCafe2026"
+    },
+    2: {  # Café de France → Koutoubia Mosque
+        "title": "Stop 2 – Café de France",
+        "riddle_options": ["A) Menara Gardens", "B) Koutoubia Mosque", "C) Bab Agnaou", "D) Saadian Tombs"],
+        "correct_riddle": "B) Koutoubia Mosque",
+        "learning": "The Koutoubia Mosque is the largest mosque in Marrakech and its minaret is the symbol of the city. Built in the 12th century, it stands 77 meters tall and is visible from almost everywhere in the medina.",
+        "mini_question": "Atop Koutoubia’s minaret are five golden orbs. How many can you spot from below?",
+        "mini_options": ["A) 3", "B) 4", "C) 5", "D) 7"],
+        "correct_mini": "C) 5",
+        "mini_explanation": "There are 5 golden balls (orbs) atop the minaret – a classic Moroccan architectural detail.",
+        "clue": "Next stop: Artisanal Marrakech – Ensemble Artisanal (look for Artisanetshop)"
+    },
+    3: {  # Artisanetshop – Ensemble Artisanal
+        "title": "Stop 3 – Artisanetshop",
+        "description": """Nestled in the lively heart of ENSEMBLE ARTISANAL MARRAKECH, Artisanetshop has proudly showcased the beauty of traditional Moroccan craftsmanship since 1976. As a top-notch gift shop, we offer a stunning array of handmade wooden artistry that invites you to dive into the rich heritage of Moroccan woodwork. Our family-run business, guided by the respected Ghouat family, has been honing the craft of woodwork for generations. Each piece is carefully crafted with love and attention to detail, sharing a tale of Moroccan culture and creativity.""",
+        "riddle_options": ["A) Almoravids", "B) Marinids", "C) Saadians", "D) Alaouites"],
+        "correct_riddle": "A) Almoravids",
+        "learning": "Marrakech was founded in 1070 by the Almoravids. They were Berber tribesmen from the Sahara who made Marrakesh their capital and built the first city walls and palace. This started the golden era of trans-Saharan trade.",
+        "clue": "Enjoy Marrakech’s famous slow-cooked flavors next. Follow the scent of spices to **La Fontaine des Épices**."
+    },
+    4: {  # La Fontaine des Épices → Saadian Tombs
+        "title": "Stop 4 – La Fontaine des Épices",
+        "riddle_options": ["A) Ahmed al-Mansur", "B) Moulay Ismail", "C) Youssef Ibn Tashfin", "D) Hassan I"],
+        "correct_riddle": "A) Ahmed al-Mansur",
+        "learning": """These tombs date to the reign of Sultan Ahmad al-Mansur of the Saadian dynasty (late 1500s). They are famed for exquisite Moroccan craftsmanship – zellige tile mosaics, carved cedar, and marble columns. After answering, reveal a photo of the Chamber of Twelve Columns.""",
+        "mini_question": "The lower walls of the Chamber of the Mihrab are covered in colorful geometric tiles. What is the name of this traditional Moroccan mosaic tile?",
+        "mini_options": ["A) Granite", "B) Zellige (tile)", "C) Stained glass", "D) Cedar wood"],
+        "correct_mini": "B) Zellige (tile)",
+        "mini_explanation": "Zellige tiles are the hallmark of Moroccan architecture – hand-cut and glazed in vibrant colors.",
+        "clue": "Next stop: Bahia Palace"
+    },
+    5: {  # Bahia Palace
+        "title": "Stop 5 – Bahia Palace",
+        "riddle_options": ["A) El Badi Palace", "B) Bahia Palace", "C) Dar Si Said", "D) Royal Palace"],
+        "correct_riddle": "B) Bahia Palace",
+        "learning": "The Bahia Palace (meaning 'the beautiful') was built in the late 19th century by Si Moussa and his son Ba Ahmed. It is one of the most stunning examples of Moroccan architecture with 160 rooms, intricate zellige, cedar ceilings, and lush gardens.",
+        "mini_question": "The main riad courtyard of Bahia Palace is famous for its central feature surrounded by orange trees. What is it?",
+        "mini_options": ["A) A marble throne", "B) A large fountain", "C) A swimming pool", "D) A library"],
+        "correct_mini": "B) A large fountain",
+        "mini_explanation": "The central courtyard has a beautiful fountain surrounded by orange trees and flowers – a perfect example of Moroccan riad design."
+    },
+    6: {  # Last stop – Pottery Workshop Lamsaty
+        "title": "Stop 6 – Workshop Lamsaty",
+        "special": True,
+        "message": "🎉 You reached the final treasure! Enjoy a **handmade pottery & embroidery course** at a special reduced rate thanks to the app.",
+        "discount_code": "KENZ POTTERY2026",
+        "certificate_text": "Congratulations!\nYou completed Kenz Quest – Trésor Marocain\nCertificate of Cultural Adventure\nWorkshop: Lamsaty Handmade Pottery & Embroidery\nDate: March 2026\nYou supported local artisans and learned Moroccan history!\n"
     }
-    # Example for stop 2 :
-    # 2: { "riddle_options": [...], "correct_riddle": "...", ... }
 }
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -330,8 +389,83 @@ else:
                     st.error(f"❌ Not quite. The answer is {stop['correct_mini']}")
                     if st.button("🔄 Try Mini Again"): answers["mini"] = None; st.rerun()
 
-    elif current > 1:
-        st.info("Stops 2–7 coming soon – same structure (one AR link per stop).")
+    elif current in stops_data:
+        stop = stops_data[current]
+
+        if current not in st.session_state.stop_answers:
+            st.session_state.stop_answers[current] = {"riddle": None, "mini": None, "riddle_scored": False, "mini_scored": False}
+        answers = st.session_state.stop_answers[current]
+
+        # Description for Artisanetshop
+        if "description" in stop:
+            st.markdown("**🛍️ Welcome to Artisanetshop**")
+            st.info(stop["description"])
+
+        # Riddle
+        st.subheader("🧩 Click your answer to the AR puzzle")
+        if answers["riddle"] is None:
+            c1, c2 = st.columns(2)
+            for i, opt in enumerate(stop["riddle_options"]):
+                with (c1 if i % 2 == 0 else c2):
+                    if st.button(opt, use_container_width=True, key=f"r{current}_{i}"):
+                        answers["riddle"] = opt
+                        if opt == stop["correct_riddle"] and not answers["riddle_scored"]:
+                            answers["riddle_scored"] = True
+                            st.session_state.score += 25
+                        st.rerun()
+        else:
+            if answers["riddle"] == stop["correct_riddle"]:
+                st.success(f"✅ Correct! **{stop['correct_riddle']}**")
+            else:
+                st.error(f"❌ The correct answer is {stop['correct_riddle']}")
+                if st.button("🔄 Try Riddle Again", key=f"retry_r{current}"): answers["riddle"] = None; st.rerun()
+            st.markdown("**📖 Learning Moment**")
+            st.info(stop["learning"])
+
+        # Mini-Challenge
+        if answers["riddle"] is not None and "mini_question" in stop:
+            st.subheader("🔍 Mini-Challenge")
+            st.write(stop["mini_question"])
+            if answers["mini"] is None:
+                c1, c2 = st.columns(2)
+                for i, opt in enumerate(stop["mini_options"]):
+                    with (c1 if i % 2 == 0 else c2):
+                        if st.button(opt, use_container_width=True, key=f"m{current}_{i}"):
+                            answers["mini"] = opt
+                            if opt == stop["correct_mini"] and not answers["mini_scored"]:
+                                answers["mini_scored"] = True
+                                st.session_state.score += 15
+                            st.rerun()
+            else:
+                if answers["mini"] == stop["correct_mini"]:
+                    st.success(f"✅ Yes! {stop['mini_explanation']}")
+                else:
+                    st.error(f"❌ The answer is {stop['correct_mini']}")
+                    if st.button("🔄 Try Mini Again", key=f"retry_m{current}"): answers["mini"] = None; st.rerun()
+
+        # Clue to next stop
+        if "clue" in stop:
+            st.markdown("**🧭 Clue to Next Stop**")
+            st.info(stop["clue"])
+
+        # SPECIAL LAST STOP – POTTERY WORKSHOP
+        if current == 6 and "special" in stop:
+            st.success(stop["message"])
+            st.markdown(f"**Your discount code for Lamsaty Workshop:**\n\n**{stop['discount_code']}**")
+            st.info("Show this code at the workshop for 20% off your pottery & embroidery class!")
+
+            # Downloadable Certificate
+            if st.button("🎁 Download Certificate & Souvenir"):
+                st.download_button(
+                    label="📥 Download Certificate (TXT)",
+                    data=stop["certificate_text"],
+                    file_name="Kenz_Quest_Certificate.txt",
+                    mime="text/plain"
+                )
+            st.balloons()
+
+    else:
+        st.info("🌟 More stops coming soon!")
 
     st.markdown("---")
 
