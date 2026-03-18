@@ -329,7 +329,7 @@ else:
         if current == 1 and phase == "intro":
             current_webar_url = welcome_url          # ← Intro page
         else:
-            current_webar_url = riddle_url           # ← Puzzle page (different link!)
+            current_webar_url = riddle_url_stop1          
         components.iframe(current_webar_url, height=700, scrolling=True)
 
     st.markdown("---")
