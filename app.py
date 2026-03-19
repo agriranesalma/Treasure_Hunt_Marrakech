@@ -309,7 +309,7 @@ def show_stop1_story():
     st.markdown("### 🧞 The Genie Speaks")
 
     # 🔗 Replace with your ACTUAL WebAR link for this scene
-    genie_stop1_url = "https://mywebar.com/p/STOP1_GNAWA_GENIE"
+    genie_stop1_url = "https://mywebar.com/p/Project_2_ncf4wq5286"
 
     components.iframe(genie_stop1_url, height=700, scrolling=True)
 
