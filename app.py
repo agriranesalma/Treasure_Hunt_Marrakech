@@ -492,7 +492,7 @@ else:
             # Optional: if I want the code gate right after the story
             st.markdown("### 🔐 Partner business gate")
             show_partner_code_gate(
-                next_label=stops_data[1].get("next_stop_label", "Next Hidden Stop")
+                next_label=stops_data[1].get("next_stop_label", "Next Hidden Stop"),
                 next_stop_num=2
             )
 
