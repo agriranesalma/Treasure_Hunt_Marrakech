@@ -198,7 +198,7 @@ def show_welcome_page():
         st.markdown("""
         <div class="magic-card">
             <h3>🌟 Your journey begins here</h3>
-            <p>The Genie is excited to guide you through Morocco’s living memory. She is asking:</p>
+            <p>The Genie is excited to guide you through Morocco’s living memory.</p>
             <p><strong>“Are you ready for the journey?”</strong></p>
         </div>
         """, unsafe_allow_html=True)
@@ -455,11 +455,8 @@ else:
         elif phase == "story":
             show_stop1_story()
             st.markdown("---")
-            if st.button("Continue to the Silver Path →", type="primary", use_container_width=True):
-                st.session_state.current_stop = 2
-                st.rerun()
-
-            # Optional: if you want the code gate right after the story
+            
+            # Optional: if I want the code gate right after the story
             st.markdown("### 🔐 Partner business gate")
             show_partner_code_gate(
                 next_label=stops_data[1]["next_stop_label"],
