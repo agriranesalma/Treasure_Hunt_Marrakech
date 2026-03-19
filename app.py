@@ -515,7 +515,41 @@ else:
         elif phase == "story":
             show_stop1_story()
             st.markdown("---")
-            
+            # ---------------- ARTISAN EXPERIENCE PREVIEW ----------------
+st.markdown("""
+<div class="magic-card">
+    <h2 style="text-align:center;">✨ Your Next Experience</h2>
+    <p style="text-align:center; font-size:1.2rem;">
+    During your visit to the artisan workshop, you won’t just observe…
+    <br><strong>You will create.</strong>
+    </p>
+    <p style="text-align:center;">
+    Guided by a master artisan, you will craft your own piece of
+    <strong>Moroccan Sahrawi silver jewelry</strong>,
+    inspired by traditions passed down through generations.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# ---------------- JEWELRY IMAGE ----------------
+st.image(
+    "sahrawijewelry.png",  # <-- rename your file like this
+    caption="A traditional Sahrawi silver piece you will learn to create",
+    use_container_width=True
+)
+
+# ---------------- EXTRA IMMERSION ----------------
+st.markdown("""
+<div class="magic-card">
+    <p style="text-align:center;">
+    Each curve, each engraving, each detail carries the spirit of the desert —
+    patience, precision, and identity.
+    </p>
+    <p style="text-align:center; font-weight:bold;">
+    🔓 Unlock the workshop to begin your creation.
+    </p>
+</div>
+""", unsafe_allow_html=True)
             # Optional: if I want the code gate right after the story
             st.markdown("### 🔐 Partner business gate")
             show_partner_code_gate(
