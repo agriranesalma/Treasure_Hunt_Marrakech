@@ -533,7 +533,7 @@ else:
             
             # ---------------- JEWELRY IMAGE ----------------
             st.image(
-                "sahrawijewelry.png",  # <-- rename your file like this
+                "sahrawijewlery.png",  # <-- rename your file like this
                 caption="A traditional Sahrawi silver piece you will learn to create",
                 use_container_width=True
             )
