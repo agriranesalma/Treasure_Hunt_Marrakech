@@ -181,6 +181,8 @@ stops_data = {
     "The merchants, the music, the knowledge — all traveled from far beyond the city walls, carried by caravans from the deep south. "
     "Now, it’s your turn to follow that path. Let’s walk the Silver Path, to discover where desert craftsmanship meets the heart of Marrakech."
     )
+,"next_stop_label": "Hassani Silver Filigree Artisan",
+"next_stop_intro": "The next stop is a Hassani Silver Filigree artisan, where the treasure changes from stories to craft.",
 }}
 
 # ---------------- HELPERS ----------------
@@ -490,7 +492,7 @@ else:
             # Optional: if I want the code gate right after the story
             st.markdown("### 🔐 Partner business gate")
             show_partner_code_gate(
-                next_label=stops_data[1]["next_stop_label"],
+                next_label=stops_data[1].get("next_stop_label", "Next Hidden Stop")
                 next_stop_num=2
             )
 
