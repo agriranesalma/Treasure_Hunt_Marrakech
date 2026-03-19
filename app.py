@@ -265,60 +265,85 @@ def show_stop1_story():
     stop = stops_data[1]
 
     st.markdown(f'<h1 class="big-title">{stop["title"]}</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">✨ A square of memory, music, and resistance</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">✨ A square of memory, rhythm, and living history</div>', unsafe_allow_html=True)
 
+    # ---------------- HOOK ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>⭐ Hook</h3>
+        <h3>⭐ The Living Stage</h3>
         <p>{stop["hook"]}</p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ---------------- UNESCO ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🏛️ UNESCO Memory</h3>
+        <h3>🏛️ A World Treasure</h3>
         <p>{stop["unesco"]}</p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ---------------- ATMOSPHERE ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🎶 What you hear in the square</h3>
+        <h3>🎭 What surrounds you</h3>
         <p>{stop["atmosphere"]}</p>
-        <p>{stop["gnawa"]}</p>
+        <p><em>You may hear deep rhythms... ancient songs... names carried through generations.</em></p>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown(f"""
+    # ---------------- HINT TO GENIE ----------------
+    st.markdown("""
     <div class="magic-card">
-        <h3>🧞 The Genie’s speech</h3>
-        <p>{stop["genie_speech"]}</p>
+        <h3>🎶 A hidden story in the music</h3>
+        <p>
+        Some songs in this square are not just music — they are memory.
+        Names like <strong>Lalla Aïcha</strong> echo through the rhythms of <strong>Gnawa</strong>.
+        But their meaning… is not written here.
+        </p>
+        <p><strong>Ask the Genie below. She remembers what history did not write.</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ---------------- WEBAR GENIE ----------------
+    st.markdown("### 🧞 The Genie Speaks")
+
+    # 🔗 Replace with your ACTUAL WebAR link for this scene
+    genie_stop1_url = "https://mywebar.com/p/STOP1_GNAWA_GENIE"
+
+    components.iframe(genie_stop1_url, height=700, scrolling=True)
+
+    # ---------------- PRIVACY REMINDER ----------------
+    st.markdown("""
+    <div class="notice">
+        🔒 <strong>Privacy Reminder:</strong> This experience does NOT store your image or any personal data.
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---------------- NATIONAL MEMORY ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🇲🇦 National memory</h3>
+        <h3>🇲🇦 Memory & Sovereignty</h3>
         <p>{stop["national_memory"]}</p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ---------------- LEGEND ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🔱 The Legend of the Seven Saints</h3>
+        <h3>🔱 The Circle of Protection</h3>
         <p>{stop["legend"]}</p>
     </div>
     """, unsafe_allow_html=True)
 
+    # ---------------- TRANSITION ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🛤️ Transition</h3>
+        <h3>🛤️ The Journey Continues</h3>
         <p>{stop["transition"]}</p>
-        <p><strong>Next stop:</strong> {stop["next_stop_intro"]}</p>
+        <p><strong>Next Stop:</strong> {stop["next_stop_intro"]}</p>
     </div>
     """, unsafe_allow_html=True)
-
-    st.info("✨ To continue, use the partner code at the next artisan stop.")
 
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title">🔐 Silver Path Gate</h2>', unsafe_allow_html=True)
