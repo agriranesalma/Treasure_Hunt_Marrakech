@@ -180,8 +180,8 @@ stops_data = {
     "And just like these stories and traditions, the life of this square did not begin here. "
     "The merchants, the music, the knowledge — all traveled from far beyond the city walls, carried by caravans from the deep south. "
     "Now, it’s your turn to follow that path. Let’s walk the Silver Path, to discover where desert craftsmanship meets the heart of Marrakech."
-)
-}
+    )
+}}
 
 # ---------------- HELPERS ----------------
 def render_webar(url, height=680):
