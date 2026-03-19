@@ -352,6 +352,29 @@ def show_stop1_story():
         <p><strong>Next Stop:</strong> {stop.get("next_stop_intro", "Follow the Silver Path to the next hidden treasure.")}</p>
     </div>
     """, unsafe_allow_html=True)
+     # ---------------- HASSANI POETRY INTERLUDE ----------------
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🐪 On the road to the South...</h3>
+        <p>
+        As you walk toward the artisan of silver, remember: the desert does not only trade goods —
+        it carries words, rhythm, and poetry.
+        </p>
+        <p>
+        Let me tell you a little about <strong>Hassani poetry</strong>, a poetic tradition from the southern regions of Morocco,
+        where language flows like the dunes and memory is passed through verse.
+        </p>
+        <p><em>Here is a small glimpse of that world:</em></p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("### 🎧 Listen to Hassani Poetry")
+
+    st.info("💡 Tip: Use headphones for an immersive experience.")
+    
+    if st.button("🎧 Play the voice of the desert"):
+        audio_file = open("hassani_poetry.mp3", "rb")
+        audio_bytes = audio_file.read()
+        st.audio(audio_bytes, format="audio/mp3")
 
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title">🔐 Silver Path Gate</h2>', unsafe_allow_html=True)
