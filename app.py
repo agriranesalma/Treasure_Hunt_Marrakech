@@ -396,7 +396,7 @@ def show_partner_code_gate(next_label, next_stop_num):
             st.session_state.current_stop = next_stop_num
             st.session_state.stop1_phase = "welcome"  # reset for future revisits
             st.session_state.score += 10
-            st.success("✅ Unlocked!")
+            st.success("✅ Path Unlocked!")
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
