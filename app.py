@@ -370,7 +370,11 @@ def show_stop1_story():
     st.markdown("### 🎧 Listen to Hassani Poetry")
 
     st.info("💡 Tip: Use headphones for an immersive experience.")
-    
+    st.image(
+    "sahara.png",
+    caption="The Sahara — where poetry travels with the wind",
+    use_container_width=True
+    )
     if st.button("🎧 Play the voice of the desert"):
         audio_file = open("hassani_poetry.mp3", "rb")
         audio_bytes = audio_file.read()
