@@ -526,15 +526,8 @@ else:
     else:
         st.success(f"Stop {current} page goes here.")
 
-    st.markdown("---")
-    c1, c2, c3 = st.columns([1, 1, 1])
-    with c1:
-        if current > 1 and st.button("← Previous", use_container_width=True):
-            st.session_state.current_stop -= 1
-            st.rerun()
-    with c2:
-        st.markdown(f"<p style='text-align:center;'><strong>Stop {current} / {total_stops}</strong></p>", unsafe_allow_html=True)
-    with c3:
-        if current < total_stops and st.button("Next →", type="primary", use_container_width=True):
-            st.session_state.current_stop += 1
-            st.rerun()
+    st.markdown(f"""
+        <p style='text-align:center; opacity:0.7;'>
+        📍 Step {current} of {total_stops}
+        </p>
+        """, unsafe_allow_html=True)
