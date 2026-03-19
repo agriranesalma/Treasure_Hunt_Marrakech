@@ -347,7 +347,7 @@ def show_stop1_story():
     <div class="magic-card">
         <h3>🛤️ The Journey Continues</h3>
         <p>{stop["transition"]}</p>
-        <p><strong>Next Stop:</strong> {stop.get["next_stop_intro", "Follow the Silver Path to the next hidden treasure."]}</p>
+        <p><strong>Next Stop:</strong> {stop.get("next_stop_intro", "Follow the Silver Path to the next hidden treasure.")}</p>
     </div>
     """, unsafe_allow_html=True)
 
