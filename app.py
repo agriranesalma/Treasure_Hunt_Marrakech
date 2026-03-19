@@ -159,22 +159,28 @@ stops_data = {
             "A square can be a theater—but it can also be a shield."
         ),
         "national_memory": (
-            "This moment also connects to national memory: the 68th anniversary of HM King Mohammed V’s historic visit "
-            "to M’Hamid El Ghizlane and the southern provinces, as well as the commemoration of the last foreign soldier’s "
-            "departure from the Moroccan Sahara. These milestones speak to sovereignty, continuity, and territorial unity."
-        ),
-        "legend": (
-            "And there is a circle of protection around Marrakech: the Seven Saints. "
-            "Rooted in the tradition associated with Abu al-Abbas al-Sabti, this spiritual journey helped shape the city’s memory, "
-            "identity, and blessing."
-        ),
-        "transition": (
-            "The caravans trading here came from the deep south. Let’s follow the Silver Path to find where the desert meets the city."
-        ),
-        "next_stop": "Hassani Silver Filigree Artisanat",
-        "next_stop_label": "Hassani Silver Filigree Artisanat",
-        "next_stop_intro": "The next stop is a Hassani Silver Filigree artisanat, where the treasure changes from stories to craft."
-    }
+    "But this square is not only a place of stories and music — it is also a place of memory. "
+    "In the 1950s, as Morocco faced the challenges of the French Protectorate, spaces like this became silent witnesses "
+    "to unity, resistance, and the voice of a people determined to reclaim their future. "
+    "That same spirit lives on in national milestones, such as the historic visit of His Majesty King Mohammed V to "
+    "M’Hamid El Ghizlane and the southern provinces, and the commemoration of the departure of the last foreign soldier "
+    "from the Moroccan Sahara. Together, these moments tell one story: a nation standing for its sovereignty, its unity, "
+    "and its enduring identity."
+),
+
+"legend": (
+    "Long before and beyond politics, Marrakech has also been protected in another way. "
+    "According to tradition, the city is encircled by the spiritual presence of the Seven Saints — a sacred path that has "
+    "guided and guarded it since centuries. "
+    "Inspired by figures such as Abu al-Abbas al-Sabti, this invisible circle represents faith, protection, and the deep "
+    "spiritual roots woven into the soul of the city."
+),
+
+"transition": (
+    "And just like these stories and traditions, the life of this square did not begin here. "
+    "The merchants, the music, the knowledge — all traveled from far beyond the city walls, carried by caravans from the deep south. "
+    "Now, it’s your turn to follow that path. Let’s walk the Silver Path, to discover where desert craftsmanship meets the heart of Marrakech."
+)
 }
 
 # ---------------- HELPERS ----------------
