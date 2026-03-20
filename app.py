@@ -928,6 +928,8 @@ def show_stop9_pottery():
         st.image("pottery_workshop.jpg", caption="The pottery workshop", use_container_width=True)
     except:
         st.warning("⚠️ Add pottery_workshop.jpg")
+    
+    st.write("In this class you will be making mini moroccan tagines with mesmerizing colors")
 
     try:
         st.image("pottery_products.jpg", caption="Finished pottery pieces", use_container_width=True)
@@ -938,7 +940,7 @@ def show_stop9_pottery():
     <div class="magic-card">
         <h3>🎁 Special Offer</h3>
         <p>
-        Give this code to your pottery master to enjoy <strong>40% off</strong> of the class.
+        Give this code :"Legacy_Ladies_2026" to your pottery master to enjoy <strong>40% off</strong> of the class.
         </p>
         <p>
         After that, the pottery master will give you a code. Enter it below to download your certificate.
