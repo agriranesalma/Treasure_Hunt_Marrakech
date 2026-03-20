@@ -126,6 +126,8 @@ if "stop1_phase" not in st.session_state:
 
 if "hunt_started" not in st.session_state:
     st.session_state.hunt_started = False
+if "stop4_zellige_correct" not in st.session_state:
+    st.session_state.stop4_zellige_correct = False
 
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
@@ -630,6 +632,7 @@ def show_stop4_saadian():
 
     if st.button("Submit Answer"):
         if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
+            st.session_state.stop4_zellige_correct = True  # <--- NEW: mark answer correct
             st.success("🎉 Correct! You have the eye of a true explorer.")
         
             st.markdown("""
@@ -644,11 +647,11 @@ def show_stop4_saadian():
             </div>
             """, unsafe_allow_html=True)
         
-            # IMAGE PLACEHOLDER
             st.image("zellige_workshop.jpg", caption="YOU WILL BE MAKING THESE COOL ZELLIGE PATTERNS", use_container_width=True)
         
-            # Partner gate
-            show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5)
+            # Only show the partner code gate after correct answer
+            if st.session_state.get("stop4_zellige_correct", False):
+                show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5)
 
         else:
             st.error("❌ Not quite... look closer at the patterns around you.")
@@ -671,7 +674,7 @@ def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_n
 
     if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
         if code.strip() == PARTNER_ACCESS_CODE:
-            st.session_state.current_stop = 6
+            st.session_state.current_stop = next_stop_num 
             st.session_state.score += 10
             st.success(f"✅ Path Unlocked! You are now heading to {next_label}.")
             st.rerun()
