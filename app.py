@@ -976,40 +976,93 @@ def show_stop9_pottery():
                 st.error("❌ Incorrect code. Try again.")
 
     if st.session_state.pottery_code_entered:
-        certificate_html = f"""
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Kenz Quest Certificate</title>
-            <style>
-                body {{
-                    font-family: Arial, sans-serif;
-                    text-align: center;
-                    padding: 60px;
-                    border: 12px solid #b8860b;
-                    margin: 30px;
-                }}
-                h1 {{ color: #8b0000; }}
-                .name {{ font-size: 28px; font-weight: bold; margin: 25px 0; }}
-                .small {{ margin-top: 30px; color: #444; }}
-            </style>
-        </head>
-        <body>
-            <h1>Certificate of Completion</h1>
-            <p>This certificate is proudly awarded to</p>
-            <div class="name">Kenz Quest Explorer</div>
-            <p>for completing the Marrakech treasure hunt through Koutoubia, Bahia Palace, and Moroccan Pottery.</p>
-            <p class="small">Kenz Quest • Trésor Marocain</p>
-        </body>
-        </html>
-        """
-
-        st.download_button(
-            "📄 Download Your Certificate",
-            data=certificate_html.encode("utf-8"),
-            file_name="Kenz_Quest_Certificate.html",
-            mime="text/html"
-        )
+        st.markdown("## 🎉 Your Journey Ends Here... But Your Legend Begins")
+    
+        user_name = st.text_input("Enter your name for your certificate:")
+    
+        if user_name:
+            certificate_html = f"""
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <title>Kenz Quest Certificate</title>
+                <style>
+                    body {{
+                        font-family: 'Georgia', serif;
+                        text-align: center;
+                        padding: 60px;
+                        margin: 30px;
+                        background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                                    url('https://www.transparenttextures.com/patterns/arabesque.png');
+                        border: 15px double #b8860b;
+                    }}
+                    h1 {{
+                        color: #8b0000;
+                        font-size: 42px;
+                        margin-bottom: 10px;
+                    }}
+                    h2 {{
+                        color: #b8860b;
+                        margin-bottom: 30px;
+                    }}
+                    .name {{
+                        font-size: 34px;
+                        font-weight: bold;
+                        margin: 30px 0;
+                        color: #2c2c2c;
+                    }}
+                    .text {{
+                        font-size: 18px;
+                        line-height: 1.6;
+                        margin: 20px 0;
+                    }}
+                    .footer {{
+                        margin-top: 40px;
+                        font-size: 16px;
+                        color: #555;
+                    }}
+                </style>
+            </head>
+            <body>
+    
+                <h1>🏆 Certificate of Exploration</h1>
+                <h2>Kenz Quest • Trésor Marocain</h2>
+    
+                <p class="text">This certificate is proudly awarded to</p>
+    
+                <div class="name">{user_name}</div>
+    
+                <p class="text">
+                    The Amazing Traveler who journeyed through time and history,
+                    uncovering the hidden treasures of Morocco.
+                </p>
+    
+                <p class="text">
+                    From the majestic architecture of Koutoubia,
+                    to the artistic beauty of Bahia Palace,
+                    and the living traditions of Moroccan craftsmanship,
+                    you have experienced the soul of a timeless land.
+                </p>
+    
+                <p class="text">
+                    Your curiosity, spirit, and sense of adventure
+                    have brought history to life.
+                </p>
+    
+                <div class="footer">
+                    🌙 A journey across Moroccan art, music, and architecture 🌙
+                </div>
+    
+            </body>
+            </html>
+            """
+    
+            st.download_button(
+                "📄 Download Your Certificate",
+                data=certificate_html.encode("utf-8"),
+                file_name=f"Kenz_Quest_Certificate_{user_name}.html",
+                mime="text/html"
+            )
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
