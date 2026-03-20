@@ -671,7 +671,7 @@ def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_n
 
     if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
         if code.strip() == PARTNER_ACCESS_CODE:
-            st.session_state.current_stop = 5
+            st.session_state.current_stop = 6
             st.session_state.score += 10
             st.success(f"✅ Path Unlocked! You are now heading to {next_label}.")
             st.rerun()
