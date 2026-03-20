@@ -933,7 +933,7 @@ def show_stop9_pottery():
     <div class="magic-card">
         <h3>In this pottery class</h3>
         <p>
-        YOU will be making your own mini moroccan tagines with mesmerizing colors
+        You will be making your own mini moroccan tagines with mesmerizing colors
         </p>
         <p>
         </p>
