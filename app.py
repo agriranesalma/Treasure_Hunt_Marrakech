@@ -140,7 +140,7 @@ if "koutoubia_code_entered" not in st.session_state:
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
 
-# One reusable code for all partner businesses in the hackathon
+# im adding one reusable code for all partner businesses in the hackathon// hta nbdlo if i want
 PARTNER_ACCESS_CODE = "KENZQUEST2026"
 
 # ---------------- STOP 1 CONTENT ----------------
@@ -453,7 +453,6 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    # IMAGE PLACEHOLDER
     st.image("fact1.jpg", caption="", use_container_width=True)
 
     # ================== FACT 2 ==================
@@ -615,7 +614,7 @@ def show_stop4_saadian():
     </div>
     """, unsafe_allow_html=True)
 
-    # SECOND IMAGE PLACEHOLDER
+    # SECOND IMAGE 
     st.image("saadian_inside.jpg", caption="", use_container_width=True)
 
     # QUIZ TRANSITION
@@ -638,7 +637,7 @@ def show_stop4_saadian():
             if user_answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
                 st.success("🎉 Correct! You have the eye of a true explorer.")
                 st.session_state.current_stop = 5
-                st.session_state.score += 15  # optional reward
+                st.session_state.score += 15  
                 st.rerun()
             else:
                 st.error("❌ Not quite... look closer at the patterns around you.")
@@ -756,7 +755,7 @@ def show_stop6_cuisine():
             key="koutoubia_cuisine_code"
         )
         if st.button("Unlock Quiz", key="unlock_koutoubia_quiz_btn"):
-            if cuisine_code.strip() == PARTNER_ACCESS_CODE:  # Replace with actual cuisine code if different
+            if cuisine_code.strip() == PARTNER_ACCESS_CODE:  
                 st.session_state.koutoubia_code_entered = True
                 st.success("✅ Correct Code.")
                 st.rerun()
@@ -772,7 +771,7 @@ def show_stop6_cuisine():
             </p>
         </div>
         """, unsafe_allow_html=True)
-        # Step 1: Let the user pick the Koutoubia quiz answer
+
         if "koutoubia_answer" not in st.session_state:
             st.session_state.koutoubia_answer = None
     
@@ -1198,7 +1197,7 @@ else:
             
             # ---------------- JEWELRY IMAGE ----------------
             st.image(
-                "sahrawijewlery.png",  # <-- rename your file like this
+                "sahrawijewlery.png", 
                 caption="A traditional Sahrawi silver piece you will learn to create",
                 use_container_width=True
             )
