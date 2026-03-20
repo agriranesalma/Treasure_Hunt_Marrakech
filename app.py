@@ -748,9 +748,9 @@ def show_stop6_cuisine():
     # ---------------- KOUTOUBIA QUIZ ----------------
     st.markdown(f"""
     <div class="magic-card">
-        <h3>🕌 Final Taste-Test Question</h3>
+        <h3>Question</h3>
         <p style="font-size:1.15rem; line-height:1.6;">
-            You’ve savored the flavors of Marrakech — now it’s time to see the city!  
+            You’ve savored the flavors of Marrakech — now it’s time to see more of the city!  
             Which famous monument, with a towering minaret, should you visit next?
         </p>
     </div>
