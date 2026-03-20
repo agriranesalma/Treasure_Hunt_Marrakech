@@ -387,7 +387,7 @@ def show_stop1_story():
         st.audio(audio_bytes, format="audio/mp3")
 
 def show_partner_code_gate(next_label, next_stop_num):
-    sst.markdown(
+    st.markdown(
     """
     <div style="text-align: center; margin: 30px 0;">
         <h2 style="color: #C0C0C0; margin-bottom: 10px;">
