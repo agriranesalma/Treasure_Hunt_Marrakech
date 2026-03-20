@@ -757,22 +757,92 @@ def show_stop6_cuisine():
     # ---------------- MINI TIP ----------------
     st.info("💡 Tip: While imagining your meal, think about the stories every ingredient tells — every spice has a history.")
 
-    # ---------------- PARTNER CODE GATE ----------------
-    st.markdown("### 🔐 Unlock the next culinary adventure")
-    code = st.text_input(
-        "Enter the partner code from your instructor",
-        placeholder=f"e.g. {PARTNER_ACCESS_CODE}",
-        key="code_gate_cuisine"
+    # ---------------- KOUTOUBIA QUIZ ----------------
+    st.markdown("### 🕌 Final taste-test question")
+    
+    with st.form("cuisine_to_koutoubia_form"):
+        answer = st.text_input(
+            "Which monument should you visit next?",
+            placeholder="Type the name of the monument"
+        )
+        submitted = st.form_submit_button("Submit Answer")
+    
+        if submitted:
+            if answer.lower().strip() in ["koutoubia", "koutoubia mosque", "kutubiyya", "kutubiyyah"]:
+                st.success("✅ Correct! Your journey continues to Koutoubia.")
+                st.session_state.current_stop = 7
+                st.session_state.score += 10
+                st.rerun()
+            else:
+                st.error("❌ Not quite — think of Marrakech’s famous landmark with the tall minaret.")
+                st.error("❌ Incorrect code. Try again.")
+def show_stop7_koutoubia():
+    st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <h3>✨ Why it matters</h3>
+        <p>
+        The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
+        Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
+        major monuments of the Medina of Marrakesh. :contentReference[oaicite:4]{index=4}       <p>
+        It was built under the Almohads, a Berber-led movement/dynasty, so in your story you can proudly say:
+        this is part of Morocco’s Berber heritage. :contentReference[oaicite:6]{index=6}   </div>
+    """, unsafe_allow_html=True)
+
+    st.image(
+        "koutoubia.jpg",
+        caption="(Add image of Koutoubia here)",
+        use_container_width=True
     )
 
-    if st.button("Unlock next stop", key="unlock_cuisine", type="primary"):
-        if code.strip() == PARTNER_ACCESS_CODE:
-            st.session_state.current_stop = 7  # next stop after cuisine
-            st.session_state.score += 10
-            st.success("✅ Delicious path unlocked! Onward to your next Moroccan adventure.")
-            st.rerun()
-        else:
-            st.error("❌ Incorrect code. Try again.")
+    st.markdown("### 🧩 Mini quiz: look closely at the minaret")
+
+    with st.form("koutoubia_arches_form"):
+        arches = st.text_input(
+            "How many arches are at the top?",
+            placeholder="Type a number"
+        )
+        submitted = st.form_submit_button("Check Answer")
+
+        if submitted:
+            if arches.strip() in ["4", "four"]:
+                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches. :contentReference[oaicite:8]{index=8}    
+                st.markdown("""
+                <div class="magic-card">
+                    <h3>🧵 Next stop: Berber Calligraphy</h3>
+                    <p>
+                    Now that you have decoded the geometry of Koutoubia, your next treasure leads to the world of
+                    Berber calligraphy — where letters become art and identity.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+
+                st.image(
+                    "berber_calligraphy.jpg",
+                    caption="(Add image of Berber calligraphy here)",
+                    use_container_width=True
+                )
+
+                st.markdown("### 🔐 Enter the artisan code to continue")
+
+                code = st.text_input(
+                    "Enter artisan code",
+                    placeholder="e.g. KENZQUEST2026",
+                    key="code_gate_koutoubia"
+                )
+
+                if st.button("Unlock next stop", key="unlock_koutoubia", type="primary"):
+                    if code.strip() == PARTNER_ACCESS_CODE:
+                        st.session_state.current_stop = 8
+                        st.session_state.score += 10
+                        st.success("✅ Path unlocked! Heading to Berber Calligraphy.")
+                        st.rerun()
+                    else:
+                        st.error("❌ Incorrect code. Try again.")
+            else:
+                st.error("❌ Not quite — count the arches at the very top again.")
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -873,7 +943,7 @@ elif st.session_state.page == "marrakech_safi":
 
 else:
     current = st.session_state.current_stop
-    total_stops = 7
+    total_stops = 8
 
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
@@ -940,8 +1010,12 @@ else:
         show_stop5_zellige_workshop()
     elif st.session_state.current_stop == 6:
         show_stop6_cuisine()
-    else:
-        st.success(f"Stop {current} page goes here.")
+    elif current == 6:
+        show_stop6_cuisine()
+    elif current == 7:
+        show_stop7_koutoubia()
+    elif current == 8:
+        st.success("Stop 8 page goes here.")
 
     st.markdown(f"""
         <p style='text-align:center; opacity:0.7;'>
