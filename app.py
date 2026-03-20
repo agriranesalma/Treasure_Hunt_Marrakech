@@ -698,20 +698,41 @@ def show_stop6_cuisine():
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
 
     # ---------------- INTRO ----------------
-    st.markdown("""
+    st.markdown(
+    """
     <div class="magic-card">
-        <h3>🌿 Welcome, chef!</h3>
+         <h3>🌿 Welcome, chef!</h3>
         <p>
-        From the bustling markets of Marrakech to the calm kitchens of old medinas,
-        Moroccan cuisine is a symphony of flavors. Today, you will get your hands on some iconic dishes —
-        starting with <strong>Tangia</strong>, the Marrakech specialty slow-cooked in clay pots, not to be confused with tagine.
+        Look around you... this is not just a meal — it is a celebration of Moroccan culture.
         </p>
+
         <p>
-        You will also discover secrets of <strong>pastilla</strong>, <strong>harira</strong>, and aromatic <strong>spiced couscous</strong>.
+        At the center, a traditional <strong>tangia</strong> slowly cooked in clay, infused with spices, preserved lemons, and centuries of Marrakech tradition.
         </p>
-        <p><strong>Get ready to cook, taste, and fall in love with Moroccan flavors!</strong></p>
+
+        <p>
+        Surrounding it, a feast unfolds:
+        golden <strong>couscous</strong> with vegetables,
+        rich <strong>harira</strong> soup,
+        crispy <strong>briouates</strong>,
+        fresh salads, olives, and perfectly grilled fish.
+        </p>
+
+        <p>
+        Every dish tells a story — from the Atlas Mountains to the Atlantic coast,
+        blending <strong>Arab, Amazigh (Berber), Andalusian, and Mediterranean influences</strong>.
+        </p>
+
+        <p>
+        And of course... no Moroccan table is complete without <strong>mint tea</strong>,
+        a symbol of hospitality and sharing.
+        </p>
+
+        <p><strong>This is not just food... it is Morocco on a table.</strong></p>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
     # ---------------- IMAGE ----------------
     st.image(
@@ -722,37 +743,7 @@ def show_stop6_cuisine():
 
     # ---------------- FUN HISTORY ----------------
     st.markdown("### 📜 Moroccan Culinary Wonders")
-    st.markdown("""
-    <div class="magic-card">
-    <p>
-    Look around you… this is not just a meal — it is a celebration of Moroccan culture.
-    </p>
-
-    <p>
-    At the center, a traditional <strong>tangia</strong> slowly cooked in clay, infused with spices, preserved lemons, and centuries of Marrakech tradition.
-    </p>
-
-    <p>
-    Surrounding it, a feast unfolds:
-    golden <strong>couscous</strong> with vegetables,
-    rich <strong>harira</strong> soup,
-    crispy <strong>briouates</strong>,
-    fresh salads, olives, and perfectly grilled fish.
-    </p>
-
-    <p>
-    Every dish tells a story — from the Atlas mountains to the Atlantic coast,
-    blending <strong>Arab, Amazigh (Berber), Andalusian, and Mediterranean influences</strong>.
-    </p>
-
-    <p>
-    And of course… no Moroccan table is complete without <strong>mint tea</strong>,
-    a symbol of hospitality and sharing.
-    </p>
-
-    <p><strong>😋 This is not just food… it’s Morocco on a table.</strong></p>
-</div>
-""", unsafe_allow_html=True)
+    
 
     # ---------------- MINI TIP ----------------
     st.info("💡 Tip: While imagining your meal, think about the stories every ingredient tells — every spice has a history.")
