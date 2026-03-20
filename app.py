@@ -397,10 +397,140 @@ def show_partner_code_gate(next_label, next_stop_num):
             st.session_state.stop1_phase = "welcome"  # reset for future revisits
             st.session_state.score += 10
             st.success("✅ Path Unlocked!")
+            st.session_state.current_stop = 2
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
 
+
+def show_stop2_cafe():
+    st.markdown('<h1 class="big-title">☕ Café Stop — A Moment to Breathe</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">🫖 Pause, sip, and discover Morocco</div>', unsafe_allow_html=True)
+
+    # ---------------- INTRO ----------------
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌿 Take a break, traveler</h3>
+        <p>
+        After your journey through stories and silver, it’s time to slow down.
+        Sit, relax, and enjoy a glass of traditional Moroccan tea.
+        </p>
+        <p><strong>But in Morocco… even a tea break tells stories.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---------------- TEA IMAGE ----------------
+    st.image(
+        "assets/moroccan_tea.jpg",
+        caption="Moroccan mint tea — a symbol of hospitality",
+        use_container_width=True
+    )
+
+    st.info("💡 While you sip your tea… explore these incredible facts about Morocco.")
+
+    # ================== FACT 1 ==================
+    st.markdown("### 🧬 Fact 1: Origins of Humanity")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        In 2017, scientists discovered that human remains at <strong>Jebel Irhoud</strong>
+        (near Marrakesh) are about <strong>300,000 years old</strong>.
+        </p>
+        <p>
+        This makes them the <strong>oldest known Homo sapiens fossils</strong> ever found —
+        meaning Morocco is one of the cradles of humanity.
+        </p>
+        <p><strong>🤯 Imagine: Humanity may have started right here.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # IMAGE PLACEHOLDER
+    st.image("assets/fact1.jpg", caption="(Add image of Jebel Irhoud here)", use_container_width=True)
+
+    # ================== FACT 2 ==================
+    st.markdown("### 🏛️ Fact 2: Ancient Roman City")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        <strong>Volubilis</strong>, near Meknès, was a major Roman city over 2,000 years ago.
+        At its peak, it had temples, a basilica, and massive public buildings.
+        </p>
+        <p>
+        Today, it’s a UNESCO World Heritage site — with real Roman mosaics still intact.
+        </p>
+        <p><strong>🎮 It’s like walking inside Ancient Rome… in Morocco.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("assets/fact2.jpg", caption="(Add image of Volubilis here)", use_container_width=True)
+
+    # ================== FACT 3 ==================
+    st.markdown("### 🎓 Fact 3: The Oldest University")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        The <strong>University of al-Qarawiyyin</strong> in Fez was founded in 859 AD
+        by <strong>Fatima al-Fihri</strong>.
+        </p>
+        <p>
+        It is officially recognized as the <strong>oldest university in the world</strong>.
+        </p>
+        <p><strong>🔥 A woman founded it over 1,100 years ago.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("assets/fact3.jpg", caption="(Add image of al-Qarawiyyin here)", use_container_width=True)
+
+    # ================== FACT 4 ==================
+    st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        <strong>Ibn Battuta</strong>, from Tangier, traveled over <strong>117,000 km</strong>
+        across Africa, Asia, and beyond.
+        </p>
+        <p>
+        His journey lasted nearly 30 years — making him one of the greatest travelers in history.
+        </p>
+        <p><strong>🚀 He traveled further than Marco Polo.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("assets/fact4.jpg", caption="(Add image related to Ibn Battuta here)", use_container_width=True)
+
+    # ================== FUN MOMENT ==================
+    st.markdown("### 😂 Moroccan Break Time")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p style="font-size:1.2rem;">
+        لمونا دازت الاکزام، شحال جابت؟  
+        <br><strong>عسرة على عسرة 😭</strong>
+        </p>
+        <p style="opacity:0.8;">
+        (When Mona passed her exam, what did she get?  
+        A 10… on top of another 10 😂)
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ================== TRANSITION ==================
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🧭 Ready to continue?</h3>
+        <p>
+        Your journey continues beyond the café…
+        more stories, more craftsmanship, more treasures await.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("➡️ Continue the Journey"):
+    st.session_state.current_stop = 3
+    st.rerun()
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -557,6 +687,8 @@ else:
                 next_stop_num=2
             )
 
+    elif current == 2:
+        show_stop2_cafe()
     else:
         st.success(f"Stop {current} page goes here.")
 
