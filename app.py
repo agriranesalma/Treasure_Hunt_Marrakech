@@ -421,7 +421,7 @@ def show_stop2_cafe():
 
     # ---------------- TEA IMAGE ----------------
     st.image(
-        "assets/moroccan_tea.jpg",
+        "moroccan_tea.jpg",
         caption="Moroccan mint tea — a symbol of hospitality",
         use_container_width=True
     )
@@ -446,7 +446,7 @@ def show_stop2_cafe():
     """, unsafe_allow_html=True)
 
     # IMAGE PLACEHOLDER
-    st.image("assets/fact1.jpg", caption="(Add image of Jebel Irhoud here)", use_container_width=True)
+    st.image("fact1.jpg", caption="(Add image of Jebel Irhoud here)", use_container_width=True)
 
     # ================== FACT 2 ==================
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
@@ -464,7 +464,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("assets/fact2.jpg", caption="(Add image of Volubilis here)", use_container_width=True)
+    st.image("fact2.jpg", caption="(Add image of Volubilis here)", use_container_width=True)
 
     # ================== FACT 3 ==================
     st.markdown("### 🎓 Fact 3: The Oldest University")
@@ -482,7 +482,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("assets/fact3.jpg", caption="(Add image of al-Qarawiyyin here)", use_container_width=True)
+    st.image("fact3.jpg", caption="(Add image of al-Qarawiyyin here)", use_container_width=True)
 
     # ================== FACT 4 ==================
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
@@ -500,7 +500,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("assets/fact4.jpg", caption="(Add image related to Ibn Battuta here)", use_container_width=True)
+    st.image("fact4.jpg", caption="(Add image related to Ibn Battuta here)", use_container_width=True)
 
     # ================== FUN MOMENT ==================
     st.markdown("### 😂 Moroccan Break Time")
