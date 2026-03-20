@@ -656,7 +656,7 @@ def show_stop5_zellige_workshop():
     """, unsafe_allow_html=True)
 
     # IMAGE
-    st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles", use_container_width=True)
+    st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles YOU WILL BE MAKING AT THE SHOP", use_container_width=True)
 
     # OPTIONAL: Partner code gate to go to Stop 6
     code = st.text_input("Enter partner code to continue", placeholder="e.g. KENZQUEST2026", key="code_gate_stop5")
