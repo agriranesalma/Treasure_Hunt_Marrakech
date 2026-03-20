@@ -653,7 +653,7 @@ def show_stop4_saadian():
                     st.session_state.stop4_partner_unlocked = True
                     st.success("✅ Path Unlocked! Heading to the Zellige Workshop...")
                     st.session_state.current_stop = 5  # move to next stop
-                    st.experimental_rerun()
+                    st.rerun()
                 else:
                     st.error("❌ Incorrect code. Try again.")
 
