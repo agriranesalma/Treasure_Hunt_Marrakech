@@ -1078,7 +1078,7 @@ elif st.session_state.page == "marrakech_safi":
 
 else:
     current = st.session_state.current_stop
-    total_stops = 8
+    total_stops = 9
 
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
