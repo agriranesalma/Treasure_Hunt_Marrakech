@@ -542,10 +542,12 @@ def show_stop3_riddle():
     <div class="magic-card">
         <h3>Riddle</h3>
         <p style="font-size:1.2rem;">
-        Hidden for centuries behind silent walls,  
-        I guard kings who ruled with power and gold.  
-        My beauty was forgotten, then found once more from the sky.  
-        Marble, gold, and silence… where am I?
+        I am a masterpiece hidden behind high walls, where silence speaks in marble and gold. 
+        I was not built for the living, yet I am one of the most visited houses in the Ochre City.
+        Twelve columns of stone hold up my ceiling, and intricate tiles tell stories of a golden age. 
+        I was kept a secret by time itself until the world looked down from the clouds to find me.
+
+        What am I?
         </p>
     </div>
     """, unsafe_allow_html=True)
