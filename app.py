@@ -897,18 +897,20 @@ else:
                 next_label=stops_data[1].get("next_stop_label", "Next Hidden Stop"),
                 next_stop_num=2
             )
+        elif st.session_state.stop1_phase == "code_gate":
+            show_partner_code_gate("Hassani Silver Filigree", 2)
 
-    elif current == 2:
+    elif st.session_state.current_stop == 2:
         show_stop2_cafe()
-    elif current == 3:
+    
+    elif st.session_state.current_stop == 3:
         show_stop3_riddle()
-
-    elif current == 4:
+        
+    elif st.session_state.current_stop == 4:
         show_stop4_saadian()
-    elif current==5:
-        show_stop6_cuisine()
-    else:
-        st.success(f"Stop {current} page goes here.")
+        
+    elif st.session_state.current_stop == 6: # Note: you skipped 5 in your gate logic!
+        show_stop6_cuisine()  
 
     st.markdown(f"""
         <p style='text-align:center; opacity:0.7;'>
