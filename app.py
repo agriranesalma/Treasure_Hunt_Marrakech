@@ -536,21 +536,23 @@ def show_stop1_story():
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
-
     st.markdown("""
     <div class="magic-card">
         <p>Enter the code given to you by the artisan to open the next stop.</p>
     </div>
     """, unsafe_allow_html=True)
 
-    code = st.text_input("Enter code", placeholder="e.g. KENZQUEST2026", key=f"code_gate_{next_stop_num}")
-    if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
+    code = st.text_input(
+        "Enter code",
+        placeholder="e.g. KENZQUEST2026",
+        key=f"partner_code_gate_{next_stop_num}"  
+    )
+    
+    if st.button("Unlock next stop", key=f"unlock_btn_{next_stop_num}", type="primary"):
         if code.strip() == PARTNER_ACCESS_CODE:
             st.session_state.current_stop = next_stop_num
-            st.session_state.stop1_phase = "welcome"  # reset for future revisits
             st.session_state.score += 10
             st.success("✅ Path Unlocked!")
-            st.session_state.current_stop = 2
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
@@ -830,9 +832,9 @@ def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_n
     """, unsafe_allow_html=True)
 
     code = st.text_input(
-        "Enter code here", 
-        placeholder=f"e.g. {PARTNER_ACCESS_CODE}", 
-        key=f"code_gate_{next_stop_num}"
+        "Enter code here",
+        placeholder=f"e.g. {PARTNER_ACCESS_CODE}",
+        key=f"partner_code_gate_{next_stop_num}"  
     )
 
     if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
