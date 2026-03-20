@@ -128,6 +128,8 @@ if "hunt_started" not in st.session_state:
     st.session_state.hunt_started = False
 if "stop4_zellige_correct" not in st.session_state:
     st.session_state.stop4_zellige_correct = False
+if "stop4_partner_unlocked" not in st.session_state:
+    st.session_state.stop4_partner_unlocked = False
 
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
@@ -630,31 +632,30 @@ def show_stop4_saadian():
 
     answer = st.text_input("Your answer...")
 
-    if st.button("Submit Answer"):
-        if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
-            st.session_state.stop4_zellige_correct = True  # <--- NEW: mark answer correct
-            st.success("🎉 Correct! You have the eye of a true explorer.")
-        
-            st.markdown("""
-            <div class="magic-card">
-                <h3>🎨 The Journey Continues</h3>
-                <p>
-                Zellige is the soul of Moroccan geometry — handcrafted tilework shaped piece by piece.
-                </p>
-                <p>
-                Now, it’s time to see where this art is born...
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
-        
-            st.image("zellige_workshop.jpg", caption="YOU WILL BE MAKING THESE COOL ZELLIGE PATTERNS", use_container_width=True)
-        
-            # Only show the partner code gate after correct answer
-            if st.session_state.get("stop4_zellige_correct", False):
-                show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5)
-
-        else:
-            st.error("❌ Not quite... look closer at the patterns around you.")
+    with st.form("zelige_form"):
+        answer = st.text_input("Enter the secret word you saw in the patterns:")
+        submitted = st.form_submit_button("Submit Answer")
+    
+        if submitted:
+            if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
+                st.session_state.stop4_zellige_correct = True
+                st.success("🎉 Correct! You have the eye of a true explorer.")
+            else:
+                st.error("❌ Not quite... look closer at the patterns around you.")
+    
+    # Show partner code only if answer was correct
+    if st.session_state.stop4_zellige_correct:
+        with st.form("partner_code_form"):
+            code = st.text_input("Enter the partner access code to unlock the next stop:")
+            code_submitted = st.form_submit_button("Submit Code")
+            if code_submitted:
+                if code.strip() == PARTNER_ACCESS_CODE:  # your existing code
+                    st.session_state.stop4_partner_unlocked = True
+                    st.success("✅ Path Unlocked! Heading to the Zellige Workshop...")
+                    st.session_state.current_stop = 5  # move to next stop
+                    st.experimental_rerun()
+                else:
+                    st.error("❌ Incorrect code. Try again.")
 
 def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5):
     st.markdown('<h2 class="big-title">🔐 Artisan Path Gate</h2>', unsafe_allow_html=True)
@@ -907,8 +908,10 @@ else:
         show_stop3_riddle()
 
     elif current == 4:
-        show_stop4_saadian()
+        show_stop5_zellige_workshop()
     elif current==5:
+        show_stop6_cuisine()
+    elif st.session_state.current_stop == 6:
         show_stop6_cuisine()
     else:
         st.success(f"Stop {current} page goes here.")
