@@ -752,10 +752,10 @@ def show_stop6_cuisine():
         st.markdown("### 🔐 Enter the code given by the Moroccan cuisine instructor to continue:")
         cuisine_code = st.text_input(
             "Enter code",
-            placeholder="e.g. MOROCCO2026",
+            placeholder="e.g. KENZQUEST2026",
             key="koutoubia_cuisine_code"
         )
-        if st.button("Unlock Koutoubia Quiz", key="unlock_koutoubia_quiz_btn"):
+        if st.button("Unlock Quiz", key="unlock_koutoubia_quiz_btn"):
             if cuisine_code.strip() == PARTNER_ACCESS_CODE:  # Replace with actual cuisine code if different
                 st.session_state.koutoubia_code_entered = True
                 st.success("✅ Correct Code.")
@@ -763,6 +763,15 @@ def show_stop6_cuisine():
             else:
                 st.error("❌ Incorrect code. Try again.")
     else:
+        st.markdown(f"""
+        <div class="magic-card">
+            <h3>Question</h3>
+            <p style="font-size:1.15rem; line-height:1.6;">
+                You’ve savored the flavors of Marrakech — now it’s time to see the city!  
+                Which famous monument, with a towering minaret, should you visit next?
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         # Step 1: Let the user pick the Koutoubia quiz answer
         if "koutoubia_answer" not in st.session_state:
             st.session_state.koutoubia_answer = None
