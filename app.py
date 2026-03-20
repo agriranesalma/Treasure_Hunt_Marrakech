@@ -631,7 +631,7 @@ def show_stop4_saadian():
     if st.button("Submit Answer"):
         if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
             st.success("🎉 Correct! You have the eye of a true explorer.")
-
+        
             st.markdown("""
             <div class="magic-card">
                 <h3>🎨 The Journey Continues</h3>
@@ -641,21 +641,42 @@ def show_stop4_saadian():
                 <p>
                 Now, it’s time to see where this art is born...
                 </p>
-                <p><strong>➡️ Your next stop: a Zellige artisan workshop.</strong></p>
             </div>
             """, unsafe_allow_html=True)
-
+        
             # IMAGE PLACEHOLDER
-            st.image("zellige_workshop.jpg", caption="", use_container_width=True)
-
-            if st.button("➡️ Go to Zellige Workshop"):
-                st.session_state.current_stop = 5
-                st.session_state.score += 25
-                st.rerun()
+            st.image("zellige_workshop.jpg", caption="YOU WILL BE MAKING THESE COOL ZELLIGE PATTERNS", use_container_width=True)
+        
+            # Partner gate
+            show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5)
 
         else:
             st.error("❌ Not quite... look closer at the patterns around you.")
-                
+
+def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5):
+    st.markdown('<h2 class="big-title">🔐 Artisan Path Gate</h2>', unsafe_allow_html=True)
+    st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>To continue your journey, enter the special partner code provided by the artisan workshop.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    code = st.text_input(
+        "Enter code here", 
+        placeholder=f"e.g. {PARTNER_ACCESS_CODE}", 
+        key=f"code_gate_{next_stop_num}"
+    )
+
+    if st.button("Unlock next stop", key=f"unlock_{next_stop_num}", type="primary"):
+        if code.strip() == PARTNER_ACCESS_CODE:
+            st.session_state.current_stop = next_stop_num
+            st.session_state.score += 10
+            st.success(f"✅ Path Unlocked! You are now heading to {next_label}.")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect code. Try again.")
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
