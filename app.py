@@ -64,13 +64,19 @@ st.markdown("""
 }
 
 .magic-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,215,0,0.22);
+    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,215,0,0.05));
+    border: 1px solid rgba(255,215,0,0.25);
     border-radius: 24px;
-    padding: 1.1rem 1.2rem;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-    backdrop-filter: blur(12px);
-    margin: 0.6rem 0;
+    padding: 1.2rem 1.3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    backdrop-filter: blur(14px);
+    margin: 0.8rem 0;
+    transition: 0.3s ease;
+}
+
+.magic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
 }
 
 .magic-card h3, .magic-card h4, .magic-card p, .magic-card li {
@@ -733,7 +739,7 @@ def show_stop6_cuisine():
     </div>
     """,
     unsafe_allow_html=True
-)
+    )
 
     # ---------------- IMAGE ----------------
     st.image(
