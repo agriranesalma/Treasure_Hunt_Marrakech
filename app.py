@@ -1123,7 +1123,6 @@ else:
                 patience, precision, and identity.
                 </p>
                 <p style="text-align:center; font-weight:bold;">
-                🔓 Unlock the workshop to begin your creation.
                 </p>
             </div>
             """, unsafe_allow_html=True)
