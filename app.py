@@ -577,7 +577,7 @@ def show_stop4_saadian():
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
 
     # IMAGE PLACEHOLDER
-    st.image("saadian_tombs.jpg", caption="(Add image of Saadian Tombs here)", use_container_width=True)
+    st.image("saadian_tombs.jpg", caption="", use_container_width=True)
 
     # HISTORY
     st.markdown("""
@@ -612,7 +612,7 @@ def show_stop4_saadian():
     """, unsafe_allow_html=True)
 
     # SECOND IMAGE PLACEHOLDER
-    st.image("saadian_inside.jpg", caption="(Add interior details here)", use_container_width=True)
+    st.image("saadian_inside.jpg", caption="", use_container_width=True)
 
     # QUIZ TRANSITION
     st.markdown("""
@@ -646,7 +646,7 @@ def show_stop4_saadian():
             """, unsafe_allow_html=True)
 
             # IMAGE PLACEHOLDER
-            st.image("zellige_workshop.jpg", caption="(Add zellige artisan image here)", use_container_width=True)
+            st.image("zellige_workshop.jpg", caption="", use_container_width=True)
 
             if st.button("➡️ Go to Zellige Workshop"):
                 st.session_state.current_stop = 5
