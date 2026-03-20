@@ -715,7 +715,7 @@ def show_stop6_cuisine():
 
     # ---------------- IMAGE ----------------
     st.image(
-        "moroccan_cuisine_table.png", 
+        "moroccan_cuisine_table.jpg", 
         caption="A Moroccan feast: Couscous, pastilla, harira, and more",
         use_container_width=True
     )
