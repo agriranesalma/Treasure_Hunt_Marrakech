@@ -619,7 +619,7 @@ def show_stop4_saadian():
     <div class="magic-card">
         <h3>🔍 Look closely...</h3>
         <p>
-        Around you, the walls are covered with intricate geometric patterns.
+        Around you, the lower walls and the floor are covered with intricate geometric patterns.
         This art form is one of Morocco’s most iconic traditions.
         </p>
         <p><strong>Can you name it?</strong></p>
