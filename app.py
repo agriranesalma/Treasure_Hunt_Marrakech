@@ -868,13 +868,10 @@ def show_stop7_koutoubia():
         )
     
         if st.button("Unlock next stop", key="unlock_koutoubia"):
-            if code.strip() == PARTNER_ACCESS_CODE:
                 st.session_state.current_stop = 8
                 st.session_state.score += 10
                 st.success("✅ Path unlocked!")
                 st.rerun()
-            else:
-                st.error("❌ Incorrect code.")
 def show_stop8_bahia():
     st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
