@@ -862,8 +862,8 @@ def show_stop7_koutoubia():
         <div class="magic-card">
             <h3>🧵 Next stop: Berber Calligraphy</h3>
             <p>
-            Now that you have decoded the geometry of Koutoubia, your next treasure leads to the world of
-            Berber calligraphy — where letters become art and identity.
+            Now that you have explored the geometry of Koutoubia, a masterpiece built by the Berbers, 
+            your next treasure awaits in the world of Berber calligraphy, where letters become art and identity.
             </p>
         </div>
         """, unsafe_allow_html=True)
