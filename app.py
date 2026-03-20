@@ -477,7 +477,7 @@ def show_stop2_cafe():
         <p>
         It is officially recognized as the <strong>oldest university in the world</strong>.
         </p>
-        <p><strong>🔥 A woman founded it over 1,100 years ago.</strong></p>
+        <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -493,9 +493,9 @@ def show_stop2_cafe():
         across Africa, Asia, and beyond.
         </p>
         <p>
-        His journey lasted nearly 30 years — making him one of the greatest travelers in history.
+        🌍His journey lasted nearly 30 years — making him one of the greatest travelers in history.
         </p>
-        <p><strong>🚀 He traveled further than Marco Polo.</strong></p>
+        <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
