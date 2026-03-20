@@ -657,6 +657,32 @@ def show_stop4_saadian():
                 else:
                     st.error("❌ Incorrect code. Try again.")
 
+def show_stop5_zellige_workshop():
+    st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Discover the art of Moroccan tiles</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        Welcome to the Zellige workshop! Here you will see how Moroccan artisans craft these intricate geometric tiles by hand.
+        Each piece tells a story — centuries of culture and geometry in color.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # IMAGE
+    st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles", use_container_width=True)
+
+    # OPTIONAL: Partner code gate to go to Stop 6
+    code = st.text_input("Enter partner code to continue", placeholder="e.g. KENZQUEST2026", key="code_gate_stop5")
+    if st.button("Unlock next stop", key="unlock_stop5"):
+        if code.strip() == PARTNER_ACCESS_CODE:
+            st.session_state.current_stop = 6  # next stop (Moroccan cuisine)
+            st.session_state.score += 10
+            st.success("✅ Path unlocked! Onward to Moroccan cuisine class.")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect code. Try again.")
 def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_num=5):
     st.markdown('<h2 class="big-title">🔐 Artisan Path Gate</h2>', unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
@@ -678,6 +704,7 @@ def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_n
             st.session_state.current_stop = next_stop_num 
             st.session_state.score += 10
             st.success(f"✅ Path Unlocked! You are now heading to {next_label}.")
+            st.session_state.stop5_visited = True
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
@@ -908,9 +935,9 @@ else:
         show_stop3_riddle()
 
     elif current == 4:
-        show_stop5_zellige_workshop()
+        show_stop4_saadian()
     elif current==5:
-        show_stop6_cuisine()
+        show_stop5_zellige_workshop()
     elif st.session_state.current_stop == 6:
         show_stop6_cuisine()
     else:
