@@ -344,7 +344,7 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>⭐ The Living Stage</h3><p>{stop["hook"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🏛️ A World Treasure</h3><p>{stop["unesco"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🎭 What surrounds you</h3><p>{stop["atmosphere"]}</p></div>""", unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory. Names like <strong>Lalla Aïcha</strong> echo through the rhythms of <strong>Gnawa</strong>.</p></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory. Names like <strong>Lalla Aïcha Kendicha</strong> echo through the rhythms of <strong>Gnawa</strong>.</p></div>""", unsafe_allow_html=True)
     st.markdown("### 🧞 The Genie Speaks")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
@@ -361,6 +361,39 @@ def show_stop1_story():
 
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
+    st.markdown("---")
+            # ---------------- ARTISAN EXPERIENCE PREVIEW ----------------
+    st.markdown("""
+            <div class="magic-card">
+                <h2 style="text-align:center;">✨ Your Next Experience</h2>
+                <p style="text-align:center; font-size:1.2rem;">
+                During your visit to the artisan workshop, you won’t just observe…
+                <br><strong>You will create.</strong>
+                </p>
+                <p style="text-align:center;">
+                Guided by a master artisan, you will craft your own piece of
+                <strong>Moroccan Sahrawi silver jewelry</strong>,
+                inspired by traditions passed down through generations.
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+            # ---------------- JEWELRY IMAGE ----------------
+    st.image(
+                "sahrawijewlery.png", 
+                caption="A traditional Sahrawi silver piece you will learn to create",
+                use_container_width=True
+            )
+            # ---------------- EXTRA IMMERSION ----------------
+    st.markdown("""
+            <div class="magic-card">
+                <p style="text-align:center;">
+                Each curve, each engraving, each detail carries the spirit of the desert —
+                patience, precision, and identity.
+                </p>
+                <p style="text-align:center; font-weight:bold;">
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><p>Enter the code given to you by the artisan to open the next stop.</p></div>""", unsafe_allow_html=True)
     code = st.text_input("Enter code", placeholder="e.g. KENZQUEST2026", key=f"partner_code_gate_{next_stop_num}")
