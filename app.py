@@ -628,32 +628,19 @@ def show_stop4_saadian():
     </div>
     """, unsafe_allow_html=True)
 
-    answer = st.text_input("Your answer...")
-
     with st.form("zelige_form"):
-        answer = st.text_input("Enter the secret word you saw in the patterns:")
+        user_answer = st.text_input("Enter your answer:")
         submitted = st.form_submit_button("Submit Answer")
     
         if submitted:
-            if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
-                st.session_state.stop4_zellige_correct = True
+            if user_answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
                 st.success("🎉 Correct! You have the eye of a true explorer.")
+                st.session_state.current_stop = 5
+                st.session_state.score += 15  # optional reward
+                st.rerun()
             else:
                 st.error("❌ Not quite... look closer at the patterns around you.")
-    
-    # Show partner code only if answer was correct
-    if st.session_state.stop4_zellige_correct:
-        with st.form("partner_code_form"):
-            code = st.text_input("Enter the partner access code to unlock the next stop:")
-            code_submitted = st.form_submit_button("Submit Code")
-            if code_submitted:
-                if code.strip() == PARTNER_ACCESS_CODE:  # your existing code
-                    st.session_state.stop4_partner_unlocked = True
-                    st.success("✅ Path Unlocked! Heading to the Zellige Workshop...")
-                    st.session_state.current_stop = 5  # move to next stop
-                    st.rerun()
-                else:
-                    st.error("❌ Incorrect code. Try again.")
+
 
 def show_stop5_zellige_workshop():
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
