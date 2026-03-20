@@ -826,9 +826,10 @@ def show_stop7_koutoubia():
 
     st.markdown("""
     <div class="magic-card">
-        <h3>🧩 Final Koutoubia Quiz</h3>
+        <h3>🧩 Next Stop Quiz</h3>
         <p>
-        You have decoded the geometry of Koutoubia. Which treasure should you unlock next?
+        I am an architectural masterpiece in the heart of Marrakesh built in the 1860s by Si Moussa, the Grand Vizier of Sultan Hassan I, to serve as his personal residence. 
+        It was later significantly expanded and embellished in the 1890s by his son, Ba Ahmed (Ahmed ben Moussa), who served as regent to the Sultan.?
         </p>
     </div>
     """, unsafe_allow_html=True)
