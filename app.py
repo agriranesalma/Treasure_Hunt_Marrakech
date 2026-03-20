@@ -132,6 +132,8 @@ if "stop4_partner_unlocked" not in st.session_state:
     st.session_state.stop4_partner_unlocked = False
 if "koutoubia_quiz_done" not in st.session_state:
     st.session_state.koutoubia_quiz_done = False
+if "bahia_quiz_done" not in st.session_state:
+    st.session_state.bahia_quiz_done = False
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
@@ -852,6 +854,130 @@ def show_stop7_koutoubia():
                 st.rerun()
             else:
                 st.error("❌ Incorrect code.")
+def show_stop8_bahia():
+    st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
+
+    # IMAGE
+    try:
+        st.image("bahia_palace.jpg", use_container_width=True)
+    except:
+        st.warning("⚠️ Add bahia_palace.jpg")
+
+    # HISTORY / WOW
+    st.markdown("""
+    <div class="magic-card">
+        <h3>👑 A Palace of Dreams</h3>
+        <p>
+        Built in the 19th century, Bahia Palace was designed to be the greatest palace of its time.
+        Its name means <strong>“Brilliance”</strong>.
+        </p>
+        <p>
+        With over <strong>150 rooms</strong>, peaceful gardens, fountains, and intricate decorations,
+        it represents the peak of Moroccan craftsmanship.
+        </p>
+        <p><strong>🤯 Every ceiling, every tile, every door is handmade.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # SECOND IMAGE
+    try:
+        st.image("bahia_inside.jpg", use_container_width=True)
+    except:
+        pass
+
+    # QUIZ
+    st.markdown("### 🧩 Final Palace Challenge")
+
+    with st.form("bahia_quiz"):
+        answer = st.text_input(
+            "What does 'Bahia' mean?",
+            placeholder="Hint: something beautiful..."
+        )
+
+        submitted = st.form_submit_button("Submit Answer")
+
+        if submitted:
+            if answer.lower().strip() in ["brilliance", "brilliant", "beauty"]:
+                st.session_state.bahia_quiz_done = True
+                st.success("✅ Correct! You truly understand Moroccan elegance.")
+            else:
+                st.error("❌ Not quite — think of beauty and brilliance.")
+
+    # NEXT STEP (OUTSIDE FORM)
+    if st.session_state.bahia_quiz_done:
+
+        st.markdown("""
+        <div class="magic-card">
+            <h3>🏺 Final Stop: Moroccan Pottery</h3>
+            <p>
+            From palaces to clay… your journey now leads to one of Morocco’s oldest crafts:
+            pottery. Where earth becomes art.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        try:
+            st.image("moroccan_pottery.jpg", use_container_width=True)
+        except:
+            st.warning("⚠️ Add moroccan_pottery.jpg")
+
+        st.markdown("### 🔐 Enter artisan code to finish your journey")
+
+        code = st.text_input(
+            "Enter final artisan code",
+            placeholder="e.g. KENZQUEST2026",
+            key="code_gate_bahia"
+        )
+
+        if st.button("Unlock Final Stop"):
+            if code.strip() == PARTNER_ACCESS_CODE:
+                st.session_state.current_stop = 9
+                st.session_state.score += 10
+                st.success("🎉 Final path unlocked!")
+                st.rerun()
+            else:
+                st.error("❌ Incorrect code.")
+def show_stop9_pottery():
+    st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
+
+    try:
+        st.image("pottery_workshop.jpg", use_container_width=True)
+    except:
+        st.warning("⚠️ Add pottery_workshop.jpg")
+
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌍 A Craft from the Earth</h3>
+        <p>
+        Moroccan pottery dates back thousands of years. Clay from the earth is shaped by hand,
+        dried under the sun, and fired in traditional ovens.
+        </p>
+        <p>
+        Each piece is unique — bowls, plates, tagines — all carrying patterns inspired by nature,
+        geometry, and culture.
+        </p>
+        <p><strong>🔥 From earth… to fire… to art.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    try:
+        st.image("pottery_products.jpg", use_container_width=True)
+    except:
+        pass
+
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🎉 Congratulations, Explorer!</h3>
+        <p>
+        You have completed the Kenz Quest journey through Marrakech.
+        From stories and dynasties to crafts and cuisine — you’ve experienced Morocco’s living heritage.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.success(f"🏆 Final Score: {st.session_state.score}")
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -1012,7 +1138,6 @@ else:
         show_stop2_cafe()
     elif current == 3:
         show_stop3_riddle()
-
     elif current == 4:
         show_stop4_saadian()
     elif current==5:
@@ -1024,8 +1149,9 @@ else:
     elif current == 7:
         show_stop7_koutoubia()
     elif current == 8:
-        st.success("Stop 8 page goes here.")
-
+        show_stop8_bahia()
+    elif current==9:
+        show_stop9_pottery()
     st.markdown(f"""
         <p style='text-align:center; opacity:0.7;'>
         📍 Step {current} of {total_stops}
