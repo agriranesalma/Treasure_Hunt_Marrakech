@@ -387,33 +387,7 @@ def show_stop1_story():
         st.audio(audio_bytes, format="audio/mp3")
 
 def show_partner_code_gate(next_label, next_stop_num):
-    st.markdown(
-    """
-    <div style="text-align: center; margin: 40px 0;">
-        
-        <hr style="border: none; height: 2px; 
-        background: linear-gradient(to right, transparent, #C0C0C0, transparent);
-        margin-bottom: 15px;">
-
-        <h2 style="
-            font-size: 36px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #d9d9d9, #ffffff, #c0c0c0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        ">
-            ✨ Silver Path Gate ✨
-        </h2>
-
-        <hr style="border: none; height: 2px; 
-        background: linear-gradient(to right, transparent, #C0C0C0, transparent);
-        margin-top: 15px;">
-
-    </div>
-    """,
-    unsafe_allow_html=True
-    )
+    st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
 
     st.markdown("""
