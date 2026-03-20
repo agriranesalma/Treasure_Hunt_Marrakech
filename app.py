@@ -592,12 +592,12 @@ def show_stop4_saadian():
     <div class="magic-card">
         <h3>📜 A Lost Treasure Rediscovered</h3>
         <p>
-        Built during the reign of the Saadian dynasty, these tombs date back to the late 16th century,
-        under Sultan Ahmed al-Mansur.
-        </p>
-        <p>
-        After the fall of the Saadians, the tombs were sealed and forgotten for centuries…
-        until they were rediscovered in 1917 using aerial photography.
+        Built in the late 16th century by Sultan Ahmed al-Mansur, the Saadian Tombs were a masterpiece of Italian marble and gold leaf.
+
+        When the Alawite dynasty rose to power, Sultan Moulay Ismail chose to wall off the site rather than destroy it. 
+        This was a deep sign of religious respect for the dead, which unintentionally turned the tombs into a perfectly preserved time capsule.
+
+        For over 200 years, they remained a hidden sanctuary in the heart of Marrakech—until 1917, when aerial photography finally revealed the "lost" royal treasure from the sky.
         </p>
         <p><strong>🤯 Imagine: a royal burial site hidden for 300 years.</strong></p>
     </div>
