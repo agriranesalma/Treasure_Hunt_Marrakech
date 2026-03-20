@@ -136,101 +136,95 @@ stops_data = {
         "next_stop_intro": "The next stop is a Hassani Silver Filigree artisan..."
     }
 }
-
-# ---------------- NEW QUIZZES DATA (exactly what you asked for) ----------------
-# • Stop 1 now starts with Green March + King Mohammed V (cool national pride questions)
-# • ALL detailed questions are now SUPER on-site only — you literally have to look around / taste / count / smell to know the answer.
-#   No one at home can guess them. Perfect anti-cheat.
-
 quizzes_data = {
     1: {  # Jemaa el-Fna
         "general": [
-            {"q": "What is the name of the 1975 peaceful march where 350,000 Moroccans reclaimed the Sahara?", "options": ["Green March", "Blue March", "Independence March", "Unity Walk"], "correct": "Green March"},
-            {"q": "Which king made the historic visit to M’Hamid El Ghizlane and the southern provinces to affirm national sovereignty?", "options": ["King Mohammed V", "King Hassan II", "King Mohammed VI", "King Mohammed IV"], "correct": "King Mohammed V"}
+            {"q": "Which 1975 peaceful march saw 350,000 Moroccans walk into the Sahara to assert national sovereignty?", "options": ["Green March", "Independence Walk", "Desert Caravan", "Atlas March"], "correct": "Green March"},
+            {"q": "Morocco was the first nation to officially recognize the independence of which country in 1777?", "options": ["USA", "France", "Spain", "Brazil"], "correct": "USA"}
         ],
         "detailed": [
-            {"q": "Look at the juice stalls around you right now — what is the MOST SOLD fresh juice in Jemaa el-Fna?", "correct": "orange juice"},
-            {"q": "Observe the night food stalls — what famous dish is simmering in the huge pots that everyone is eating (the one with snails)?", "correct": "snail soup"}
+            {"q": "Look at the official 'UNESCO World Heritage' plaque located near the square's entrance—what is the first word of the third line?", "correct": "humanity"},
+            {"q": "Find the nearest official Horse Carriage (Caleche) station. Look at the carriage license plates—what color is the background of the plate?", "correct": "green"}
         ]
     },
-    2: {  # Café
+    2: {  # Partner Café Stop
         "general": [
-            {"q": "Which Moroccan university is officially the oldest in the world?", "options": ["University of al-Qarawiyyin", "Al-Azhar", "Oxford", "Sorbonne"], "correct": "University of al-Qarawiyyin"},
-            {"q": "Who founded the University of al-Qarawiyyin?", "options": ["Fatima al-Fihri", "Ibn Battuta", "King Mohammed V", "Ahmed al-Mansur"], "correct": "Fatima al-Fihri"}
+            {"q": "The University of al-Qarawiyyin in Fez is recognized by Guinness World Records as what?", "options": ["Oldest degree-granting university", "Largest library", "First medical school", "Oldest mosque"], "correct": "Oldest degree-granting university"},
+            {"q": "What legendary woman used her inheritance to found the Al-Qarawiyyin in 859 AD?", "options": ["Fatima al-Fihri", "Sayyida al-Hurra", "Lalla Fatima", "Queen Zaynab"], "correct": "Fatima al-Fihri"}
         ],
         "detailed": [
-            {"q": "Look at the tea service right in front of you — what is the traditional name of the small glasses?", "correct": "kas"},
-            {"q": "Observe the teapot the server is using — what shape is the classic Moroccan teapot?", "correct": "pear"}
+            {"q": "In Moroccan tea culture, why is the tea traditionally poured from a great height into the glass?", "correct": "to create foam"},
+            {"q": "Moroccan 'Atay' is a blend of three essential ingredients: Green tea, fresh mint, and what else?", "correct": "sugar"}
         ]
     },
-    3: {  # Saadian riddle stop
+    3: {  # The Great Gate (Bab Agnaou)
         "general": [
-            {"q": "Which dynasty built the Saadian Tombs?", "options": ["Saadian", "Alawite", "Almohad", "Merinid"], "correct": "Saadian"},
-            {"q": "In what century were the Saadian Tombs constructed?", "options": ["16th", "17th", "18th", "19th"], "correct": "16th"}
+            {"q": "Which powerful dynasty built the massive stone gates of the Marrakech Kasbah in the 12th century?", "options": ["Almohad", "Saadian", "Alawite", "Idrisid"], "correct": "Almohad"},
+            {"q": "What was the primary purpose of the 'Bab Agnaou' gate during the Almohad era?", "options": ["Royal entrance to the palace", "Market for spices", "Military barracks", "Public library"], "correct": "Royal entrance to the palace"}
         ],
         "detailed": [
-            {"q": "Stand in the courtyard right now — how many main mausoleums can you see?", "correct": "2"},
-            {"q": "Look at the floor and walls around you — what color dominates the zellige patterns?", "correct": "blue"}
+            {"q": "Stand directly in front of Bab Agnaou right now. What is the unique color of the volcanic stone used to build this specific gate?", "correct": "blue-grey"},
+            {"q": "Look at the carvings around the arch—are the inscriptions written in the geometric Kufic script or flowing cursive?", "correct": "kufic"}
         ]
     },
-    4: {  # Saadian Tombs (story now no longer spoils "Twelve")
+    4: {  # Saadian Tombs (The Prestige Stop)
         "general": [
-            {"q": "Who walled off the Saadian Tombs out of respect?", "options": ["Sultan Moulay Ismail", "Ahmed al-Mansur", "King Mohammed V", "Ba Ahmed"], "correct": "Sultan Moulay Ismail"},
-            {"q": "In what year were the Saadian Tombs rediscovered from the air?", "options": ["1917", "1956", "1985", "2001"], "correct": "1917"}
+            {"q": "The Saadian dynasty is famous for the 'Battle of the Three Kings'—which European power did they defeat in 1578?", "options": ["Portugal", "England", "Italy", "Ottoman Empire"], "correct": "Portugal"},
+            {"q": "The Italian marble used in these tombs was famously traded by Sultan Ahmed al-Mansur for what Moroccan commodity?", "options": ["Sugar", "Salt", "Saffron", "Argan Oil"], "correct": "Sugar"}
         ],
         "detailed": [
-            {"q": "Stand inside the main hall right now and COUNT — how many columns support the ceiling?", "correct": "12"},
-            {"q": "Look closely at the columns and decoration — what rare imported stone was used?", "correct": "carrara marble"}
+            {"q": "Stand in the Hall of the Twelve Columns. Look at the pillars—how many large marble columns are supporting the central dome?", "correct": "12"},
+            {"q": "Look closely at the zellige floor patterns—what is the dominant color of the tiles surrounding the royal graves?", "correct": "green"}
         ]
     },
     5: {  # Zellige Workshop
         "general": [
-            {"q": "What is the traditional name of Moroccan geometric tile art?", "options": ["Zellige", "Mosaic", "Ceramic", "Plaster"], "correct": "Zellige"},
-            {"q": "Which Moroccan craft uses hand-cut glazed tiles in geometric patterns?", "options": ["Zellige", "Pottery", "Silver filigree", "Wood carving"], "correct": "Zellige"}
+            {"q": "The complex geometric patterns in Zellige are based on which principle to avoid representing living beings?", "options": ["Aniconism", "Abstractism", "Linearity", "Symmetry"], "correct": "Aniconism"},
+            {"q": "Which city is the historic heart of Moroccan ceramic and Zellige production?", "options": ["Fez", "Casablanca", "Agadir", "Ouarzazate"], "correct": "Fez"}
         ],
         "detailed": [
-            {"q": "Look at the sample panel the master gave you right now — how many different colors are in it?", "correct": "7"},
-            {"q": "Observe the master artisan — what tool is he using to cut the tiles by hand?", "correct": "hammer and chisel"}
+            {"q": "Watch the artisan for a moment. He is using a 'Manquach' (hammer). Is the head of the hammer rectangular or pointed at both ends?", "correct": "pointed at both ends"},
+            {"q": "Pick up a discarded tile scrap from the floor. Touch the 'back' (non-glazed side). What color is the raw, unbaked clay?", "correct": "grey"}
         ]
     },
     6: {  # Cuisine Class
         "general": [
-            {"q": "What is the main difference between tangia and tagine?", "options": ["Cooking pot shape and oven", "Spices only", "Meat only", "Vegetarian"], "correct": "Cooking pot shape and oven"},
-            {"q": "Which soup is traditionally eaten to break the fast during Ramadan in Morocco?", "options": ["Harira", "Bissara", "Chorba", "Lentil soup"], "correct": "Harira"}
+            {"q": "What is the name of the famous Moroccan 'head of the shop' spice blend that can contain over 30 ingredients?", "options": ["Ras el Hanout", "Harissa", "Chermoula", "Kamoun"], "correct": "Ras el Hanout"},
+            {"q": "Morocco is one of the world's largest exporters of which 'red gold' spice grown in Taliouine?", "options": ["Saffron", "Paprika", "Cinnamon", "Cayenne"], "correct": "Saffron"}
         ],
         "detailed": [
-            {"q": "Look at the clay pot the instructor is using right now — what is the exact name of the Marrakech specialty dish?", "correct": "tangia"},
-            {"q": "Taste the soup in front of you — what herb is floating on top of the harira?", "correct": "cilantro"}
+            {"q": "Look at the 'Tangia' pot being used. Does it have two handles, one handle, or no handles at all?", "correct": "two handles"},
+            {"q": "Observe the bread (Khobz) being prepared—before it is baked, what is traditionally sprinkled on top for texture?", "correct": "semolina"}
         ]
     },
-    7: {  # Koutoubia
+    7: {  # Koutoubia Mosque
         "general": [
-            {"q": "What does the name 'Koutoubia' mean?", "options": ["Booksellers", "Minaret", "Palace", "Garden"], "correct": "Booksellers"},
-            {"q": "Which dynasty built the Koutoubia Mosque?", "options": ["Almohad", "Saadian", "Alawite", "Merinid"], "correct": "Almohad"}
+            {"q": "Which famous tower in Seville, Spain, is considered the 'twin sister' of the Koutoubia minaret?", "options": ["Giralda", "Torre del Oro", "Alhambra", "Belem Tower"], "correct": "Giralda"},
+            {"q": "How many golden copper orbs are traditionally stacked on the spire of the Koutoubia minaret?", "options": ["4", "3", "5", "1"], "correct": "4"}
         ],
         "detailed": [
-            {"q": "Stand in front of the minaret right now and look up — how many balconies/windows are on each face?", "correct": "3"},
-            {"q": "Observe the base of the mosque — what covers the large plaza in front of you?", "correct": "stone pavement"}
+            {"q": "Stand on the side of the tower facing the gardens. Look at the upper windows. What is the shape of the stone arch above the window: Pointed, Horseshoe, or Scalloped?", "correct": "scalloped"},
+            {"q": "Look at the ruins of the 'old' mosque foundation next to the tower. Are the remaining column stumps circular or square?", "correct": "square"}
         ]
     },
     8: {  # Bahia Palace
         "general": [
-            {"q": "What does 'Bahia' mean in Arabic?", "options": ["Brilliance", "Beauty", "Peace", "Power"], "correct": "Brilliance"},
-            {"q": "Who expanded the Bahia Palace in the 1890s?", "options": ["Ba Ahmed", "Si Moussa", "Ahmed al-Mansur", "Moulay Ismail"], "correct": "Ba Ahmed"}
+            {"q": "The Bahia Palace was built to be the greatest palace of its time. What does 'Bahia' translate to?", "options": ["The Brilliance", "The Secret", "The Fortress", "The Garden"], "correct": "The Brilliance"},
+            {"q": "Which powerful Grand Vizier, who effectively ruled Morocco as a regent, lived here?", "options": ["Ba Ahmed", "Thami El Glaoui", "Lyautey", "Moulay Ismael"], "correct": "Ba Ahmed"}
         ],
         "detailed": [
-            {"q": "Walk through the main courtyard right now — how many rooms does the palace actually have?", "correct": "150"},
-            {"q": "Look up at the ceilings around you — what material and style are the carved ceilings made of?", "correct": "cedar wood"}
+            {"q": "Walk into the massive Court of Honor (the huge open marble floor). Count the number of small fountains embedded in the floor of this specific courtyard.", "correct": "2"},
+            {"q": "Look up at the ceilings around you—what material and style are the carved ceilings made of?", "correct": "cedar wood"}
         ]
     },
-    9: {  # Pottery
+    9: {  # Pottery / Souk
         "general": [
-            {"q": "What is the main material used in traditional Moroccan pottery?", "options": ["Clay", "Glass", "Metal", "Wood"], "correct": "Clay"},
-            {"q": "Which city is famous for its pottery workshops in Morocco?", "options": ["Safi", "Fez", "Marrakech", "Tangier"], "correct": "Safi"}
+            {"q": "The blue pottery of Fez gets its iconic color from which mineral?", "options": ["Cobalt", "Copper", "Iron", "Zinc"], "correct": "Cobalt"},
+            {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "options": ["Farnatchi", "Hammam", "Souk", "Riad"], "correct": "Farnatchi"}
         ],
         "detailed": [
-            {"q": "Look at the tagine you are making right now — what natural element is used to glaze it?", "correct": "lead glaze"},
-            {"q": "Observe the kiln in the workshop — what fuel is traditionally used to fire the pottery?", "correct": "wood"}
+            {"q": "Look at the large display plates (Taws) in the shop. Find one with a 'Hand of Fatima' (Khamsa). How many 'eyes' are painted inside the palm of that specific design?", "correct": "1"},
+            {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Is the texture sandy/rough or smooth like glass?", "correct": "sandy/rough"}
         ]
     }
 }
