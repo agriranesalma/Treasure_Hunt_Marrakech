@@ -539,23 +539,14 @@ def show_stop3_riddle():
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
 
     st.markdown("""
-        <style>
-        .magic-card {
-            background: #fdf6e3;
-            border: 2px solid silver;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-        }
-        </style>
         <div class="magic-card">
             <h3>Riddle</h3>
             <p style="font-size:1.2rem;">
-            I am a masterpiece hidden behind high walls, where silence speaks in marble and gold. 
-            I was not built for the living, yet I am one of the most visited houses in the Ochre City.
-            Twelve columns of stone hold up my ceiling, and intricate tiles tell stories of a golden age. 
-            I was kept a secret by time itself until the world looked down from the clouds to find me.
-            What am I?
+        I am a masterpiece hidden behind high walls, where silence speaks in marble and gold. 
+        I was not built for the living, yet I am one of the most visited houses in the Ochre City.
+        Twelve columns of stone hold up my ceiling, and intricate tiles tell stories of a golden age. 
+        I was kept a secret by time itself until the world looked down from the clouds to find me.
+        What am I?
             </p>
         </div>
         """, unsafe_allow_html=True)
