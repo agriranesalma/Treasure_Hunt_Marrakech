@@ -929,7 +929,16 @@ def show_stop9_pottery():
     except:
         st.warning("⚠️ Add pottery_workshop.jpg")
     
-    st.write("In this class you will be making mini moroccan tagines with mesmerizing colors")
+    st.markdown("""
+    <div class="magic-card">
+        <h3>In this pottery class</h3>
+        <p>
+        YOU will be making your own mini moroccan tagines with mesmerizing colors
+        </p>
+        <p>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
     try:
         st.image("pottery_products.jpg", caption="Finished pottery pieces", use_container_width=True)
