@@ -815,10 +815,10 @@ else:
     elif current == 2:
         show_stop2_cafe()
     elif current == 3:
-    show_stop3_riddle()
+        show_stop3_riddle()
 
     elif current == 4:
-    show_stop4_saadian()
+        show_stop4_saadian()
     else:
         st.success(f"Stop {current} page goes here.")
 
