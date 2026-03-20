@@ -789,9 +789,9 @@ def show_stop7_koutoubia():
         <p>
         The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
         Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
-        major monuments of the Medina of Marrakesh. :contentReference[oaicite:4]{index=4}       <p>
+        major monuments of the Medina of Marrakesh. <p>
         It was built under the Almohads, a Berber-led movement/dynasty, so in your story you can proudly say:
-        this is part of Morocco’s Berber heritage. :contentReference[oaicite:6]{index=6}   </div>
+        this is part of Morocco’s Berber heritage. </div>
     """, unsafe_allow_html=True)
 
     st.image(
