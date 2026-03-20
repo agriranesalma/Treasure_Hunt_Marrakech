@@ -1033,26 +1033,29 @@ def show_stop9_pottery():
                 <div class="name">{user_name}</div>
     
                 <p class="text">
-                    The Amazing Traveler who journeyed through time and history,
-                    uncovering the hidden treasures of Morocco.
-                </p>
+        The Remarkable Traveler who followed the path of stories, craft, and memory
+        across the heart of Morocco.
+    </p>
+    <p class="text">
+        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,
+        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,
+        you uncovered the layers of a land shaped by history and spirit.
+    </p>
     
-                <p class="text">
-                    From the majestic architecture of Koutoubia,
-                    to the artistic beauty of Bahia Palace,
-                    and the living traditions of Moroccan craftsmanship,
-                    you have experienced the soul of a timeless land.
-                </p>
+    <p class="text">
+        You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,
+        stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,
+        and finally shaped earth into art with your own hands through pottery.
+    </p>
     
-                <p class="text">
-                    Your curiosity, spirit, and sense of adventure
-                    have brought history to life.
-                </p>
-    
-                <div class="footer">
-                    🌙 A journey across Moroccan art, music, and architecture 🌙
-                </div>
-    
+    <p class="text">
+        Through curiosity, creativity, and a true explorer’s heart,
+        you did not just visit Morocco —
+        <strong>you experienced its soul.</strong>
+    </p>
+<div class="footer">
+    🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
+</div>
             </body>
             </html>
             """
