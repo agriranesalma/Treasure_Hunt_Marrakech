@@ -808,7 +808,7 @@ def show_stop7_koutoubia():
 
         if submitted:
             if arches.strip() in ["4", "four"]:
-                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches. :contentReference[oaicite:8]{index=8}    
+                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches. ")  
                 st.markdown("""
                 <div class="magic-card">
                     <h3>🧵 Next stop: Berber Calligraphy</h3>
