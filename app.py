@@ -511,16 +511,101 @@ def show_stop9_pottery():
 
 # ---------------- ROUTING (cleaned duplicate) ----------------
 if st.session_state.page == "home":
-    # (your original home map code - unchanged)
-    st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
-    # ... (map code exactly as you had it)
-    pass  # keep your full map code here - I didn't change it
+    st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
+
+    try:
+        image = Image.open("morocco_regions_map.png")
+        target_w = 700
+        w, h = image.size
+        ratio = target_w / float(w)
+        new_h = int(h * ratio)
+        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
+    except:
+        image = None
+
+    if image is not None:
+        map_col, legend_col = st.columns([1.8, 1])
+
+        with map_col:
+            if streamlit_image_coordinates is not None:
+                click = streamlit_image_coordinates(image, key="morocco_region_map")
+                
+                if click:
+                    rel_x = click["x"] / image.width
+                    rel_y = click["y"] / image.height
+                    
+                    if 0.47 <= rel_x <= 0.61 and 0.28 <= rel_y <= 0.38:
+                        st.session_state.page = "marrakech_safi"
+                        st.rerun()
+                    else:
+                        st.toast("Coming Soon! / قريباً", icon="⏳")
+            else:
+                st.image(image, use_container_width=True)
+
+        with legend_col:
+            st.markdown('<h3 style="text-align:center;">📋 Regions / الجهات</h3>', unsafe_allow_html=True)
+            regions = [
+                ("01", "Tanger-Tétouan-Al Hoceïma", "#06b6ad"),
+                ("02", "Oriental", "#e9711d"),
+                ("03", "Fès-Meknès", "#2e8b58"),
+                ("04", "Rabat-Salé-Kénitra", "#d7292a"),
+                ("05", "Béni Mellal-Khénifra", "#404064"),
+                ("06", "Casablanca-Settat", "#656474"),
+                ("07", "Marrakech-Safi", "#db8e3d"),
+                ("08", "Drâa-Tafilalet", "#82a0dc"),
+                ("09", "Souss-Massa", "#79c779"),
+                ("10", "Guelmim-Oued Noun", "#c9ab34"),
+                ("11", "Laâyoune-Sakia El Hamra", "#8d3267"),
+                ("12", "Eddakhla-Oued Ed-dahab", "#51aadc"),
+            ]
+            for num, name, color in regions:
+                dot_col, btn_col = st.columns([0.1, 0.9])
+                with dot_col:
+                    st.markdown(f'<div style="background:{color}; width:18px; height:18px; border-radius:50%; margin-top:16px;"></div>', unsafe_allow_html=True)
+                with btn_col:
+                    if st.button(name, key=f"btn_{num}", use_container_width=True):
+                        if name == "Marrakech-Safi":
+                            st.session_state.page = "marrakech_safi"
+                            st.rerun()
+                        else:
+                            st.toast("Coming Soon! / قريباً", icon="⏳")
 
 elif st.session_state.page == "marrakech_safi":
-    # (your original marrakech_safi map code - unchanged)
-    pass
+    st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
 
+    try:
+        image = Image.open("marrakech_safi.png")
+        target_w = 600
+        w, h = image.size
+        ratio = target_w / float(w)
+        new_h = int(h * ratio)
+        image = image.resize((target_w, new_h), Image.Resampling.LANCZOS)
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
+        image = None
+
+    if image is not None:
+        c1, c2, c3 = st.columns([1, 2, 1])
+        with c2:
+            if streamlit_image_coordinates is not None:
+                click = streamlit_image_coordinates(image, key="marrakech-safi")
+                if click is not None:
+                    rel_x = click["x"] / image.width
+                    rel_y = click["y"] / image.height
+                    if 0.53 <= rel_x <= 0.62 and 0.41 <= rel_y <= 0.69:
+                        st.session_state.page = "marrakech"
+                        st.rerun()
+                    else:
+                        st.toast("Coming Soon! / قريباً", icon="⏳")
+            else:
+                st.image(image, use_container_width=True)
+
+    if st.button("⬅ Back to Regions Map"):
+        st.session_state.page = "home"
+        st.rerun()
 else:
     current = st.session_state.current_stop
     total_stops = 9
