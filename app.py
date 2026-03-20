@@ -136,6 +136,8 @@ if "bahia_quiz_done" not in st.session_state:
     st.session_state.bahia_quiz_done = False
 if "koutoubia_code_entered" not in st.session_state:
     st.session_state.koutoubia_code_entered = False
+if "quiz_unlocked" not in st.session_state:
+    st.session_state.quiz_unlocked = {}
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
@@ -194,6 +196,98 @@ stops_data = {
 "next_stop_intro": "The next stop is a Hassani Silver Filigree artisan, where the treasure changes from stories to craft.",
 }}
 
+quizzes_data = {
+    1: {
+        "general": [
+            {"q": "What UNESCO title does Jemaa el-Fna hold since 2001?", "options": ["Masterpiece of the Oral and Intangible Heritage of Humanity", "World Natural Heritage", "Intangible Cultural Asset only", "Modern Festival Site"], "correct": "Masterpiece of the Oral and Intangible Heritage of Humanity"},
+            {"q": "Which music tradition dominates Jemaa el-Fna at night?", "options": ["Gnawa", "Flamenco", "Samba", "Rock"], "correct": "Gnawa"}
+        ],
+        "detailed": [
+            {"q": "Look around the square right now — how many Saints are said to form the spiritual circle protecting Marrakech?", "correct": "7"},
+            {"q": "Observe the orange-juice stalls and the movement — what is the exact number of years the riddle says the square's voice has remained the same?", "correct": "800"}
+        ]
+    },
+    2: {  # Café stop
+        "general": [
+            {"q": "Which Moroccan university is officially the oldest in the world?", "options": ["University of al-Qarawiyyin", "Al-Azhar", "Oxford", "Sorbonne"], "correct": "University of al-Qarawiyyin"},
+            {"q": "Who founded the University of al-Qarawiyyin?", "options": ["Fatima al-Fihri", "Ibn Battuta", "King Mohammed V", "Ahmed al-Mansur"], "correct": "Fatima al-Fihri"}
+        ],
+        "detailed": [
+            {"q": "Look at the tea you are sipping right now — what is the traditional name of the pot used to serve Moroccan mint tea?", "correct": "teapot"},
+            {"q": "Observe the café setting — what is the exact age range of the oldest Homo sapiens fossils found in Morocco (Jebel Irhoud)?", "correct": "300000"}
+        ]
+    },
+    3: {  # Riddle stop (now has full quiz before unlocking Saadian)
+        "general": [
+            {"q": "Which dynasty built the Saadian Tombs?", "options": ["Saadian", "Alawite", "Almohad", "Merinid"], "correct": "Saadian"},
+            {"q": "In what century were the Saadian Tombs constructed?", "options": ["16th", "17th", "18th", "19th"], "correct": "16th"}
+        ],
+        "detailed": [
+            {"q": "Stand in front of the tombs and count — how many columns support the ceiling in the main hall?", "correct": "12"},
+            {"q": "Look at the main mausoleum — what material was specially imported for the columns and decoration?", "correct": "carrara marble"}
+        ]
+    },
+    4: {  # Saadian Tombs (story no longer spoils "Twelve" or marble)
+        "general": [
+            {"q": "Who walled off the Saadian Tombs out of respect?", "options": ["Sultan Moulay Ismail", "Ahmed al-Mansur", "King Mohammed V", "Ba Ahmed"], "correct": "Sultan Moulay Ismail"},
+            {"q": "In what year were the Saadian Tombs rediscovered from the air?", "options": ["1917", "1956", "1985", "2001"], "correct": "1917"}
+        ],
+        "detailed": [
+            {"q": "Stand inside the Hall of Columns and count them yourself — how many columns support the ceiling?", "correct": "12"},
+            {"q": "Look closely at the columns and decoration — what rare imported stone was used?", "correct": "carrara marble"}
+        ]
+    },
+    5: {  # Zellige Workshop (partner)
+        "general": [
+            {"q": "What is the traditional name of Moroccan geometric tile art?", "options": ["Zellige", "Mosaic", "Ceramic", "Plaster"], "correct": "Zellige"},
+            {"q": "Which Moroccan craft uses hand-cut glazed tiles in geometric patterns?", "options": ["Zellige", "Pottery", "Silver filigree", "Wood carving"], "correct": "Zellige"}
+        ],
+        "detailed": [
+            {"q": "Look at the tiles you are making right now — how many different colors are typically used in a classic zellige panel here?", "correct": "7"},  # artisan-specific, only known on-site
+            {"q": "Observe the workshop — what tool does the master use to cut the tiles by hand?", "correct": "hammer and chisel"}
+        ]
+    },
+    6: {  # Cuisine Class (partner)
+        "general": [
+            {"q": "What is the main difference between tangia and tagine?", "options": ["Cooking pot shape and oven", "Spices only", "Meat only", "Vegetarian"], "correct": "Cooking pot shape and oven"},
+            {"q": "Which soup is traditionally eaten to break the fast during Ramadan in Morocco?", "options": ["Harira", "Bissara", "Chorba", "Lentil soup"], "correct": "Harira"}
+        ],
+        "detailed": [
+            {"q": "Look at the clay pot the instructor is using — what is the exact name of the Marrakech specialty dish cooked in it?", "correct": "tangia"},
+            {"q": "Observe the table — what is the traditional symbol of hospitality served at the end of every Moroccan meal?", "correct": "mint tea"}
+        ]
+    },
+    7: {  # Koutoubia
+        "general": [
+            {"q": "What does the name 'Koutoubia' mean?", "options": ["Booksellers", "Minaret", "Palace", "Garden"], "correct": "Booksellers"},
+            {"q": "Which dynasty built the Koutoubia Mosque?", "options": ["Almohad", "Saadian", "Alawite", "Merinid"], "correct": "Almohad"}
+        ],
+        "detailed": [
+            {"q": "Stand in front of the minaret and look up — how many windows are on each face of the tower?", "correct": "3"},  # only visible on-site
+            {"q": "Observe the base of the mosque — what material covers the large plaza in front?", "correct": "stone pavement"}
+        ]
+    },
+    8: {  # Bahia Palace
+        "general": [
+            {"q": "What does 'Bahia' mean in Arabic?", "options": ["Brilliance", "Beauty", "Peace", "Power"], "correct": "Brilliance"},
+            {"q": "Who expanded the Bahia Palace in the 1890s?", "options": ["Ba Ahmed", "Si Moussa", "Ahmed al-Mansur", "Moulay Ismail"], "correct": "Ba Ahmed"}
+        ],
+        "detailed": [
+            {"q": "Walk through the main courtyard — how many rooms does the palace have in total?", "correct": "150"},  # only known by visiting
+            {"q": "Look at the ceilings — what material and style are the carved ceilings made of?", "correct": "cedar wood"}
+        ]
+    },
+    9: {  # Pottery
+        "general": [
+            {"q": "What is the main material used in traditional Moroccan pottery?", "options": ["Clay", "Glass", "Metal", "Wood"], "correct": "Clay"},
+            {"q": "Which city is famous for its pottery workshops in Morocco?", "options": ["Safi", "Fez", "Marrakech", "Tangier"], "correct": "Safi"}
+        ],
+        "detailed": [
+            {"q": "Look at the tagine you are making — what natural element is used to glaze the pottery here?", "correct": "lead glaze"},
+            {"q": "Observe the kiln — what fuel is traditionally used to fire the pottery in this workshop?", "correct": "wood"}
+        ]
+    }
+}
 # ---------------- HELPERS ----------------
 def render_webar(url, height=680):
     components.iframe(url, height=height, scrolling=True)
@@ -204,7 +298,53 @@ def init_answer_state(stop_num):
             "riddle": None,
             "unlocked": False
         }
+def show_quiz_challenge(stop_num):
+    st.markdown("---")
+    st.markdown('<h2 class="big-title">🧠 Knowledge Challenge</h2>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">2 General + 2 On-Site Detailed • Prove you are here!</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <p><strong>General Knowledge</strong> = broad Morocco facts (anyone can try)</p>
+        <p><strong>Detailed On-Site</strong> = only visible if you are physically at the stop (answers NOT in the story text)</p>
+    </div>
+    """, unsafe_allow_html=True)
 
+    data = quizzes_data.get(stop_num, {"general": [], "detailed": []})
+    added_score = 0
+
+    st.markdown("### 📚 General Knowledge Quizzes")
+    for i, q in enumerate(data["general"]):
+        st.subheader(f"General {i+1}")
+        ans = st.radio(q["q"], q["options"], key=f"gen_{stop_num}_{i}")
+        if st.button(f"Submit General {i+1}", key=f"sub_gen_{stop_num}_{i}"):
+            if ans == q["correct"]:
+                st.success("✅ Correct!")
+                st.session_state.score += 5
+                added_score += 5
+                st.rerun()
+            else:
+                st.error("❌ Try again")
+
+    st.markdown("### 🔍 On-Site Detailed Quizzes (Must be here!)")
+    for i, q in enumerate(data["detailed"]):
+        st.subheader(f"Detailed {i+1}")
+        ans = st.text_input(q["q"], key=f"det_{stop_num}_{i}")
+        if st.button(f"Submit Detailed {i+1}", key=f"sub_det_{stop_num}_{i}"):
+            if ans.lower().strip() in [q["correct"].lower().strip(), q["correct"].lower().strip() + "s"]:
+                st.success("🎉 Perfect! You are really here!")
+                st.session_state.score += 15
+                added_score += 15
+                st.rerun()
+            else:
+                st.error("❌ Look around carefully — this detail is only visible on-site!")
+
+    if added_score > 0:
+        st.success(f"Bonus +{added_score} points added!")
+
+    if stop_num not in st.session_state.quiz_unlocked:
+        st.session_state.quiz_unlocked[stop_num] = False
+    if added_score >= 30:  # both detailed correct
+        st.session_state.quiz_unlocked[stop_num] = True
 def show_welcome_page():
     st.markdown('<h1 class="big-title">Welcome Traveler • مرحبًا بك أيها المسافر</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🧞 The Genie is waiting for you</div>', unsafe_allow_html=True)
@@ -387,6 +527,11 @@ def show_stop1_story():
         audio_file = open("hassani_poetry.mp3", "rb")
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format="audio/mp3")
+    show_quiz_challenge(1)
+    show_partner_code_gate(
+        next_label=stops_data[1].get("next_stop_label", "Next Hidden Stop"),
+        next_stop_num=2
+    )
 
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
@@ -531,6 +676,7 @@ def show_stop2_cafe():
         </p>
     </div>
     """, unsafe_allow_html=True)
+    show_quiz_challenge(2)
     if st.button("➡️ Continue the Journey"):
         st.session_state.current_stop = 3
         st.rerun()
@@ -569,7 +715,7 @@ def show_stop3_riddle():
             if st.button(opt, key=f"stop3_{i}", use_container_width=True):
                 st.session_state.stop3_answer = opt
                 st.rerun()
-
+    show_quiz_challenge(3)
     if st.session_state.stop3_answer:
         if st.session_state.stop3_answer == "C) Saadian Tombs":
             st.success("✅ Correct! The hidden dynasty reveals itself...")
@@ -641,7 +787,11 @@ def show_stop4_saadian():
                 st.rerun()
             else:
                 st.error("❌ Not quite... look closer at the patterns around you.")
-
+    show_quiz_challenge(4) 
+    if st.session_state.quiz_unlocked.get(4, False):
+        if st.button("➡️ Continue to Zellige Workshop"):
+            st.session_state.current_stop = 5
+            st.rerun()
 
 def show_stop5_zellige_workshop():
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
@@ -658,7 +808,7 @@ def show_stop5_zellige_workshop():
 
     # IMAGE
     st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles YOU WILL BE MAKING AT THE SHOP", use_container_width=True)
-
+    show_quiz_challenge(5)
     # OPTIONAL: Partner code gate to go to Stop 6
     code = st.text_input("Enter partner code to continue", placeholder="e.g. KENZQUEST2026", key="code_gate_stop5")
     if st.button("Unlock next stop", key="unlock_stop5"):
@@ -747,55 +897,35 @@ def show_stop6_cuisine():
     </div>
     """, unsafe_allow_html=True)
     # ---------------- KOUTOUBIA QUIZ ----------------
-    if not st.session_state.koutoubia_code_entered:
-        st.markdown("### 🔐 Enter the code given by the Moroccan cuisine instructor to continue:")
-        cuisine_code = st.text_input(
-            "Enter code",
-            placeholder="e.g. KENZQUEST2026",
-            key="koutoubia_cuisine_code"
-        )
-        if st.button("Unlock Quiz", key="unlock_koutoubia_quiz_btn"):
-            if cuisine_code.strip() == PARTNER_ACCESS_CODE:  
-                st.session_state.koutoubia_code_entered = True
-                st.success("✅ Correct Code.")
-                st.rerun()
-            else:
-                st.error("❌ Incorrect code. Try again.")
-    else:
-        st.markdown(f"""
-        <div class="magic-card">
-            <h3>Question</h3>
-            <p style="font-size:1.15rem; line-height:1.6;">
-                You’ve savored the flavors of Marrakech — now it’s time to see the city!  
-                Which famous monument, with a towering minaret, should you visit next?
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+    show_quiz_challenge(6)
 
-        if "koutoubia_answer" not in st.session_state:
-            st.session_state.koutoubia_answer = None
-    
-        if st.session_state.koutoubia_answer is None:
-            st.markdown("### 🧩 Choose the correct landmark for the quiz:")
-            cols = st.columns(2)
-            options = ["Bahia Palace", "Majorelle Garden", "Koutoubia Mosque", "Saadian Tombs"]
-            for i, opt in enumerate(options):
-                with cols[i % 2]:
-                    if st.button(opt, key=f"koutoubia_quiz_{i}", use_container_width=True):
-                        st.session_state.koutoubia_answer = opt
-                        st.rerun()
+    # ================== PARTNER CODE GATE (replaces old koutoubia quiz) ==================
+    st.markdown("---")
+    st.markdown('<h3 class="big-title">🔐 Instructor Gate</h3>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <p>Enter the special code given to you by the Moroccan cuisine instructor to unlock the next stop.</p>
+        <p><strong>Both the code AND the on-site quiz must be completed!</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    code = st.text_input(
+        "Enter code from the instructor",
+        placeholder="e.g. KENZQUEST2026",
+        key="cuisine_code_gate"
+    )
+
+    if st.button("🚀 Unlock Koutoubia Mosque", type="primary", use_container_width=True):
+        if (code.strip() == PARTNER_ACCESS_CODE and 
+            st.session_state.quiz_unlocked.get(6, False)):
+            
+            st.session_state.current_stop = 7
+            st.session_state.score += 10
+            st.success("✅ Path Unlocked! Onward to the Koutoubia Mosque!")
+            st.rerun()
+            
         else:
-            # Step 2: Check the answer
-            if st.session_state.koutoubia_answer.lower() in ["koutoubia mosque", "koutoubia", "kutubiyya", "kutubiyyah"]:
-                st.success("✅ Correct! Your journey continues to Koutoubia.")
-                st.session_state.current_stop = 7
-                st.session_state.score += 10
-                st.rerun()
-            else:
-                st.error("❌ Not this one. Think of Marrakech’s famous landmark with the tall minaret.")
-                if st.button("🔄 Try again", key="retry_koutoubia"):
-                    st.session_state.koutoubia_answer = None
-                    st.rerun()
+            st.error("❌ You need BOTH the correct partner code AND to complete the on-site detailed quiz.")
 def show_stop7_koutoubia():
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
@@ -822,41 +952,11 @@ def show_stop7_koutoubia():
         </p>
     </div>
     """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="magic-card">
-        <h3>🧩 Next Stop Quiz</h3>
-        <p>
-        I am an architectural masterpiece in the heart of Marrakesh built in the 1860s by Si Moussa, the Grand Vizier of Sultan Hassan I, to serve as his personal residence. 
-        It was later significantly expanded and embellished in the 1890s by his son, Ba Ahmed (Ahmed ben Moussa), who served as regent to the Sultan.?
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    if "koutoubia_next_answer" not in st.session_state:
-        st.session_state.koutoubia_next_answer = None
-
-    options = ["Bahia Palace", "Majorelle Garden", "Saadian Tombs", "Jemaa el-Fnaa"]
-    cols = st.columns(2)
-
-    for i, opt in enumerate(options):
-        with cols[i % 2]:
-            if st.button(opt, key=f"koutoubia_next_{i}", use_container_width=True):
-                st.session_state.koutoubia_next_answer = opt
-                st.rerun()
-
-    if st.session_state.koutoubia_next_answer is not None:
-        if st.session_state.koutoubia_next_answer == "Bahia Palace":
-            st.success("✅ Correct! Your next treasure is Bahia Palace.")
+    show_quiz_challenge(7)  
+    if st.session_state.quiz_unlocked.get(7, False):
+        if st.button("➡️ Continue to Bahia Palace"):
             st.session_state.current_stop = 8
-            st.session_state.score += 10
-            st.session_state.koutoubia_next_answer = None
             st.rerun()
-        else:
-            st.error("❌ Not quite. Think of the palace of brilliance.")
-            if st.button("🔄 Try again", key="retry_koutoubia_next"):
-                st.session_state.koutoubia_next_answer = None
-                st.rerun()
 
 
 def show_stop8_bahia():
@@ -886,7 +986,7 @@ def show_stop8_bahia():
         st.image("bahia_inside.jpg", use_container_width=True)
     except:
         pass
-
+    show_quiz_challenge(8)
     st.markdown("""
     <div class="magic-card">
         <h3>🧭 Next Stop</h3>
@@ -943,6 +1043,7 @@ def show_stop9_pottery():
         st.image("pottery_products.jpg", caption="Finished pottery pieces", use_container_width=True)
     except:
         st.warning("⚠️ Add pottery_products.jpg")
+    show_quiz_challenge(9)
 
     st.markdown("""
     <div class="magic-card">
@@ -973,98 +1074,98 @@ def show_stop9_pottery():
                 st.rerun()
             else:
                 st.error("❌ Incorrect code. Try again.")
-
-    if st.session_state.pottery_code_entered:
-        st.markdown("## 🎉 Your Journey Ends Here... But Your Legend Begins")
-    
-        user_name = st.text_input("Enter your name for your certificate:")
-    
-        if user_name:
-            certificate_html = f"""
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <title>Kenz Quest Certificate</title>
-                <style>
-                    body {{
-                        font-family: 'Georgia', serif;
-                        text-align: center;
-                        padding: 60px;
-                        margin: 30px;
-                        background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
-                                    url('https://www.transparenttextures.com/patterns/arabesque.png');
-                        border: 15px double #b8860b;
-                    }}
-                    h1 {{
-                        color: #8b0000;
-                        font-size: 42px;
-                        margin-bottom: 10px;
-                    }}
-                    h2 {{
-                        color: #b8860b;
-                        margin-bottom: 30px;
-                    }}
-                    .name {{
-                        font-size: 34px;
-                        font-weight: bold;
-                        margin: 30px 0;
-                        color: #2c2c2c;
-                    }}
-                    .text {{
-                        font-size: 18px;
-                        line-height: 1.6;
-                        margin: 20px 0;
-                    }}
-                    .footer {{
-                        margin-top: 40px;
-                        font-size: 16px;
-                        color: #555;
-                    }}
-                </style>
-            </head>
-            <body>
-    
-                <h1>🏆 Certificate of Exploration</h1>
-                <h2>Kenz Quest • Trésor Marocain</h2>
-    
-                <p class="text">This certificate is proudly awarded to</p>
-    
-                <div class="name">{user_name}</div>
-    
-                <p class="text">
-        The Remarkable Traveler who followed the path of stories, craft, and memory
-        across the heart of Morocco.
-    </p>
-    <p class="text">
-        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,
-        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,
-        you uncovered the layers of a land shaped by history and spirit.
-    </p>
-    
-    <p class="text">
-        You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,
-        stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,
-        and finally shaped earth into art with your own hands through pottery.
-    </p>
-    
-    <p class="text">
-        Through curiosity, creativity, and a true explorer’s heart,
-        you did not just visit Morocco —
-        <strong>you experienced its soul.</strong>
-    </p>
-<div class="footer">
-    🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
-</div>
-            </body>
-            </html>
-            """
-    
-            st.download_button(
-                "📄 Download Your Certificate",
-                data=certificate_html.encode("utf-8"),
-                file_name=f"Kenz_Quest_Certificate_{user_name}.html",
-                mime="text/html"
-            )
+    if st.session_state.quiz_unlocked.get(9, False):
+        if st.session_state.pottery_code_entered:
+            st.markdown("## 🎉 Your Journey Ends Here... But Your Legend Begins")
+        
+            user_name = st.text_input("Enter your name for your certificate:")
+        
+            if user_name:
+                certificate_html = f"""
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Kenz Quest Certificate</title>
+                    <style>
+                        body {{
+                            font-family: 'Georgia', serif;
+                            text-align: center;
+                            padding: 60px;
+                            margin: 30px;
+                            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                                        url('https://www.transparenttextures.com/patterns/arabesque.png');
+                            border: 15px double #b8860b;
+                        }}
+                        h1 {{
+                            color: #8b0000;
+                            font-size: 42px;
+                            margin-bottom: 10px;
+                        }}
+                        h2 {{
+                            color: #b8860b;
+                            margin-bottom: 30px;
+                        }}
+                        .name {{
+                            font-size: 34px;
+                            font-weight: bold;
+                            margin: 30px 0;
+                            color: #2c2c2c;
+                        }}
+                        .text {{
+                            font-size: 18px;
+                            line-height: 1.6;
+                            margin: 20px 0;
+                        }}
+                        .footer {{
+                            margin-top: 40px;
+                            font-size: 16px;
+                            color: #555;
+                        }}
+                    </style>
+                </head>
+                <body>
+        
+                    <h1>🏆 Certificate of Exploration</h1>
+                    <h2>Kenz Quest • Trésor Marocain</h2>
+        
+                    <p class="text">This certificate is proudly awarded to</p>
+        
+                    <div class="name">{user_name}</div>
+        
+                    <p class="text">
+            The Remarkable Traveler who followed the path of stories, craft, and memory
+            across the heart of Morocco.
+        </p>
+        <p class="text">
+            From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,
+            from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,
+            you uncovered the layers of a land shaped by history and spirit.
+        </p>
+        
+        <p class="text">
+            You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,
+            stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,
+            and finally shaped earth into art with your own hands through pottery.
+        </p>
+        
+        <p class="text">
+            Through curiosity, creativity, and a true explorer’s heart,
+            you did not just visit Morocco —
+            <strong>you experienced its soul.</strong>
+        </p>
+    <div class="footer">
+        🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
+    </div>
+                </body>
+                </html>
+                """
+        
+                st.download_button(
+                    "📄 Download Your Certificate",
+                    data=certificate_html.encode("utf-8"),
+                    file_name=f"Kenz_Quest_Certificate_{user_name}.html",
+                    mime="text/html"
+                )
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
