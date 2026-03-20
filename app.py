@@ -529,8 +529,8 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
     if st.button("➡️ Continue the Journey"):
-    st.session_state.current_stop = 3
-    st.rerun()
+        st.session_state.current_stop = 3
+        st.rerun()
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
