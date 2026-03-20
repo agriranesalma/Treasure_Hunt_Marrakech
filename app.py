@@ -466,7 +466,7 @@ def show_stop2_cafe():
         <p>
         Today, it’s a UNESCO World Heritage site — with real Roman mosaics still intact.
         </p>
-        <p><strong>🎮 It’s like walking inside Ancient Rome… in Morocco.</strong></p>
+        <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -500,7 +500,7 @@ def show_stop2_cafe():
         across Africa, Asia, and beyond.
         </p>
         <p>
-        🌍His journey lasted nearly 30 years — making him one of the greatest travelers in history.
+        His journey lasted nearly 30 years — making him one of the greatest travelers in history.
         </p>
         <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
@@ -514,7 +514,7 @@ def show_stop2_cafe():
     st.markdown("""
     <div class="magic-card">
         <p style="font-size:1.2rem;">
-        ليمونا دازت الاکزام، شحال جابت؟  
+        ليمونا دوزات امتحان، شحال جابت؟  
         <br><strong>عسرة على عسرة 😭</strong>
         </p>
     </div>
