@@ -677,6 +677,71 @@ def show_partner_zellige_gate(next_label="Zellige Artisan Workshop", next_stop_n
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
+def show_stop6_cuisine():
+    st.markdown('<h1 class="big-title">🍲 Moroccan Cuisine Class — Taste & Create</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
+
+    # ---------------- INTRO ----------------
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌿 Welcome, chef!</h3>
+        <p>
+        From the bustling markets of Marrakech to the calm kitchens of old medinas,
+        Moroccan cuisine is a symphony of flavors. Today, you will get your hands on some iconic dishes —
+        starting with <strong>Tangia</strong>, the Marrakech specialty slow-cooked in clay pots, not to be confused with tagine.
+        </p>
+        <p>
+        You will also discover secrets of <strong>pastilla</strong>, <strong>harira</strong>, and aromatic <strong>spiced couscous</strong>.
+        </p>
+        <p><strong>Get ready to cook, taste, and fall in love with Moroccan flavors!</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---------------- IMAGE ----------------
+    st.image(
+        "moroccan_cuisine_table.jpg",  # <-- replace with your image of the full table
+        caption="A Moroccan feast: Couscous, pastilla, harira, and more",
+        use_container_width=True
+    )
+
+    # ---------------- FUN HISTORY ----------------
+    st.markdown("### 📜 Moroccan Culinary Wonders")
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        Did you know? The <strong>tangia</strong> of Marrakech is named after the clay pot it’s cooked in, 
+        traditionally slow-cooked in communal ovens. Saffron, preserved lemons, and local spices tell stories 
+        of centuries of trade and culture.
+        </p>
+        <p>
+        <strong>Harira</strong> was once the essential soup to break the fast during Ramadan, combining lentils, chickpeas, and tomatoes in a fragrant, hearty meal.
+        </p>
+        <p>
+        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — making it a living history you can taste.
+        </p>
+        <p><strong>😋 Imagine the aroma of spices filling your kitchen as you cook!</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---------------- MINI TIP ----------------
+    st.info("💡 Tip: While imagining your meal, think about the stories every ingredient tells — every spice has a history.")
+
+    # ---------------- PARTNER CODE GATE ----------------
+    st.markdown("### 🔐 Unlock the next culinary adventure")
+    code = st.text_input(
+        "Enter the partner code from your instructor",
+        placeholder=f"e.g. {PARTNER_ACCESS_CODE}",
+        key="code_gate_cuisine"
+    )
+
+    if st.button("Unlock next stop", key="unlock_cuisine", type="primary"):
+        if code.strip() == PARTNER_ACCESS_CODE:
+            st.session_state.current_stop = 7  # next stop after cuisine
+            st.session_state.score += 10
+            st.success("✅ Delicious path unlocked! Onward to your next Moroccan adventure.")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect code. Try again.")
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -840,6 +905,8 @@ else:
 
     elif current == 4:
         show_stop4_saadian()
+    elif current==5:
+        show_stop6_cuisine()
     else:
         st.success(f"Stop {current} page goes here.")
 
