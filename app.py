@@ -177,7 +177,7 @@ stops_data = {
 
 "legend": (
     "Long before and beyond politics, Marrakech has also been protected in another way. "
-    "According to tradition, the city is encircled by the spiritual presence of the Seven Saints — a sacred path that has "
+    "According to legends, the city is encircled by the spiritual presence of the Seven Saints — a sacred path that has "
     "guided and guarded it since centuries. "
     "Inspired by figures such as Abu al-Abbas al-Sabti, this invisible circle represents faith, protection, and the deep "
     "spiritual roots woven into the soul of the city."
@@ -387,12 +387,12 @@ def show_stop1_story():
         st.audio(audio_bytes, format="audio/mp3")
 
 def show_partner_code_gate(next_label, next_stop_num):
-    st.markdown('<h2 class="big-title">🔐 Silver Path Gate</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="big-title">🩶 Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
 
     st.markdown("""
     <div class="magic-card">
-        <p>Enter the shared hackathon code to open the next stop.</p>
+        <p>Enter the code given to you by the artisan to open the next stop.</p>
     </div>
     """, unsafe_allow_html=True)
 
