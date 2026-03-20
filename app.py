@@ -597,7 +597,7 @@ def show_stop4_saadian():
         <p>
         When the Alawite dynasty rose to power, Sultan Moulay Ismail chose to wall off the site rather than destroy it. This was a deep sign of religious respect for the dead, which unintentionally turned the tombs into a perfectly preserved time capsule.
         </p>
-        <p><For over 200 years, they remained a hidden sanctuary in the heart of Marrakech—until 1917, when aerial photography finally revealed the "lost" royal treasure from the sky.></p>
+        <p>For over 200 years, they remained a hidden sanctuary in the heart of Marrakech—until 1917, when aerial photography finally revealed the "lost" royal treasure from the sky.</p>
     </div>
     """, unsafe_allow_html=True)
 
