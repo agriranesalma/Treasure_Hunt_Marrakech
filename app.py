@@ -707,7 +707,16 @@ def show_stop6_cuisine():
         starting with <strong>Tangia</strong>, the Marrakech specialty slow-cooked in clay pots, not to be confused with tagine.
         </p>
         <p>
-        You will also discover secrets of <strong>pastilla</strong>, <strong>harira</strong>, and aromatic <strong>spiced couscous</strong>.
+        Surrounding it, a feast unfolds:
+        golden <strong>couscous</strong> with vegetables,
+        rich <strong>harira</strong> soup,
+        crispy <strong>briouates</strong>,
+        fresh salads, olives, and perfectly grilled fish.
+        </p>
+
+        <p>
+        And of course… no Moroccan table is complete without <strong>mint tea</strong>,
+        a symbol of hospitality and sharing.
         </p>
         <p><strong>Get ready to cook, taste, and fall in love with Moroccan flavors!</strong></p>
     </div>
