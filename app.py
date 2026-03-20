@@ -134,6 +134,8 @@ if "koutoubia_quiz_done" not in st.session_state:
     st.session_state.koutoubia_quiz_done = False
 if "bahia_quiz_done" not in st.session_state:
     st.session_state.bahia_quiz_done = False
+if "koutoubia_code_entered" not in st.session_state:
+    st.session_state.koutoubia_code_entered = False
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
@@ -746,39 +748,46 @@ def show_stop6_cuisine():
     </div>
     """, unsafe_allow_html=True)
     # ---------------- KOUTOUBIA QUIZ ----------------
-    st.markdown(f"""
-    <div class="magic-card">
-        <h3>Question</h3>
-        <p style="font-size:1.15rem; line-height:1.6;">
-            You’ve savored the flavors of Marrakech — now it’s time to see more of the city!  
-            Which famous monument, with a towering minaret, should you visit next?
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Initialize answers dictionary if not exists
-    if "koutoubia_answer" not in st.session_state:
-        st.session_state.koutoubia_answer = None
-    
-    if st.session_state.koutoubia_answer is None:
-        cols = st.columns(2)
-        options = ["Bahia Palace", "Majorelle Garden", "Koutoubia Mosque", "Saadian Tombs"]
-        for i, opt in enumerate(options):
-            with cols[i % 2]:
-                if st.button(opt, key=f"koutoubia_quiz_{i}", use_container_width=True):
-                    st.session_state.koutoubia_answer = opt
-                    st.rerun()
-    else:
-        if st.session_state.koutoubia_answer.lower() in ["koutoubia mosque", "koutoubia", "kutubiyya", "kutubiyyah"]:
-            st.success("✅ Correct! Your journey continues to Koutoubia.")
-            st.session_state.current_stop = 7
-            st.session_state.score += 10
-            st.rerun()
-        else:
-            st.error("❌ Not this one. Think of Marrakech’s famous landmark with the tall minaret.")
-            if st.button("🔄 Try again", key="retry_koutoubia"):
-                st.session_state.koutoubia_answer = None
+    if not st.session_state.koutoubia_code_entered:
+        st.markdown("### 🔐 Enter the code given by the Moroccan cuisine instructor to continue:")
+        cuisine_code = st.text_input(
+            "Enter code",
+            placeholder="e.g. MOROCCO2026",
+            key="koutoubia_cuisine_code"
+        )
+        if st.button("Unlock Koutoubia Quiz", key="unlock_koutoubia_quiz_btn"):
+            if cuisine_code.strip() == PARTNER_ACCESS_CODE:  # Replace with actual cuisine code if different
+                st.session_state.koutoubia_code_entered = True
+                st.success("✅ Correct Code.")
                 st.rerun()
+            else:
+                st.error("❌ Incorrect code. Try again.")
+    else:
+        # Step 1: Let the user pick the Koutoubia quiz answer
+        if "koutoubia_answer" not in st.session_state:
+            st.session_state.koutoubia_answer = None
+    
+        if st.session_state.koutoubia_answer is None:
+            st.markdown("### 🧩 Choose the correct landmark for the quiz:")
+            cols = st.columns(2)
+            options = ["Bahia Palace", "Majorelle Garden", "Koutoubia Mosque", "Saadian Tombs"]
+            for i, opt in enumerate(options):
+                with cols[i % 2]:
+                    if st.button(opt, key=f"koutoubia_quiz_{i}", use_container_width=True):
+                        st.session_state.koutoubia_answer = opt
+                        st.rerun()
+        else:
+            # Step 2: Check the answer
+            if st.session_state.koutoubia_answer.lower() in ["koutoubia mosque", "koutoubia", "kutubiyya", "kutubiyyah"]:
+                st.success("✅ Correct! Your journey continues to Koutoubia.")
+                st.session_state.current_stop = 7
+                st.session_state.score += 10
+                st.rerun()
+            else:
+                st.error("❌ Not this one. Think of Marrakech’s famous landmark with the tall minaret.")
+                if st.button("🔄 Try again", key="retry_koutoubia"):
+                    st.session_state.koutoubia_answer = None
+                    st.rerun()
 def show_stop7_koutoubia():
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
