@@ -713,7 +713,6 @@ def show_stop6_cuisine():
         crispy <strong>briouates</strong>,
         fresh salads, olives, and perfectly grilled fish.
         </p>
-
         <p>
         And of course… no Moroccan table is complete without <strong>mint tea</strong>,
         a symbol of hospitality and sharing.
