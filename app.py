@@ -806,122 +806,57 @@ def show_stop7_koutoubia():
         <h3>✨ Why it matters</h3>
         <p>
         The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
-        Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
-        major monuments of the Medina of Marrakesh. 
-        It was built under the Almohads, a Berber-led movement/dynasty,
-        this is part of Morocco’s Berber heritage.
+        Its minaret rises above the medina and it reflects the city’s deep heritage.
+        Built under the Almohads, it also connects to Morocco’s Berber history.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("koutoubia.jpg", caption="", use_container_width=True)
+    st.image("koutoubia.jpg", use_container_width=True)
 
-    # ✅ Original Mini-Challenge
     st.markdown("""
     <div class="magic-card">
         <h3>📚 Learning Moment</h3>
         <p>
-        “Koutoubia” comes from the Arabic <em>kutubiyyin</em> (كُتُبيين), meaning booksellers. 
-        Centuries ago, hundreds of book vendors sold manuscripts in the souk around the mosque. 
-        Today it’s a symbol of the city (its silhouette inspired Seville’s Giralda tower).
+        “Koutoubia” comes from the Arabic <em>kutubiyyin</em>, meaning booksellers.
+        Centuries ago, booksellers worked around the mosque, making it a place of knowledge as well as faith.
         </p>
-        <h4>🧩 Mini-Challenge (Count the Orbs)</h4>
-        <p>
-        Atop Koutoubia’s minaret are golden orbs. How many can you spot from below?
-        </p>
-        <ul>
-            <li>A) 3</li>
-            <li>B) 4</li>
-            <li>C) 5</li>
-            <li>D) 7</li>
-        </ul>
     </div>
     """, unsafe_allow_html=True)
 
-    with st.form("koutoubia_arches_form"):
-        arches = st.text_input("How many arches are at the top?", placeholder="Type a number")
-        submitted = st.form_submit_button("Check Answer")
-        if submitted:
-            if arches.strip().lower() in ["4", "four"]:
-                st.session_state.koutoubia_quiz_done = True
-                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches.")
-            else:
-                st.error("❌ Not quite — try again.")
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🧩 Final Koutoubia Quiz</h3>
+        <p>
+        You have decoded the geometry of Koutoubia. Which treasure should you unlock next?
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # ✅ After first quiz, show Berber calligraphy & second code input
-    if st.session_state.koutoubia_quiz_done:
-        st.markdown("""
-        <div class="magic-card">
-            <h3>🧵 Next stop: Berber Calligraphy</h3>
-            <p>
-            Now that you have explored the geometry of Koutoubia, a masterpiece built by the Berbers, 
-            your next treasure awaits in the world of Berber calligraphy, where letters become art and identity.
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+    if "koutoubia_next_answer" not in st.session_state:
+        st.session_state.koutoubia_next_answer = None
 
-        try:
-            st.image("berber_calligraphy.jpg", caption="Berber calligraphy", use_container_width=True)
-        except:
-            st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
+    options = ["Bahia Palace", "Majorelle Garden", "Saadian Tombs", "Jemaa el-Fnaa"]
+    cols = st.columns(2)
 
-        st.markdown("### 🔐 Enter the artisan code to continue")
-        code = st.text_input("Enter artisan code", placeholder="e.g. KENZQUEST2026", key="code_gate_koutoubia")
+    for i, opt in enumerate(options):
+        with cols[i % 2]:
+            if st.button(opt, key=f"koutoubia_next_{i}", use_container_width=True):
+                st.session_state.koutoubia_next_answer = opt
+                st.rerun()
 
-        if st.button("Unlock Koutoubia Calligraphy Quiz", key="unlock_koutoubia_calligraphy"):
-            if code.strip() == PARTNER_ACCESS_CODE:
-                st.session_state.koutoubia_calligraphy_done = True
-                st.success("✅ Correct! You have unlocked the Berber calligraphy challenge.")
-            else:
-                st.error("❌ Incorrect code.")
-
-    # ✅ Extra quiz after correct code
-    if st.session_state.get("koutoubia_calligraphy_done"):
-        st.markdown("""
-        <div class="magic-card">
-            <h4>🧩 Berber Calligraphy Mini-Quiz</h4>
-            <p>Which ancient script is the basis for modern Tifinagh letters?</p>
-            <ul>
-                <li>A) Latin</li>
-                <li>B) Phoenician</li>
-                <li>C) Greek</li>
-                <li>D) Arabic</li>
-            </ul>
-        </div>
-        """, unsafe_allow_html=True)
-
-        with st.form("berber_quiz_form"):
-            answer = st.text_input("Your answer:")
-            submitted = st.form_submit_button("Submit Answer")
-            if submitted:
-                if answer.strip().lower() in ["b", "phoenician"]:
-                    st.session_state.koutoubia_berber_quiz_done = True
-                    st.success("✅ Correct! Phoenician script influenced Tifinagh letters.")
-                else:
-                    st.error("❌ Not quite — try again.")
-
-        # After the Berber calligraphy code and quiz:
-    if st.session_state.get("koutoubia_calligraphy_done") and st.session_state.get("koutoubia_berber_quiz_done"):
-    
-        st.markdown("""
-        <div class="magic-card">
-            <h4>🧩 Choose Your Next Stop</h4>
-            <p>Where should your journey continue after Berber calligraphy?</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
-        # Multiple choice quiz for next stop
-        stops_options = ["Majorelle Garden", "Bahia Palace", "Saadian Tombs", "Jemaa el-Fnaa"]
-        selected_stop = st.radio("Pick the correct next stop:", stops_options, key="next_stop_quiz")
-    
-        if st.button("Submit Choice", key="next_stop_button"):
-            if selected_stop == "Bahia Palace":
-                st.session_state.current_stop = 8
-                st.session_state.score += 10
-                st.success("✅ Correct! Bahia Palace is your next treasure.")
-                st.rerun()  # moves them to the next function automatically
-            else:
-                st.error("❌ Not quite — think about the grand palace with gardens and ornate rooms.")
+    if st.session_state.koutoubia_next_answer is not None:
+        if st.session_state.koutoubia_next_answer == "Bahia Palace":
+            st.success("✅ Correct! Your next treasure is Bahia Palace.")
+            st.session_state.current_stop = 8
+            st.session_state.score += 10
+            st.session_state.koutoubia_next_answer = None
+            st.rerun()
+        else:
+            st.error("❌ Not quite. Think of the palace of brilliance.")
+            if st.button("🔄 Try again", key="retry_koutoubia_next"):
+                st.session_state.koutoubia_next_answer = None
+                st.rerun()
 
 
 def show_stop8_bahia():
@@ -935,16 +870,15 @@ def show_stop8_bahia():
 
     st.markdown("""
     <div class="magic-card">
-        <h3>👑 A Palace of Dreams</h3>
+        <h3>👑 A Palace of Brilliance</h3>
         <p>
-        Built in the 19th century, Bahia Palace was designed to be the greatest palace of its time.
-        Its name means <strong>“Brilliance”</strong>.
+        Built in the 19th century, Bahia Palace was designed to be one of the grandest palaces of its time.
+        Its name means <strong>brilliance</strong>, and its rooms, gardens, carved ceilings, and tiles show
+        the beauty of Moroccan craftsmanship.
         </p>
         <p>
-        With over <strong>150 rooms</strong>, peaceful gardens, fountains, and intricate decorations,
-        it represents the peak of Moroccan craftsmanship.
+        This is a place to admire, explore, and imagine royal life in Marrakech.
         </p>
-        <p><strong>🤯 Every ceiling, every tile, every door is handmade.</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -953,56 +887,26 @@ def show_stop8_bahia():
     except:
         pass
 
-    # 🧩 Quiz
-    st.markdown("### 🧩 Final Palace Challenge")
-    with st.form("bahia_quiz"):
-        answer = st.text_input("What does 'Bahia' mean?", placeholder="Hint: something beautiful...")
-        submitted = st.form_submit_button("Submit Answer")
-        if submitted:
-            if answer.lower().strip() in ["brilliance", "brilliant", "beauty"]:
-                st.session_state.bahia_quiz_done = True
-                st.success("✅ Correct! You truly understand Moroccan elegance.")
-            else:
-                st.error("❌ Not quite — think of beauty and brilliance.")
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🧭 Next Stop</h3>
+        <p>
+        Your journey continues from the palace to one of Morocco’s oldest crafts:
+        <strong>pottery</strong>.
+        </p>
+        <p><strong>Get ready — earth will become art.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # ✅ Next step hype for pottery
-    if st.session_state.bahia_quiz_done:
-        st.markdown("""
-        <div class="magic-card">
-            <h3>🏺 Next Stop: Moroccan Pottery</h3>
-            <p>
-            From palaces to clay… your journey now leads to one of Morocco’s oldest crafts:
-            pottery. Where earth becomes art. Get ready to see magic in your hands!
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        try:
-            st.image("moroccan_pottery.jpg", use_container_width=True)
-        except:
-            st.warning("⚠️ Add moroccan_pottery.jpg")
-
-        st.markdown("### 🔐 Enter artisan code to continue")
-        code = st.text_input("Enter final artisan code", placeholder="e.g. KENZQUEST2026", key="code_gate_bahia")
-        if st.button("Unlock Final Stop"):
-            if code.strip() == PARTNER_ACCESS_CODE:
-                st.session_state.current_stop = 9
-                st.session_state.score += 10
-                st.success("🎉 Final path unlocked! You can now finish your journey with a souvenir/certificate.")
-                st.markdown("[📄 Download Your Certificate](#)")  # Replace # with actual download link
-                st.rerun()
-            else:
-                st.error("❌ Incorrect code.")
+    if st.button("➡️ Continue to Pottery Shop", type="primary"):
+        st.session_state.current_stop = 9
+        st.session_state.score += 5
+        st.rerun()
 
 
 def show_stop9_pottery():
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
-
-    try:
-        st.image("pottery_workshop.jpg", use_container_width=True)
-    except:
-        st.warning("⚠️ Add pottery_workshop.jpg")
 
     st.markdown("""
     <div class="magic-card">
@@ -1020,23 +924,80 @@ def show_stop9_pottery():
     """, unsafe_allow_html=True)
 
     try:
-        st.image("pottery_products.jpg", use_container_width=True)
+        st.image("pottery_workshop.jpg", caption="The pottery workshop", use_container_width=True)
     except:
-        pass
+        st.warning("⚠️ Add pottery_workshop.jpg")
+
+    try:
+        st.image("pottery_products.jpg", caption="Finished pottery pieces", use_container_width=True)
+    except:
+        st.warning("⚠️ Add pottery_products.jpg")
 
     st.markdown("""
     <div class="magic-card">
-        <h3>🎉 Congratulations, Explorer!</h3>
+        <h3>🎁 Special Offer</h3>
         <p>
-        You have completed the Kenz Quest journey through Marrakech.
-        From stories and dynasties to crafts and cuisine — you’ve experienced Morocco’s living heritage.
+        Give this code to your pottery master to enjoy <strong>40% off</strong> of the class.
+        </p>
+        <p>
+        After that, the pottery master will give you a code. Enter it below to download your certificate.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    # ✅ Final certificate / souvenir download
-    st.success(f"🏆 Final Score: {st.session_state.score}")
-    st.markdown("[📄 Download Your Certificate / Souvenir](#)")  # Replace # with actual link
+    if "pottery_code_entered" not in st.session_state:
+        st.session_state.pottery_code_entered = False
+
+    if not st.session_state.pottery_code_entered:
+        code = st.text_input(
+            "Enter the pottery master code",
+            placeholder="e.g. KENZQUEST2026",
+            key="pottery_master_code"
+        )
+
+        if st.button("Unlock Certificate", type="primary"):
+            if code.strip() == PARTNER_ACCESS_CODE:
+                st.session_state.pottery_code_entered = True
+                st.success("✅ Correct! Your certificate is ready.")
+                st.rerun()
+            else:
+                st.error("❌ Incorrect code. Try again.")
+
+    if st.session_state.pottery_code_entered:
+        certificate_html = f"""
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Kenz Quest Certificate</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    padding: 60px;
+                    border: 12px solid #b8860b;
+                    margin: 30px;
+                }}
+                h1 {{ color: #8b0000; }}
+                .name {{ font-size: 28px; font-weight: bold; margin: 25px 0; }}
+                .small {{ margin-top: 30px; color: #444; }}
+            </style>
+        </head>
+        <body>
+            <h1>Certificate of Completion</h1>
+            <p>This certificate is proudly awarded to</p>
+            <div class="name">Kenz Quest Explorer</div>
+            <p>for completing the Marrakech treasure hunt through Koutoubia, Bahia Palace, and Moroccan Pottery.</p>
+            <p class="small">Kenz Quest • Trésor Marocain</p>
+        </body>
+        </html>
+        """
+
+        st.download_button(
+            "📄 Download Your Certificate",
+            data=certificate_html.encode("utf-8"),
+            file_name="Kenz_Quest_Certificate.html",
+            mime="text/html"
+        )
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
