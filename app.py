@@ -316,7 +316,6 @@ def show_stop1_story():
     # ---------------- WEBAR GENIE ----------------
     st.markdown("### 🧞 The Genie Speaks")
 
-    # 🔗 Replace with your ACTUAL WebAR link for this scene
     genie_stop1_url = "https://mywebar.com/p/Project_2_ncf4wq5286"
 
     components.iframe(genie_stop1_url, height=700, scrolling=True)
@@ -446,7 +445,7 @@ def show_stop2_cafe():
     """, unsafe_allow_html=True)
 
     # IMAGE PLACEHOLDER
-    st.image("fact1.jpg", caption="(Add image of Jebel Irhoud here)", use_container_width=True)
+    st.image("fact1.jpg", caption="", use_container_width=True)
 
     # ================== FACT 2 ==================
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
@@ -464,7 +463,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("fact2.jpg", caption="(Add image of Volubilis here)", use_container_width=True)
+    st.image("fact2.jpg", caption="", use_container_width=True)
 
     # ================== FACT 3 ==================
     st.markdown("### 🎓 Fact 3: The Oldest University")
@@ -482,7 +481,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("fact3.jpg", caption="(Add image of al-Qarawiyyin here)", use_container_width=True)
+    st.image("fact3.jpg", caption="", use_container_width=True)
 
     # ================== FACT 4 ==================
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
@@ -500,7 +499,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
 
-    st.image("fact4.jpg", caption="(Add image related to Ibn Battuta here)", use_container_width=True)
+    st.image("fact4.jpg", caption="", use_container_width=True)
 
     # ================== FUN MOMENT ==================
     st.markdown("### 😂 Moroccan Break Time")
@@ -508,12 +507,8 @@ def show_stop2_cafe():
     st.markdown("""
     <div class="magic-card">
         <p style="font-size:1.2rem;">
-        لمونا دازت الاکزام، شحال جابت؟  
+        ليمونا دازت الاکزام، شحال جابت؟  
         <br><strong>عسرة على عسرة 😭</strong>
-        </p>
-        <p style="opacity:0.8;">
-        (When Mona passed her exam, what did she get?  
-        A 10… on top of another 10 😂)
         </p>
     </div>
     """, unsafe_allow_html=True)
