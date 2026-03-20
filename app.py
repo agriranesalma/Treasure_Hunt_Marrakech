@@ -900,15 +900,28 @@ def show_stop7_koutoubia():
                 else:
                     st.error("❌ Not quite — try again.")
 
-        if st.session_state.get("koutoubia_berber_quiz_done"):
-            st.markdown("""
-            <div class="magic-card">
-                <h3>Next Stop: Bahia Palace</h3>
-                <p>
-                Ready for grandeur? From Berber letters to Moroccan royalty, Bahia Palace awaits with its stunning architecture and gardens.
-                </p>
-            </div>
-            """, unsafe_allow_html=True)
+        # After the Berber calligraphy code and quiz:
+    if st.session_state.get("koutoubia_calligraphy_done") and st.session_state.get("koutoubia_berber_quiz_done"):
+    
+        st.markdown("""
+        <div class="magic-card">
+            <h4>🧩 Choose Your Next Stop</h4>
+            <p>Where should your journey continue after Berber calligraphy?</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+        # Multiple choice quiz for next stop
+        stops_options = ["Majorelle Garden", "Bahia Palace", "Saadian Tombs", "Jemaa el-Fnaa"]
+        selected_stop = st.radio("Pick the correct next stop:", stops_options, key="next_stop_quiz")
+    
+        if st.button("Submit Choice", key="next_stop_button"):
+            if selected_stop == "Bahia Palace":
+                st.session_state.current_stop = 8
+                st.session_state.score += 10
+                st.success("✅ Correct! Bahia Palace is your next treasure.")
+                st.rerun()  # moves them to the next function automatically
+            else:
+                st.error("❌ Not quite — think about the grand palace with gardens and ornate rooms.")
 
 
 def show_stop8_bahia():
