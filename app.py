@@ -741,9 +741,8 @@ def show_stop6_cuisine():
         <strong>Harira</strong> was once the essential soup to break the fast during Ramadan, combining lentils, chickpeas, and tomatoes in a fragrant, hearty meal.
         </p>
         <p>
-        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — making it a living history you can taste.
+        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — it's a living history what you are about to taste.
         </p>
-        <p><strong>😋 Imagine the aroma of spices filling your kitchen as you cook!</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
