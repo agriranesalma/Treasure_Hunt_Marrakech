@@ -798,7 +798,7 @@ def show_stop7_koutoubia():
 
     st.image(
         "koutoubia.jpg",
-        caption="(Add image of Koutoubia here)",
+        caption="",
         use_container_width=True
     )
 
@@ -821,11 +821,9 @@ def show_stop7_koutoubia():
             <li>C) 5</li>
             <li>D) 7</li>
         </ul>
-        <p><strong>Answer:</strong> 5 golden balls. (They sit atop the minaret as decoration, shining in the sun.)</p>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("### 🧩 Mini quiz: look closely at the minaret")
     with st.form("koutoubia_arches_form"):
         arches = st.text_input(
             "How many arches are at the top?",
