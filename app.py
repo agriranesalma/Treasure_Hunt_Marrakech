@@ -724,20 +724,35 @@ def show_stop6_cuisine():
     st.markdown("### 📜 Moroccan Culinary Wonders")
     st.markdown("""
     <div class="magic-card">
-        <p>
-        Did you know? The <strong>tangia</strong> of Marrakech is named after the clay pot it’s cooked in, 
-        traditionally slow-cooked in communal ovens. Saffron, preserved lemons, and local spices tell stories 
-        of centuries of trade and culture.
-        </p>
-        <p>
-        <strong>Harira</strong> was once the essential soup to break the fast during Ramadan, combining lentils, chickpeas, and tomatoes in a fragrant, hearty meal.
-        </p>
-        <p>
-        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — making it a living history you can taste.
-        </p>
-        <p><strong>😋 Imagine the aroma of spices filling your kitchen as you cook!</strong></p>
-    </div>
-    """, unsafe_allow_html=True)
+    <p>
+    Look around you… this is not just a meal — it is a celebration of Moroccan culture.
+    </p>
+
+    <p>
+    At the center, a traditional <strong>tangia</strong> slowly cooked in clay, infused with spices, preserved lemons, and centuries of Marrakech tradition.
+    </p>
+
+    <p>
+    Surrounding it, a feast unfolds:
+    golden <strong>couscous</strong> with vegetables,
+    rich <strong>harira</strong> soup,
+    crispy <strong>briouates</strong>,
+    fresh salads, olives, and perfectly grilled fish.
+    </p>
+
+    <p>
+    Every dish tells a story — from the Atlas mountains to the Atlantic coast,
+    blending <strong>Arab, Amazigh (Berber), Andalusian, and Mediterranean influences</strong>.
+    </p>
+
+    <p>
+    And of course… no Moroccan table is complete without <strong>mint tea</strong>,
+    a symbol of hospitality and sharing.
+    </p>
+
+    <p><strong>😋 This is not just food… it’s Morocco on a table.</strong></p>
+</div>
+""", unsafe_allow_html=True)
 
     # ---------------- MINI TIP ----------------
     st.info("💡 Tip: While imagining your meal, think about the stories every ingredient tells — every spice has a history.")
