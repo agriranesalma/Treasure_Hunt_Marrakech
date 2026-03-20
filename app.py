@@ -701,7 +701,7 @@ def show_stop6_cuisine():
     st.markdown(
     """
     <div class="magic-card">
-         <h3>🌿 Welcome, chef!</h3>
+
         <p>
         Look around you... this is not just a meal — it is a celebration of Moroccan culture.
         </p>
@@ -729,6 +729,7 @@ def show_stop6_cuisine():
         </p>
 
         <p><strong>This is not just food... it is Morocco on a table.</strong></p>
+
     </div>
     """,
     unsafe_allow_html=True
