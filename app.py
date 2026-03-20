@@ -64,19 +64,13 @@ st.markdown("""
 }
 
 .magic-card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,215,0,0.05));
-    border: 1px solid rgba(255,215,0,0.25);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,215,0,0.22);
     border-radius: 24px;
-    padding: 1.2rem 1.3rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    backdrop-filter: blur(14px);
-    margin: 0.8rem 0;
-    transition: 0.3s ease;
-}
-
-.magic-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    padding: 1.1rem 1.2rem;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    backdrop-filter: blur(12px);
+    margin: 0.6rem 0;
 }
 
 .magic-card h3, .magic-card h4, .magic-card p, .magic-card li {
@@ -704,42 +698,20 @@ def show_stop6_cuisine():
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
 
     # ---------------- INTRO ----------------
-    st.markdown(
-    """
+    st.markdown("""
     <div class="magic-card">
-
+        <h3>🌿 Welcome, chef!</h3>
         <p>
-        Look around you... this is not just a meal — it is a celebration of Moroccan culture.
+        From the bustling markets of Marrakech to the calm kitchens of old medinas,
+        Moroccan cuisine is a symphony of flavors. Today, you will get your hands on some iconic dishes —
+        starting with <strong>Tangia</strong>, the Marrakech specialty slow-cooked in clay pots, not to be confused with tagine.
         </p>
-
         <p>
-        At the center, a traditional <strong>tangia</strong> slowly cooked in clay, infused with spices, preserved lemons, and centuries of Marrakech tradition.
+        You will also discover secrets of <strong>pastilla</strong>, <strong>harira</strong>, and aromatic <strong>spiced couscous</strong>.
         </p>
-
-        <p>
-        Surrounding it, a feast unfolds:
-        golden <strong>couscous</strong> with vegetables,
-        rich <strong>harira</strong> soup,
-        crispy <strong>briouates</strong>,
-        fresh salads, olives, and perfectly grilled fish.
-        </p>
-
-        <p>
-        Every dish tells a story — from the Atlas Mountains to the Atlantic coast,
-        blending <strong>Arab, Amazigh (Berber), Andalusian, and Mediterranean influences</strong>.
-        </p>
-
-        <p>
-        And of course... no Moroccan table is complete without <strong>mint tea</strong>,
-        a symbol of hospitality and sharing.
-        </p>
-
-        <p><strong>This is not just food... it is Morocco on a table.</strong></p>
-
+        <p><strong>Get ready to cook, taste, and fall in love with Moroccan flavors!</strong></p>
     </div>
-    """,
-    unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
     # ---------------- IMAGE ----------------
     st.image(
@@ -750,7 +722,22 @@ def show_stop6_cuisine():
 
     # ---------------- FUN HISTORY ----------------
     st.markdown("### 📜 Moroccan Culinary Wonders")
-    
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        Did you know? The <strong>tangia</strong> of Marrakech is named after the clay pot it’s cooked in, 
+        traditionally slow-cooked in communal ovens. Saffron, preserved lemons, and local spices tell stories 
+        of centuries of trade and culture.
+        </p>
+        <p>
+        <strong>Harira</strong> was once the essential soup to break the fast during Ramadan, combining lentils, chickpeas, and tomatoes in a fragrant, hearty meal.
+        </p>
+        <p>
+        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — making it a living history you can taste.
+        </p>
+        <p><strong>😋 Imagine the aroma of spices filling your kitchen as you cook!</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # ---------------- MINI TIP ----------------
     st.info("💡 Tip: While imagining your meal, think about the stories every ingredient tells — every spice has a history.")
