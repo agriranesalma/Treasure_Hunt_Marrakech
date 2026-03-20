@@ -130,7 +130,8 @@ if "stop4_zellige_correct" not in st.session_state:
     st.session_state.stop4_zellige_correct = False
 if "stop4_partner_unlocked" not in st.session_state:
     st.session_state.stop4_partner_unlocked = False
-
+if "koutoubia_quiz_done" not in st.session_state:
+    st.session_state.koutoubia_quiz_done = False
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
@@ -804,45 +805,53 @@ def show_stop7_koutoubia():
             "How many arches are at the top?",
             placeholder="Type a number"
         )
+    
         submitted = st.form_submit_button("Check Answer")
-
+    
         if submitted:
-            if arches.strip() in ["4", "four"]:
-                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches. ")  
-                st.markdown("""
-                <div class="magic-card">
-                    <h3>🧵 Next stop: Berber Calligraphy</h3>
-                    <p>
-                    Now that you have decoded the geometry of Koutoubia, your next treasure leads to the world of
-                    Berber calligraphy — where letters become art and identity.
-                    </p>
-                </div>
-                """, unsafe_allow_html=True)
-
-                st.image(
-                    "berber_calligraphy.jpg",
-                    caption="(Add image of Berber calligraphy here)",
-                    use_container_width=True
-                )
-
-                st.markdown("### 🔐 Enter the artisan code to continue")
-
-                code = st.text_input(
-                    "Enter artisan code",
-                    placeholder="e.g. KENZQUEST2026",
-                    key="code_gate_koutoubia"
-                )
-
-                if st.button("Unlock next stop", key="unlock_koutoubia", type="primary"):
-                    if code.strip() == PARTNER_ACCESS_CODE:
-                        st.session_state.current_stop = 8
-                        st.session_state.score += 10
-                        st.success("✅ Path unlocked! Heading to Berber Calligraphy.")
-                        st.rerun()
-                    else:
-                        st.error("❌ Incorrect code. Try again.")
+            if arches.strip().lower() in ["4", "four"]:
+                st.session_state.koutoubia_quiz_done = True
+                st.success("✅ Correct! The topmost tier has four intersecting polylobed arches.")
             else:
-                st.error("❌ Not quite — count the arches at the very top again.")
+                st.error("❌ Not quite — try again.")
+    if st.session_state.koutoubia_quiz_done:
+    
+        st.markdown("""
+        <div class="magic-card">
+            <h3>🧵 Next stop: Berber Calligraphy</h3>
+            <p>
+            Now that you have decoded the geometry of Koutoubia, your next treasure leads to the world of
+            Berber calligraphy — where letters become art and identity.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+        # ✅ SAFE IMAGE (avoid crash)
+        try:
+            st.image(
+                "berber_calligraphy.jpg",
+                caption="Berber calligraphy",
+                use_container_width=True
+            )
+        except:
+            st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
+    
+        st.markdown("### 🔐 Enter the artisan code to continue")
+    
+        code = st.text_input(
+            "Enter artisan code",
+            placeholder="e.g. KENZQUEST2026",
+            key="code_gate_koutoubia"
+        )
+    
+        if st.button("Unlock next stop", key="unlock_koutoubia"):
+            if code.strip() == PARTNER_ACCESS_CODE:
+                st.session_state.current_stop = 8
+                st.session_state.score += 10
+                st.success("✅ Path unlocked!")
+                st.rerun()
+            else:
+                st.error("❌ Incorrect code.")
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
