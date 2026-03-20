@@ -789,9 +789,11 @@ def show_stop7_koutoubia():
         <p>
         The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
         Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
-        major monuments of the Medina of Marrakesh. <p>
+        major monuments of the Medina of Marrakesh. 
         It was built under the Almohads, a Berber-led movement/dynasty, so in your story you can proudly say:
-        this is part of Morocco’s Berber heritage. </div>
+        this is part of Morocco’s Berber heritage.
+        </p>
+    </div>
     """, unsafe_allow_html=True)
 
     st.image(
@@ -800,8 +802,30 @@ def show_stop7_koutoubia():
         use_container_width=True
     )
 
-    st.markdown("### 🧩 Mini quiz: look closely at the minaret")
+    # ✅ New Learning Moment + Mini-Challenge card
+    st.markdown("""
+    <div class="magic-card">
+        <h3>📚 Learning Moment</h3>
+        <p>
+        “Koutoubia” comes from the Arabic <em>kutubiyyin</em> (كُتُبيين), meaning booksellers. 
+        Centuries ago, hundreds of book vendors sold manuscripts in the souk around the mosque. 
+        Today it’s a symbol of the city (its silhouette inspired Seville’s Giralda tower).
+        </p>
+        <h4>🧩 Mini-Challenge (Count the Orbs)</h4>
+        <p>
+        Atop Koutoubia’s minaret are golden orbs. How many can you spot from below?
+        </p>
+        <ul>
+            <li>A) 3</li>
+            <li>B) 4</li>
+            <li>C) 5</li>
+            <li>D) 7</li>
+        </ul>
+        <p><strong>Answer:</strong> 5 golden balls. (They sit atop the minaret as decoration, shining in the sun.)</p>
+    </div>
+    """, unsafe_allow_html=True)
 
+    st.markdown("### 🧩 Mini quiz: look closely at the minaret")
     with st.form("koutoubia_arches_form"):
         arches = st.text_input(
             "How many arches are at the top?",
@@ -816,8 +840,8 @@ def show_stop7_koutoubia():
                 st.success("✅ Correct! The topmost tier has four intersecting polylobed arches.")
             else:
                 st.error("❌ Not quite — try again.")
+
     if st.session_state.koutoubia_quiz_done:
-    
         st.markdown("""
         <div class="magic-card">
             <h3>🧵 Next stop: Berber Calligraphy</h3>
@@ -828,7 +852,6 @@ def show_stop7_koutoubia():
         </div>
         """, unsafe_allow_html=True)
     
-        # ✅ SAFE IMAGE (avoid crash)
         try:
             st.image(
                 "berber_calligraphy.jpg",
