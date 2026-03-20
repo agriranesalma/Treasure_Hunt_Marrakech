@@ -606,14 +606,10 @@ def show_stop4_saadian():
     <div class="magic-card">
         <h3>💎 What makes it magical?</h3>
         <ul>
-            <li>Italian Carrara marble</li>
-            <li>Pure gold decorations</li>
-            <li>Intricate Moroccan craftsmanship</li>
+            <li>Royal Grandeur: Rare Italian Carrara marble and accents of pure gold commissioned by the "Golden Sultan."</li>
+            <li>Artistic Mastery: A symphony of intricate Zellij tilework and hand-carved Muqarnas (honeycomb) plaster.</li>
+            <li>The Crown Jewel: The legendary Hall of Twelve Columns—widely considered one of the most stunning architectural monuments in Morocco.</li>
         </ul>
-        <p>
-        The most famous chamber — the Hall of Twelve Columns — is considered one of the most beautiful
-        monuments in Morocco.
-        </p>
     </div>
     """, unsafe_allow_html=True)
 
