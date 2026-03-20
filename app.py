@@ -526,6 +526,136 @@ def show_stop2_cafe():
     if st.button("➡️ Continue the Journey"):
         st.session_state.current_stop = 3
         st.rerun()
+
+def show_stop3_riddle():
+    st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <h3>Riddle</h3>
+        <p style="font-size:1.2rem;">
+        Hidden for centuries behind silent walls,  
+        I guard kings who ruled with power and gold.  
+        My beauty was forgotten, then found once more from the sky.  
+        Marble, gold, and silence… where am I?
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    options = [
+        "A) Bahia Palace",
+        "B) El Badi Palace",
+        "C) Saadian Tombs",
+        "D) Koutoubia Mosque"
+    ]
+
+    if "stop3_answer" not in st.session_state:
+        st.session_state.stop3_answer = None
+
+    cols = st.columns(2)
+
+    for i, opt in enumerate(options):
+        with cols[i % 2]:
+            if st.button(opt, key=f"stop3_{i}", use_container_width=True):
+                st.session_state.stop3_answer = opt
+                st.rerun()
+
+    if st.session_state.stop3_answer:
+        if st.session_state.stop3_answer == "C) Saadian Tombs":
+            st.success("✅ Correct! The hidden dynasty reveals itself...")
+            st.session_state.current_stop = 4
+            st.session_state.score += 20
+            st.rerun()
+        else:
+            st.error("❌ Not quite... try again.")
+            if st.button("🔄 Retry"):
+                st.session_state.stop3_answer = None
+                st.rerun()
+def show_stop4_saadian():
+    st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
+
+    # IMAGE PLACEHOLDER
+    st.image("saadian_tombs.jpg", caption="(Add image of Saadian Tombs here)", use_container_width=True)
+
+    # HISTORY
+    st.markdown("""
+    <div class="magic-card">
+        <h3>📜 A Lost Treasure Rediscovered</h3>
+        <p>
+        Built during the reign of the Saadian dynasty, these tombs date back to the late 16th century,
+        under Sultan Ahmed al-Mansur.
+        </p>
+        <p>
+        After the fall of the Saadians, the tombs were sealed and forgotten for centuries…
+        until they were rediscovered in 1917 using aerial photography.
+        </p>
+        <p><strong>🤯 Imagine: a royal burial site hidden for 300 years.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # WONDERS
+    st.markdown("""
+    <div class="magic-card">
+        <h3>💎 What makes it magical?</h3>
+        <ul>
+            <li>Italian Carrara marble</li>
+            <li>Pure gold decorations</li>
+            <li>Intricate Moroccan craftsmanship</li>
+        </ul>
+        <p>
+        The most famous chamber — the Hall of Twelve Columns — is considered one of the most beautiful
+        monuments in Morocco.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # SECOND IMAGE PLACEHOLDER
+    st.image("saadian_inside.jpg", caption="(Add interior details here)", use_container_width=True)
+
+    # QUIZ TRANSITION
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🔍 Look closely...</h3>
+        <p>
+        Around you, the walls are covered with intricate geometric patterns.
+        This art form is one of Morocco’s most iconic traditions.
+        </p>
+        <p><strong>Can you name it?</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    answer = st.text_input("Your answer...")
+
+    if st.button("Submit Answer"):
+        if answer.lower().strip() in ["zellige", "zellij", "zellige tile"]:
+            st.success("🎉 Correct! You have the eye of a true explorer.")
+
+            st.markdown("""
+            <div class="magic-card">
+                <h3>🎨 The Journey Continues</h3>
+                <p>
+                Zellige is the soul of Moroccan geometry — handcrafted tilework shaped piece by piece.
+                </p>
+                <p>
+                Now, it’s time to see where this art is born...
+                </p>
+                <p><strong>➡️ Your next stop: a Zellige artisan workshop.</strong></p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # IMAGE PLACEHOLDER
+            st.image("zellige_workshop.jpg", caption="(Add zellige artisan image here)", use_container_width=True)
+
+            if st.button("➡️ Go to Zellige Workshop"):
+                st.session_state.current_stop = 5
+                st.session_state.score += 25
+                st.rerun()
+
+        else:
+            st.error("❌ Not quite... look closer at the patterns around you.")
+                
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest     -      مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -684,6 +814,11 @@ else:
 
     elif current == 2:
         show_stop2_cafe()
+    elif current == 3:
+    show_stop3_riddle()
+
+    elif current == 4:
+    show_stop4_saadian()
     else:
         st.success(f"Stop {current} page goes here.")
 
