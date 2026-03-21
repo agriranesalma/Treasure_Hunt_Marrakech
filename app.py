@@ -793,7 +793,7 @@ def show_stop7_koutoubia():
     except:
         st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
     
-    st.markdown("### 🔐 Enter the artisan code to continue")
+    st.markdown("### 🔐 Enter partner code given to you by the calligraphy artisan master")
     
     code = st.text_input(
             "Enter artisan code",
