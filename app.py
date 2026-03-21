@@ -158,7 +158,7 @@ quizzes_data = {
     1: { 
         "general": [
             {"q": "Which 1975 peaceful march saw 350,000 Moroccans walk into the Sahara to assert national sovereignty?", "options": ["Green March", "Independence Walk", "Desert Caravan", "Atlas March"], "correct": "Green March"},
-            {"q": "During World War II, Mohammed V famously refused to apply the Vichy government's anti-Semitic laws. Who was he protecting?", "options": ["The Moroccan Jewish community", "The French settlers", "The British soldiers", "The Spanish merchants"], "correct": "The Moroccan Jewish community"}
+            {"q": "During World War II, Mohammed V famously refused to apply the Vichy government's laws. Who was he protecting?", "options": ["The Moroccan Jewish community", "The French settlers", "The British soldiers", "The Spanish merchants"], "correct": "The Moroccan Jewish community"}
         ],
         "detailed": [
             {"q": "Look at the official 'UNESCO World Heritage' plaque located near the square's entrance—what is the first word of the second line?", "correct": "masterpiece"},
