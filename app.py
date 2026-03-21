@@ -869,7 +869,7 @@ def show_stop9_pottery():
     st.image("pottery_products.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
-        st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your pottery master...</p></div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your pottery master to enjoy <strong>40% off</strong></p></div>""", unsafe_allow_html=True)
         if not st.session_state.pottery_code_entered:
             code = st.text_input("Enter the pottery master code", placeholder="e.g. KENZQUEST2026", key="pottery_master_code")
             if st.button("Unlock Certificate", type="primary"):
