@@ -710,13 +710,13 @@ if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown("""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
+
 .mini-tagline {
-    font-size: 12px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 16px;
     color: #c9a96e;
-    font-style: italic;
     text-align: center;
-    transform: rotate(-2deg);
-    display: inline-block;
     margin-top: -10px;
 }
 </style>
