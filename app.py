@@ -168,7 +168,7 @@ quizzes_data = {
     2: { 
         "general": [
             {"q": "Which Moroccan city is so famous for filmmaking that it has hosted Gladiator, Game of Thrones, and The Mummy?", "options": ["Ouarzazate", "Casablanca", "Agadir", "Tangier"], "correct": "Ouarzazate"},
-            {"q": "Morocco was the very first country in the world to recognize the independence of which superpower in 1777?", "options": ["USA", "France", "Russia", "China"], "correct": "USA"}
+            {"q": "Morocco was the very first country in the world to recognize the independence of which country in 1777?", "options": ["USA", "France", "Russia", "China"], "correct": "USA"}
         ],
         "detailed": [
             {"q": "In Moroccan tea culture, why is the tea traditionally poured from a great height into the glass?", "correct": "to create foam"},
