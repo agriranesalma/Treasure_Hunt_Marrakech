@@ -820,7 +820,6 @@ def show_stop8_bahia():
         <h3>👑 A Palace of Dreams</h3>
         <p>
         Built in the 19th century, Bahia Palace was designed to be the greatest palace of its time.
-        Its name means <strong>“Brilliance”</strong>.
         </p>
         <p>
         With over <strong>150 rooms</strong>, peaceful gardens, fountains, and intricate decorations,
