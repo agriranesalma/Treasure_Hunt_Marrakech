@@ -453,7 +453,7 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>🛤️ The Journey Continues</h3><p>{stop["transition"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("### 🎧 Listen to Hassani Poetry")
     st.info("💡 Tip: Use headphones for an immersive experience.")
-    st.image("sahara.png", caption="The Sahara — where poetry travels with the wind", use_container_width=True, width =300)
+    st.image("sahara.png", caption="The Sahara — where poetry travels with the wind", use_container_width=True, width =100)
     if st.button("🎧 Play the voice of the desert"):
         audio_file = open("hassani_poetry.mp3", "rb")
         st.audio(audio_file.read(), format="audio/mp3")
@@ -483,7 +483,7 @@ def show_partner_code_gate(next_label, next_stop_num):
     st.image(
         "sahrawijewlery.png",
         caption="A traditional Sahrawi silver piece you will learn to create",
-        use_container_width=True, width =300
+        use_container_width=True, width =50
     )
     st.markdown("""
     <div class="magic-card">
