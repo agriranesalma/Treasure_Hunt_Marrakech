@@ -493,7 +493,7 @@ def show_partner_code_gate(next_label, next_stop_num):
         </p>
     </div>
     """, unsafe_allow_html=True)
-    st.markdown(f'<div class="tag-subtitle">Unlock the next treasure: {next_label}</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Unlock the next treasure: </div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><p>Enter the code given to you by the artisan to open the next stop.</p></div>""", unsafe_allow_html=True)
     code = st.text_input("Enter code", placeholder="e.g. KENZQUEST2026", key=f"partner_code_gate_{next_stop_num}")
     if st.button("Unlock next stop", key=f"unlock_btn_{next_stop_num}", type="primary"):
