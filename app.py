@@ -856,9 +856,9 @@ def show_stop9_pottery():
     st.image("pottery_workshop.jpg", use_container_width=True)
     st.markdown("""
     <div class="magic-card">
-        <h3>What YOU will be making and taking home with you</h3>
+        <h3>                        What you will be making and taking home with you</h3>
         <p>
-        Mini moroccan tagines with the mesmerizing colors of your choice
+                            Mini moroccan tagines with the mesmerizing colors of your choice
         </p>
     </div>
     """, unsafe_allow_html=True)
