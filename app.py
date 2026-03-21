@@ -1,18 +1,23 @@
-import streamlit as st
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Updated Kenz Quest Code</title>
+</head>
+<body>
+    <pre><code>import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components
 try:
     from streamlit_image_coordinates import streamlit_image_coordinates
 except ImportError:
     streamlit_image_coordinates = None
-
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="كنز المغرب • Trésor Marocain",
     layout="wide",
     page_icon="🗺️"
 )
-
 # ---------------- THEME / CSS ----------------
 st.markdown("""
 <style>
@@ -97,7 +102,6 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-
 # ---------------- SESSION STATE ----------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
@@ -113,18 +117,14 @@ if "quiz_unlocked" not in st.session_state:
     st.session_state.quiz_unlocked = {}
 if "pottery_code_entered" not in st.session_state:
     st.session_state.pottery_code_entered = False
-
 if "quiz_correct_count" not in st.session_state:
     st.session_state.quiz_correct_count = {i: 0 for i in range(1, 10)}
 if "quiz_submitted" not in st.session_state:
     st.session_state.quiz_submitted = {}
-
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
 PARTNER_ACCESS_CODE = "KENZQUEST2026"
-
-# Fake stop titles for immersive "location detection" message
 stop_titles = {
     1: "Jemaa el-Fna — The Open-Air Theater",
     2: "☕ Partner Café Stop",
@@ -136,7 +136,6 @@ stop_titles = {
     8: "🏛️ Bahia Palace",
     9: "🏺 Pottery / Souk"
 }
-
 # ---------------- STOP 1 CONTENT ----------------
 stops_data = {
     1: {
@@ -154,7 +153,6 @@ stops_data = {
         "next_stop_intro": "The next stop is a Hassani Silver Filigree artisan..."
     }
 }
-
 quizzes_data = {
     1: { # Jemaa el-Fna
         "general": [
@@ -247,11 +245,9 @@ quizzes_data = {
         ]
     }
 }
-
 # ---------------- HELPERS ----------------
 def render_webar(url, height=680):
     components.iframe(url, height=height, scrolling=True)
-
 def show_quiz_challenge(stop_num):
     """Fixed quiz system: permanent success messages, progress tracking, unlock only after ALL 4 correct"""
     st.markdown("---")
@@ -263,15 +259,12 @@ def show_quiz_challenge(stop_num):
         <p><strong>Detailed On-Site</strong> = only visible if you are physically at the stop (answers NOT in the story text)</p>
     </div>
     """, unsafe_allow_html=True)
-
     data = quizzes_data.get(stop_num, {"general": [], "detailed": []})
-
     st.markdown("### 📚 General Knowledge Quizzes")
     for i, q in enumerate(data["general"]):
         submitted_key = f"{stop_num}_gen_{i}"
         if submitted_key not in st.session_state.quiz_submitted:
             st.session_state.quiz_submitted[submitted_key] = False
-
         if not st.session_state.quiz_submitted[submitted_key]:
             st.subheader(f"General {i+1}")
             ans = st.radio(q["q"], q["options"], key=f"gen_{stop_num}_{i}", index=None)
@@ -287,13 +280,11 @@ def show_quiz_challenge(stop_num):
         else:
             st.subheader(f"General {i+1} ✅")
             st.success("Completed correctly!")
-
     st.markdown("### 🔍 On-Site Detailed Quizzes (Must be here!)")
     for i, q in enumerate(data["detailed"]):
         submitted_key = f"{stop_num}_det_{i}"
         if submitted_key not in st.session_state.quiz_submitted:
             st.session_state.quiz_submitted[submitted_key] = False
-
         if not st.session_state.quiz_submitted[submitted_key]:
             st.subheader(f"Detailed {i+1}")
             ans = st.text_input(q["q"], key=f"det_{stop_num}_{i}", placeholder="Type exactly what you see on-site...")
@@ -311,12 +302,9 @@ def show_quiz_challenge(stop_num):
         else:
             st.subheader(f"Detailed {i+1} ✅")
             st.success("On-site detail verified!")
-
-    # Progress & unlock
     correct_count = st.session_state.quiz_correct_count.get(stop_num, 0)
     st.markdown(f"**Progress: {correct_count}/4 correct answers**")
     st.progress(correct_count / 4.0)
-
     if correct_count >= 4:
         if not st.session_state.quiz_unlocked.get(stop_num, False):
             st.session_state.quiz_unlocked[stop_num] = True
@@ -324,8 +312,6 @@ def show_quiz_challenge(stop_num):
             st.success("🎉 All challenges completed! The path to the next treasure is now open.")
     else:
         st.info("Complete all 4 quizzes to unlock the next stop.")
-
-# ---------------- SHOW FUNCTIONS (with fixes) ----------------
 def show_welcome_page():
     st.markdown('<h1 class="big-title">Welcome Traveler • مرحبًا بك أيها المسافر</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🧞 The Genie is waiting for you</div>', unsafe_allow_html=True)
@@ -339,8 +325,14 @@ def show_welcome_page():
     with col2:
         st.markdown("### 🪄 WebAR Genie")
         render_webar(welcome_url, height=620)
-
 def show_entry_riddle():
+    st.markdown("""
+    <div class="notice" style="text-align:center; font-size:1.1rem;">
+        📍 <strong>The user is Gueliz Marrakech</strong><br>
+        <small>🧭 Adventure starting from the modern heart of the Red City — you can be anywhere!</small>
+    </div>
+    """, unsafe_allow_html=True)
+    
     stop = stops_data[1]
     if 1 not in st.session_state.stop_answers:
         st.session_state.stop_answers[1] = {"riddle": None, "unlocked": False}
@@ -374,7 +366,6 @@ def show_entry_riddle():
     with col2:
         st.markdown("### 🧞 The Genie watches the square")
         render_webar(riddle_url_stop1, height=620)
-
 def show_stop1_story():
     stop = stops_data[1]
     st.markdown(f'<h1 class="big-title">{stop["title"]}</h1>', unsafe_allow_html=True)
@@ -394,15 +385,11 @@ def show_stop1_story():
     if st.button("🎧 Play the voice of the desert"):
         audio_file = open("hassani_poetry.mp3", "rb")
         st.audio(audio_file.read(), format="audio/mp3")
-
     show_quiz_challenge(1)
-
-    # FIXED: Code gate only after all quizzes complete
     if st.session_state.quiz_unlocked.get(1, False):
         show_partner_code_gate(next_label=stops_data[1].get("next_stop_label"), next_stop_num=2)
     else:
         st.warning("🔒 Complete all 4 Knowledge Challenges above to unlock the Silver Path Gate.")
-
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown("---")
@@ -444,7 +431,6 @@ def show_partner_code_gate(next_label, next_stop_num):
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
-
 def show_stop2_cafe():
     st.markdown('<h1 class="big-title">☕ Café Stop — A Moment to Breathe</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🫖 Pause, sip, and discover Morocco</div>', unsafe_allow_html=True)
@@ -454,9 +440,7 @@ def show_stop2_cafe():
     st.markdown("### 🧬 Fact 1: Origins of Humanity")
     st.markdown("""<div class="magic-card"><p>In 2017, scientists discovered that human remains at <strong>Jebel Irhoud</strong> are about <strong>300,000 years old</strong>...</p></div>""", unsafe_allow_html=True)
     st.image("fact1.jpg", use_container_width=True)
-     # ================== FACT 2 ==================
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -469,12 +453,8 @@ def show_stop2_cafe():
         <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact2.jpg", caption="", use_container_width=True)
-
-    # ================== FACT 3 ==================
     st.markdown("### 🎓 Fact 3: The Oldest University")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -487,12 +467,8 @@ def show_stop2_cafe():
         <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact3.jpg", caption="", use_container_width=True)
-
-    # ================== FACT 4 ==================
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -505,40 +481,30 @@ def show_stop2_cafe():
         <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact4.jpg", caption="", use_container_width=True)
-
-    # ================== FUN MOMENT ==================
     st.markdown("### 😂 Moroccan Break Time")
-
     st.markdown("""
     <div class="magic-card">
         <p style="font-size:1.2rem;">
-        ليمونا دوزات امتحان، شحال جابت؟  
+        ليمونا دوزات امتحان، شحال جابت؟
         <br><strong>عسرة على عسرة 😭</strong>
         </p>
     </div>
     """, unsafe_allow_html=True)
     show_quiz_challenge(2)
-
-    # FIXED: Continue button only after quizzes
     if st.session_state.quiz_unlocked.get(2, False):
         if st.button("➡️ Continue the Journey", type="primary", use_container_width=True):
             st.session_state.current_stop = 3
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue the journey.")
-
 def show_stop3_riddle():
     st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>Riddle</h3><p style="font-size:1.2rem;">I am a masterpiece hidden behind high walls... Twelve columns of stone hold up my ceiling...</p></div>""", unsafe_allow_html=True)
-
     options = ["A) Bahia Palace", "B) El Badi Palace", "C) Saadian Tombs", "D) Koutoubia Mosque"]
-
     if "stop3_answer" not in st.session_state:
         st.session_state.stop3_answer = None
-
     if st.session_state.stop3_answer is None:
         cols = st.columns(2)
         for i, opt in enumerate(options):
@@ -549,9 +515,7 @@ def show_stop3_riddle():
     else:
         if st.session_state.stop3_answer == "C) Saadian Tombs":
             st.success("✅ Correct! The hidden dynasty reveals itself... Now prove you're here with the Knowledge Challenge!")
-
             show_quiz_challenge(3)
-
             if st.session_state.quiz_unlocked.get(3, False):
                 if st.button("➡️ Continue to Saadian Tombs", type="primary", use_container_width=True):
                     st.session_state.current_stop = 4
@@ -559,13 +523,11 @@ def show_stop3_riddle():
                     st.rerun()
             else:
                 st.info("✅ Riddle solved! Complete all 4 Knowledge Challenges above to continue.")
-
         else:
             st.error("❌ Not quite... try again.")
             if st.button("🔄 Retry Riddle", key="retry_stop3"):
                 st.session_state.stop3_answer = None
                 st.rerun()
-
 def show_stop4_saadian():
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
@@ -573,26 +535,19 @@ def show_stop4_saadian():
     st.markdown("""<div class="magic-card"><h3>📜 A Lost Treasure Rediscovered</h3><p>Built in the late 16th century by Sultan Ahmed al-Mansur...</p></div>""", unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>💎 What makes it magical?</h3><ul><li>Royal Grandeur: Rare Italian Carrara marble...</li><li>The Crown Jewel: The legendary Hall of Columns—widely considered one of the most stunning architectural monuments in Morocco.</li></ul></div>""", unsafe_allow_html=True)
     st.image("saadian_inside.jpg", use_container_width=True)
-
     show_quiz_challenge(4)
-
-    # FIXED: Button only after quizzes
     if st.session_state.quiz_unlocked.get(4, False):
         if st.button("➡️ Continue to Zellige Workshop", type="primary", use_container_width=True):
             st.session_state.current_stop = 5
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
-
 def show_stop5_zellige_workshop():
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Discover the art of Moroccan tiles</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><p>Welcome to the Zellige workshop! Here you will see how Moroccan artisans craft these intricate geometric tiles by hand.</p></div>""", unsafe_allow_html=True)
     st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles YOU WILL BE MAKING AT THE SHOP", use_container_width=True)
-
     show_quiz_challenge(5)
-
-    # FIXED: Code gate only after quizzes
     if st.session_state.quiz_unlocked.get(5, False):
         st.markdown('<h3 class="big-title">🔐 Partner Gate</h3>', unsafe_allow_html=True)
         st.markdown("""<div class="magic-card"><p>Enter partner code to continue</p></div>""", unsafe_allow_html=True)
@@ -607,17 +562,13 @@ def show_stop5_zellige_workshop():
                 st.error("❌ Incorrect code. Try again.")
     else:
         st.warning("🔒 Complete all Knowledge Challenges to access the partner code gate.")
-
 def show_stop6_cuisine():
     st.markdown('<h1 class="big-title">🍲 Moroccan Cuisine Class — Taste & Create</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>🌿 Welcome, chef!</h3><p>From the bustling markets of Marrakech...</p></div>""", unsafe_allow_html=True)
     st.image("moroccan_cuisine_table.jpg", caption="A Moroccan feast: Couscous, pastilla, harira, and more", use_container_width=True)
     st.markdown("""<div class="magic-card"><p>Did you know? The <strong>tangia</strong> of Marrakech...</p></div>""", unsafe_allow_html=True)
-
     show_quiz_challenge(6)
-
-    # FIXED: Instructor gate only after quizzes
     if st.session_state.quiz_unlocked.get(6, False):
         st.markdown("---")
         st.markdown('<h3 class="big-title">🔐 Instructor Gate</h3>', unsafe_allow_html=True)
@@ -633,31 +584,25 @@ def show_stop6_cuisine():
                 st.error("❌ Incorrect code.")
     else:
         st.warning("🔒 Complete all Knowledge Challenges to access the instructor code gate.")
-
 def show_stop7_koutoubia():
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>✨ Why it matters</h3><p>The Koutoubia is one of Marrakech’s most famous landmarks...</p></div>""", unsafe_allow_html=True)
     st.image("koutoubia.jpg", use_container_width=True)
-
     show_quiz_challenge(7)
-
     if st.session_state.quiz_unlocked.get(7, False):
         if st.button("➡️ Continue to Bahia Palace", type="primary", use_container_width=True):
             st.session_state.current_stop = 8
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
-
 def show_stop8_bahia():
     st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
     st.image("bahia_palace.jpg", use_container_width=True)
     st.markdown("""<div class="magic-card"><h3>👑 A Palace of Brilliance</h3><p>Built in the 19th century...</p></div>""", unsafe_allow_html=True)
     st.image("bahia_inside.jpg", use_container_width=True)
-
     show_quiz_challenge(8)
-
     if st.session_state.quiz_unlocked.get(8, False):
         if st.button("➡️ Continue to Pottery Shop", type="primary", use_container_width=True):
             st.session_state.current_stop = 9
@@ -665,16 +610,12 @@ def show_stop8_bahia():
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
-
 def show_stop9_pottery():
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
     st.image("pottery_workshop.jpg", use_container_width=True)
     st.image("pottery_products.jpg", use_container_width=True)
-
     show_quiz_challenge(9)
-
-    # FIXED: Pottery code only after quizzes
     if st.session_state.quiz_unlocked.get(9, False):
         st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your pottery master...</p></div>""", unsafe_allow_html=True)
         if not st.session_state.pottery_code_entered:
@@ -686,13 +627,11 @@ def show_stop9_pottery():
                     st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to access the special offer.")
-
     if st.session_state.quiz_unlocked.get(9, False) and st.session_state.pottery_code_entered:
         user_name = st.text_input("Enter your name for your certificate:")
         if user_name:
             certificate_html = f"""<html><head><meta charset="utf-8"><title>Kenz Quest Certificate</title><style>body {{font-family: 'Georgia', serif;text-align: center;padding: 60px;margin: 30px;background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.transparenttextures.com/patterns/arabesque.png');border: 15px double #b8860b;}} h1 {{color: #8b0000;font-size: 42px;}} .name {{font-size: 34px;font-weight: bold;margin: 30px 0;color: #2c2c2c;}}</style></head><body><h1>🏆 Certificate of Exploration</h1><h2>Kenz Quest • Trésor Marocain</h2><p class="text">This certificate is proudly awarded to</p><div class="name">{user_name}</div><p class="text">The Remarkable Traveler who followed the path of stories, craft, and memory across the heart of Morocco.</p><div class="footer">🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦</div></body></html>"""
             st.download_button("📄 Download Your Certificate", data=certificate_html.encode("utf-8"), file_name=f"Kenz_Quest_Certificate_{user_name}.html", mime="text/html")
-
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
@@ -784,18 +723,8 @@ else:
     # ---------------- MAIN QUEST ROUTING ----------------
     current = st.session_state.current_stop
     total_stops = 9
-
-    if current in stop_titles:
-        st.markdown(f"""
-        <div class="notice" style="text-align:center; font-size:1.1rem;">
-            📍 <strong>Detected your location at: {stop_titles[current]}</strong><br>
-            <small>🧭 Simulated GPS check complete — you are physically here for the on-site challenges!</small>
-        </div>
-        """, unsafe_allow_html=True)
-
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
-
     if current == 1:
         phase = st.session_state.stop1_phase
         if phase == "welcome":
@@ -820,5 +749,7 @@ else:
         show_stop8_bahia()
     elif current == 9:
         show_stop9_pottery()
-
     st.markdown(f"""<p style='text-align:center; opacity:0.7;'>📍 Step {current} of {total_stops}</p>""", unsafe_allow_html=True)
+</code></pre>
+</body>
+</html>
