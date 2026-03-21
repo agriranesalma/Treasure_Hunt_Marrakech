@@ -181,7 +181,7 @@ quizzes_data = {
             {"q": "n 1600, Sultan Ahmed al-Mansur sent a high-level diplomatic embassy to London. Which famous English Queen did he form a strategic alliance with to challenge the Spanish Empire?", "options": ["Queen Mary I", "Queen Victoria", "Queen Elizabeth I", "Queen Anne"], "correct": "Queen Elizabeth I"}
         ],
         "detailed": [
-            {"q": "Stand in the Hall of the Twelve Columns. Look at the pillars—how many large marble columns are supporting the central dome?", "correct": "12"},
+            {"q": "Look at the pillars—how many large marble columns are supporting the central dome?", "correct": "12"},
             {"q": "Look closely at the zellige floor patterns—what is the dominant color of the tiles surrounding the royal graves?", "correct": "green"}
         ]
     },
@@ -197,12 +197,12 @@ quizzes_data = {
     },
     6: { 
         "general": [
-            {"q": "What is the name of the famous Moroccan 'head of the shop' spice blend that can contain over 30 ingredients?", "options": ["Ras el Hanout", "Harissa", "Chermoula", "Kamoun"], "correct": "Ras el Hanout"},
+            {"q": "What is the name of the famous Moroccan spice blend that can contain over 30 ingredients?", "options": ["Ras el Hanout", "Harissa", "Chermoula", "Kamoun"], "correct": "Ras el Hanout"},
             {"q": "Morocco is one of the world's largest exporters of which 'red gold' spice grown in Taliouine?", "options": ["Saffron", "Paprika", "Cinnamon", "Cayenne"], "correct": "Saffron"}
         ],
         "detailed": [
-            {"q": "Look at the 'Tangia' pot being used. Does it have two handles, one handle, or no handles at all?", "correct": "two handles"},
-            {"q": "Observe the bread (Khobz) being prepared—before it is baked, what is traditionally sprinkled on top for texture?", "correct": "semolina"}
+            {"q": "Look at the large display plates (Taws) in the shop. What animal is on it", "correct": "Peacock"},
+            {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "correct": "Farnatchi"}
         ]
     },
     7: { 
@@ -227,12 +227,12 @@ quizzes_data = {
     },
     9: { 
         "general": [
-            {"q": "The blue pottery of Fez gets its iconic color from which mineral?", "options": ["Cobalt", "Copper", "Iron", "Zinc"], "correct": "Cobalt"},
-            {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "options": ["Farnatchi", "Hammam", "Souk", "Riad"], "correct": "Farnatchi"}
+            {"q": "In Moroccan pottery, After shaping a pot on the wheel, what is the usual next step before drying?","options": ["Covering the pot with cloth to preserve moisture", "Painting intricate designs with glaze", "Stacking the pots in the sun immediately", "Trimming the base to refine its shape"], "correct": "Trimming the base to refine its shape"},
+            {"q": "Traditional Moroccan pottery is typically dried in what?", "options": ["Wood-fired ovens", "Open-air courtyards","Ceramic kilns"], "correct": "Open-air courtyards"}
         ],
         "detailed": [
-            {"q": "Look at the large display plates (Taws) in the shop. What animal is on it", "correct": "Peacock"},
-            {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Is the texture sandy/rough or smooth like glass?", "correct": "sandy/rough"}
+            {"q": "The blue pottery of Fez gets its iconic color from which mineral?", "correct": "Cobalt"},
+            {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Whats is the texture like?", "correct": "sandy"}
         ]
     }
 }
