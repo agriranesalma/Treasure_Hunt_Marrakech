@@ -242,7 +242,6 @@ def render_webar(url, height=680):
     components.iframe(url, height=height, scrolling=True)
 
 def show_quiz_challenge(stop_num):
-    """Fixed quiz system: permanent success messages, progress tracking, unlock only after ALL 4 correct"""
     st.markdown("---")
     st.markdown('<h2 class="big-title">🧠 Knowledge Challenge</h2>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">2 General + 2 On-Site Detailed • Prove you are here!</div>', unsafe_allow_html=True)
@@ -879,7 +878,84 @@ def show_stop9_pottery():
     if st.session_state.quiz_unlocked.get(9, False) and st.session_state.pottery_code_entered:
         user_name = st.text_input("Enter your name for your certificate:")
         if user_name:
-            certificate_html = f"""<html><head><meta charset="utf-8"><title>Kenz Quest Certificate</title><style>body {{font-family: 'Georgia', serif;text-align: center;padding: 60px;margin: 30px;background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.transparenttextures.com/patterns/arabesque.png');border: 15px double #b8860b;}} h1 {{color: #8b0000;font-size: 42px;}} .name {{font-size: 34px;font-weight: bold;margin: 30px 0;color: #2c2c2c;}}</style></head><body><h1>🏆 Certificate of Exploration</h1><h2>Kenz Quest • Trésor Marocain</h2><p class="text">This certificate is proudly awarded to</p><div class="name">{user_name}</div><p class="text">The Remarkable Traveler who followed the path of stories, craft, and memory across the heart of Morocco.</p><div class="footer">🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦</div></body></html>"""
+            certificate_html = f"""
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <title>Kenz Quest Certificate</title>
+                <style>
+                    body {{
+                        font-family: 'Georgia', serif;
+                        text-align: center;
+                        padding: 60px;
+                        margin: 30px;
+                        background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                                    url('https://www.transparenttextures.com/patterns/arabesque.png');
+                        border: 15px double #b8860b;
+                    }}
+                    h1 {{
+                        color: #8b0000;
+                        font-size: 42px;
+                        margin-bottom: 10px;
+                    }}
+                    h2 {{
+                        color: #b8860b;
+                        margin-bottom: 30px;
+                    }}
+                    .name {{
+                        font-size: 34px;
+                        font-weight: bold;
+                        margin: 30px 0;
+                        color: #2c2c2c;
+                    }}
+                    .text {{
+                        font-size: 18px;
+                        line-height: 1.6;
+                        margin: 20px 0;
+                    }}
+                    .footer {{
+                        margin-top: 40px;
+                        font-size: 16px;
+                        color: #555;
+                    }}
+                </style>
+            </head>
+            <body>
+    
+                <h1>🏆 Certificate of Exploration</h1>
+                <h2>Kenz Quest • Trésor Marocain</h2>
+    
+                <p class="text">This certificate is proudly awarded to</p>
+    
+                <div class="name">{user_name}</div>
+    
+                <p class="text">
+        The Remarkable Traveler who followed the path of stories, craft, and memory
+        across the heart of Morocco.
+    </p>
+    <p class="text">
+        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,
+        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,
+        you uncovered the layers of a land shaped by history and spirit.
+    </p>
+    
+    <p class="text">
+        You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,
+        stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,
+        and finally shaped earth into art with your own hands through pottery.
+    </p>
+    
+    <p class="text">
+        Through curiosity, creativity, and a true explorer’s heart,
+        you did not just visit Morocco —
+        <strong>you experienced its soul.</strong>
+    </p>
+<div class="footer">
+    🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
+</div>
+            </body>
+            </html>
+            """
             st.download_button("📄 Download Your Certificate", data=certificate_html.encode("utf-8"), file_name=f"Kenz_Quest_Certificate_{user_name}.html", mime="text/html")
 
 # ---------------- ROUTING ----------------
