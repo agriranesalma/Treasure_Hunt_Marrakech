@@ -780,14 +780,14 @@ def show_stop7_koutoubia():
         </div>
         """, unsafe_allow_html=True)
     
-        try:
-            st.image(
+    try:
+        st.image(
                 "berber_calligraphy.jpg",
                 caption="Berber calligraphy",
                 use_container_width=True
             )
-        except:
-            st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
+    except:
+        st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
     
         st.markdown("### 🔐 Enter the artisan code to continue")
     
