@@ -774,7 +774,7 @@ def show_stop7_koutoubia():
         <div class="magic-card">
             <h3>🧵 Next stop: Berber Calligraphy</h3>
             <p>
-            Now thatyou know that Koutoubia was built by the Almohad dynasty, a Berber empire. 
+            Now that you know that Koutoubia was built by the Almohad dynasty, a Berber empire. 
             Lets dive deep and learn the intricate Berber calligraphy — where letters become art and identity.
             </p>
         </div>
@@ -789,22 +789,22 @@ def show_stop7_koutoubia():
     except:
         st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
     
-        st.markdown("### 🔐 Enter the artisan code to continue")
+    st.markdown("### 🔐 Enter the artisan code to continue")
     
-        code = st.text_input(
+    code = st.text_input(
             "Enter artisan code",
             placeholder="e.g. KENZQUEST2026",
             key="code_gate_koutoubia"
         )
-        st.warning("🔒 Complete all Knowledge Challenges to continue.")
-        if st.button("Unlock next stop", key="unlock_koutoubia") and st.session_state.quiz_unlocked.get(7, False):
-            if code.strip() == PARTNER_ACCESS_CODE:
-                st.session_state.current_stop = 8
-                st.session_state.score += 10
-                st.success("✅ Path unlocked!")
-                st.rerun()
-            else:
-                st.error("❌ Incorrect code.")
+    st.warning("🔒 Complete all Knowledge Challenges to continue.")
+    if st.button("Unlock next stop", key="unlock_koutoubia") and st.session_state.quiz_unlocked.get(7, False):
+        if code.strip() == PARTNER_ACCESS_CODE:
+            st.session_state.current_stop = 8
+            st.session_state.score += 10
+            st.success("✅ Path unlocked!")
+            st.rerun()
+        else:
+            st.error("❌ Incorrect code.")
 
 def show_stop8_bahia():
     render_location_notice(stop_titles[9])
