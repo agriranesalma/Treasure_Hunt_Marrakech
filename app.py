@@ -697,16 +697,52 @@ def show_stop6_cuisine():
     render_location_notice(stop_titles[7])
     st.markdown('<h1 class="big-title">🍲 Moroccan Cuisine Class — Taste & Create</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>🌿 Welcome, chef!</h3><p>From the bustling markets of Marrakech...</p></div>""", unsafe_allow_html=True)
-    st.image("moroccan_cuisine_table.jpg", caption="A Moroccan feast: Couscous, pastilla, harira, and more", use_container_width=True)
-    st.markdown("""<div class="magic-card"><p>Did you know? The <strong>tangia</strong> of Marrakech...</p></div>""", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌿 Welcome, chef!</h3>
+        <p>
+        From the bustling markets of Marrakech to the calm kitchens of old medinas,
+        Moroccan cuisine is a symphony of flavors. Today, you will get your hands on some iconic dishes —
+        starting with <strong>Tangia</strong>, the Marrakech specialty slow-cooked in clay pots, not to be confused with tagine.
+        </p>
+        <p>
+        Surrounding it, a feast unfolds:
+        golden <strong>couscous</strong> with vegetables,
+        rich <strong>harira</strong> soup,
+        crispy <strong>briouates</strong>,
+        fresh salads, olives, and perfectly grilled fish.
+        </p>
+        <p>
+        And of course… no Moroccan table is complete without <strong>mint tea</strong>,
+        a symbol of hospitality and sharing.
+        </p>
+        <p><strong>Get ready to cook, taste, and fall in love with Moroccan flavors!</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.image("moroccan_cuisine_table.jpg", caption="A Moroccan feast: Couscous, tangia, harira, briwat and so much more", use_container_width=True)
+    st.markdown("### 📜 Moroccan Culinary Wonders")
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        Did you know? The <strong>tangia</strong> of Marrakech is named after the clay pot it’s cooked in, 
+        traditionally slow-cooked in communal ovens. Saffron, preserved lemons, and local spices tell stories 
+        of centuries of trade and culture.
+        </p>
+        <p>
+        <strong>Harira</strong> was once the essential soup to break the fast during Ramadan, combining lentils, chickpeas, and tomatoes in a fragrant, hearty meal.
+        </p>
+        <p>
+        Moroccan cuisine blends Arab, Berber, Andalusian, and Mediterranean influences — it's a living history what you are about to taste.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     show_quiz_challenge(6)
     if st.session_state.quiz_unlocked.get(6, False):
         st.markdown("---")
         st.markdown('<h3 class="big-title">🔐 Instructor Gate</h3>', unsafe_allow_html=True)
         st.markdown("""<div class="magic-card"><p>Enter the special code given to you by the Moroccan cuisine instructor...</p></div>""", unsafe_allow_html=True)
         code = st.text_input("Enter code from the instructor", placeholder="e.g. KENZQUEST2026", key="cuisine_code_gate")
-        if st.button("🚀 Unlock Koutoubia Mosque", type="primary", use_container_width=True):
+        if st.button("🚀 Unlock Next Stop", type="primary", use_container_width=True):
             if code.strip() == PARTNER_ACCESS_CODE:
                 st.session_state.current_stop = 7
                 st.session_state.score += 10
@@ -721,15 +757,55 @@ def show_stop7_koutoubia():
     render_location_notice(stop_titles[8])
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>✨ Why it matters</h3><p>The Koutoubia is one of Marrakech’s most famous landmarks...</p></div>""", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>✨ Why it matters</h3>
+        <p>
+        The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
+        Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
+        major monuments of the Medina of Marrakesh. 
+        It was built under the Almohads, a Berber-led movement/dynasty, 
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     st.image("koutoubia.jpg", use_container_width=True)
     show_quiz_challenge(7)
-    if st.session_state.quiz_unlocked.get(7, False):
-        if st.button("➡️ Continue to Bahia Palace", type="primary", use_container_width=True):
-            st.session_state.current_stop = 8
-            st.rerun()
-    else:
+    if st.session_state.koutoubia_quiz_done:
+        st.markdown("""
+        <div class="magic-card">
+            <h3>🧵 Next stop: Berber Calligraphy</h3>
+            <p>
+            Now thatyou know that Koutoubia was built by the Almohad dynasty, a Berber empire. 
+            Lets dive deep and learn the intricate Berber calligraphy — where letters become art and identity.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+        try:
+            st.image(
+                "berber_calligraphy.jpg",
+                caption="Berber calligraphy",
+                use_container_width=True
+            )
+        except:
+            st.warning("⚠️ Add 'berber_calligraphy.jpg' to your project.")
+    
+        st.markdown("### 🔐 Enter the artisan code to continue")
+    
+        code = st.text_input(
+            "Enter artisan code",
+            placeholder="e.g. KENZQUEST2026",
+            key="code_gate_koutoubia"
+        )
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
+        if st.button("Unlock next stop", key="unlock_koutoubia") and st.session_state.quiz_unlocked.get(7, False):
+            if code.strip() == PARTNER_ACCESS_CODE:
+                st.session_state.current_stop = 8
+                st.session_state.score += 10
+                st.success("✅ Path unlocked!")
+                st.rerun()
+            else:
+                st.error("❌ Incorrect code.")
 
 def show_stop8_bahia():
     render_location_notice(stop_titles[9])
