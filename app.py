@@ -140,8 +140,8 @@ stops_data = {
         "unesco": "In 1985, the Medina of Marrakech was inscribed as a World Heritage Site, and in 2001 Jemaa el-Fna was proclaimed a Masterpiece of the Oral and Intangible Heritage of Humanity.",
         "atmosphere": "By day, the square lives through orange juice stalls, spices, street games, and movement. By night, it turns into a glowing stage of drums, Gnaoua rhythms, storytellers, herbalists, and crowd-formed circles of wonder.",
         "national_memory": "But this square is not only a place of stories and music — it is also a place of memory. In the 1950s... That same spirit lives on in national milestones, such as the historic visit of His Majesty King Mohammed V to M’Hamid El Ghizlane and the southern provinces...",
-        "legend": "Long before and beyond politics, Marrakech has also been protected in another way. According to legends, the city is encircled by the spiritual presence of the Saints — a sacred path that has guided and guarded it since centuries.",
-        "transition": "And just like these stories and traditions, the life of this square did not begin here. The merchants, the music, the knowledge — all traveled from far beyond the city walls...",
+        "legend": "The "Circle of Protection" in Marrakech refers to the spiritual, cultural, and symbolic efforts to safeguard the city, primarily embodied by the "Seven Saints" (Sabatou Rijal) pilgrimage tradition. These seven holy figures are believed to provide divine protection (baraka) to the city, fostering a spiritual atmosphere. ",
+        "transition": "And just like these stories and traditions, the life of this square did not begin here. The merchants, the music, the knowledge — all traveled from far beyond the city walls, some coming all the way from the far south of the country, lets get to know a little about the hassanie culture. In the vast silence of the dunes, the voice became the greatest treasure. To understand the heart of the Sahara, you must listen to the poetry that flows like the desert wind, rhythmic, deep, and timeless.",
         "next_stop_label": "Hassani Silver Filigree Artisan",
         "next_stop_intro": "The next stop is a Hassani Silver Filigree artisan..."
     }
@@ -365,8 +365,8 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>⭐ The Living Stage</h3><p>{stop["hook"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🏛️ A World Treasure</h3><p>{stop["unesco"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🎭 What surrounds you</h3><p>{stop["atmosphere"]}</p></div>""", unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory. Names like <strong>Lalla Aïcha Kendicha</strong> echo through the rhythms of <strong>Gnawa</strong>.</p></div>""", unsafe_allow_html=True)
-    st.markdown("### 🧞 The Genie Speaks")
+    st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory, they tell us about the moroccan spirit. Names like <strong>Lalla Aïcha kandicha</strong> echo through the rhythms of <strong>Gnawa</strong>.</p></div>""", unsafe_allow_html=True)
+    st.markdown("### 🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🔱 The Circle of Protection</h3><p>{stop["legend"]}</p></div>""", unsafe_allow_html=True)
