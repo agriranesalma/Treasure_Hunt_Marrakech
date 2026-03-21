@@ -507,13 +507,51 @@ def show_partner_code_gate(next_label, next_stop_num):
 def show_stop2_cafe():
     st.markdown('<h1 class="big-title">☕ Café Stop — A Moment to Breathe</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🫖 Pause, sip, and discover Morocco</div>', unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>🌿 Take a break, traveler</h3><p>After your journey through stories and silver, it’s time to slow down...</p></div>""", unsafe_allow_html=True)
-    st.image("moroccan_tea.jpg", caption="Moroccan mint tea — a symbol of hospitality", use_container_width=True)
+
+    # ---------------- INTRO ----------------
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌿 Take a break, traveler</h3>
+        <p>
+        After your journey through stories and silver, it’s time to slow down.
+        Sit, relax, and enjoy a glass of traditional Moroccan tea.
+        </p>
+        <p><strong>But in Morocco… even a tea break tells stories.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # ---------------- TEA IMAGE ----------------
+    st.image(
+        "moroccan_tea.jpg",
+        caption="Moroccan mint tea — a symbol of hospitality",
+        use_container_width=True
+    )
+
     st.info("💡 While you sip your tea… explore these incredible facts about Morocco.")
+
+    # ================== FACT 1 ==================
     st.markdown("### 🧬 Fact 1: Origins of Humanity")
-    st.markdown("""<div class="magic-card"><p>In 2017, scientists discovered that human remains at <strong>Jebel Irhoud</strong> are about <strong>300,000 years old</strong>...</p></div>""", unsafe_allow_html=True)
-    st.image("fact1.jpg", use_container_width=True)
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        In 2017, scientists discovered that human remains at <strong>Jebel Irhoud</strong>
+        (near Marrakesh) are about <strong>300,000 years old</strong>.
+        </p>
+        <p>
+        This makes them the <strong>oldest known Homo sapiens fossils</strong> ever found —
+        meaning Morocco is one of the cradles of humanity.
+        </p>
+        <p><strong>🤯 Imagine: Humanity may have started right here.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # IMAGE PLACEHOLDER
+    st.image("fact1.jpg", caption="", use_container_width=True)
+
+    # ================== FACT 2 ==================
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
+
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -526,8 +564,12 @@ def show_stop2_cafe():
         <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
     </div>
     """, unsafe_allow_html=True)
+
     st.image("fact2.jpg", caption="", use_container_width=True)
+
+    # ================== FACT 3 ==================
     st.markdown("### 🎓 Fact 3: The Oldest University")
+
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -540,8 +582,12 @@ def show_stop2_cafe():
         <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
     </div>
     """, unsafe_allow_html=True)
+
     st.image("fact3.jpg", caption="", use_container_width=True)
+
+    # ================== FACT 4 ==================
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
+
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -554,12 +600,16 @@ def show_stop2_cafe():
         <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
     """, unsafe_allow_html=True)
+
     st.image("fact4.jpg", caption="", use_container_width=True)
+
+    # ================== FUN MOMENT ==================
     st.markdown("### 😂 Moroccan Break Time")
+
     st.markdown("""
     <div class="magic-card">
         <p style="font-size:1.2rem;">
-        ليمونا دوزات امتحان، شحال جابت؟
+        ليمونا دوزات امتحان، شحال جابت؟  
         <br><strong>عسرة على عسرة 😭</strong>
         </p>
     </div>
