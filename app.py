@@ -811,7 +811,20 @@ def show_stop8_bahia():
     st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
     st.image("bahia_palace.jpg", use_container_width=True)
-    st.markdown("""<div class="magic-card"><h3>👑 A Palace of Brilliance</h3><p>Built in the 19th century...</p></div>""", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>👑 A Palace of Dreams</h3>
+        <p>
+        Built in the 19th century, Bahia Palace was designed to be the greatest palace of its time.
+        Its name means <strong>“Brilliance”</strong>.
+        </p>
+        <p>
+        With over <strong>150 rooms</strong>, peaceful gardens, fountains, and intricate decorations,
+        it represents the peak of Moroccan craftsmanship.
+        </p>
+        <p><strong>🤯 Every ceiling, every tile, every door is handmade.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
     st.image("bahia_inside.jpg", use_container_width=True)
     show_quiz_challenge(8)
     if st.session_state.quiz_unlocked.get(8, False):
