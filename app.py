@@ -125,6 +125,7 @@ PARTNER_ACCESS_CODE = "KENZQUEST2026"
 stop_titles = {
     1: "Jemaa el-Fna — The Open-Air Theater",
     2: "☕ Partner Café Stop",
+    3: "☕ Partner Café Stop",
     4: "🏛️ Saadian Tombs",
     5: "🏺 Zellige Artisan Workshop",
     6: "🍲 Moroccan Cuisine Class",
@@ -843,6 +844,13 @@ else:
     total_stops = 8   # Bab Agnaou quiz removed → 8 stops total
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
+    if current in location_map:
+        st.markdown(f"""
+        <div class="notice" style="text-align:center; font-size:1.1rem;">
+            📍 <strong>You are currently at {location_map[current]}</strong><br>
+            <small>tracking only used to unlock next stop and prove physical presence</small>
+        </div>
+        """, unsafe_allow_html=True)
     if current == 1:
         phase = st.session_state.stop1_phase
         if phase == "welcome":
