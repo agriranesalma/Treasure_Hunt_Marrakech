@@ -150,7 +150,7 @@ quizzes_data = {
     1: { # Jemaa el-Fna
         "general": [
             {"q": "Which 1975 peaceful march saw 350,000 Moroccans walk into the Sahara to assert national sovereignty?", "options": ["Green March", "Independence Walk", "Desert Caravan", "Atlas March"], "correct": "Green March"},
-            {"q": "Morocco was the first nation to officially recognize the independence of which country in 1777?", "options": ["USA", "France", "Spain", "Brazil"], "correct": "USA"}
+            {"q": "During World War II, Mohammed V famously refused to apply the Vichy government's anti-Semitic laws. Who was he protecting?", "options": ["The Moroccan Jewish community", "The French settlers", "The British soldiers", "The Spanish merchants"], "correct": "The Moroccan Jewish community"}
         ],
         "detailed": [
             {"q": "Look at the official 'UNESCO World Heritage' plaque located near the square's entrance—what is the first word of the third line?", "correct": "humanity"},
@@ -248,8 +248,8 @@ def show_quiz_challenge(stop_num):
     st.markdown('<div class="tag-subtitle">2 General + 2 On-Site Detailed • Prove you are here!</div>', unsafe_allow_html=True)
     st.markdown("""
     <div class="magic-card">
-        <p><strong>General Knowledge</strong> = broad Morocco facts (anyone can try)</p>
-        <p><strong>Detailed On-Site</strong> = only visible if you are physically at the stop (answers NOT in the story text)</p>
+        <p><strong>General Knowledge</strong> = broad Morocco facts </p>
+        <p><strong>Detailed On-Site</strong> = only visible if you are physically at the stop</p>
     </div>
     """, unsafe_allow_html=True)
     data = quizzes_data.get(stop_num, {"general": [], "detailed": []})
@@ -469,7 +469,8 @@ def show_partner_code_gate(next_label, next_stop_num):
     <div class="magic-card">
         <h2 style="text-align:center;">✨ Your Next Experience</h2>
         <p style="text-align:center; font-size:1.2rem;">
-        During your visit to the artisan workshop, you won’t just observe…
+        Lets actually get handsy and learn more about moroccan sahrawi culture
+        You unlocked your visit to the jewlery artisan workshop, you won’t just observe…
         <br><strong>You will create.</strong>
         </p>
         <p style="text-align:center;">
