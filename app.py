@@ -480,13 +480,11 @@ def show_partner_code_gate(next_label, next_stop_num):
         </p>
     </div>
     """, unsafe_allow_html=True)
-    image = Image.open("sahrawijewlery.png")
-
-    width, height = image.size
-
-    cropped = image.crop((width*0.2, 0, width*0.8, height))
-
-    st.image(cropped)
+    st.image(
+        "sahrawijewlery.png",
+        caption="A traditional Sahrawi silver piece you will learn to create",
+        use_container_width=True
+    )
     st.markdown("""
     <div class="magic-card">
         <p style="text-align:center;">
