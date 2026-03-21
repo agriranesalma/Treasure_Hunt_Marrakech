@@ -190,7 +190,7 @@ quizzes_data = {
     5: { # Zellige Workshop
         "general": [
             {"q": "Morocco is the only country in Africa that has coastline on which two major bodies of water?", "options": ["The Mediterranean Sea and the Atlantic Ocean", "The Red Sea and the Indian Ocean", "The Dead Sea and the Black Sea", "The Atlantic Ocean and the Nile River"], "correct": "The Mediterranean Sea and the Atlantic Ocean"},
-            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?": ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
+            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?",  "options":  ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
         ],
         "detailed": [
             {"q": "Watch the artisan for a moment. He is using a 'Manquach' (hammer). Is the head of the hammer rectangular or pointed at both ends?", "correct": "pointed at both ends"},
