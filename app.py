@@ -322,9 +322,11 @@ def show_welcome_page():
 def render_location_notice(location_name):
     st.markdown(f"""
     <div class="notice" style="text-align:center; font-size:1.1rem;">
-        📍 <strong>You are currently at {location_name}</strong>
+        📍 <strong>You are currently at {location_name}</strong><br>
 
-        <small>tracking only used to unlock next stop and prove physical presence</small>
+        <small style="font-size:0.75rem; opacity:0.7;">
+            tracking only used to unlock next stop and prove physical presence
+        </small>
     </div>
     """, unsafe_allow_html=True)
 def show_entry_riddle():
