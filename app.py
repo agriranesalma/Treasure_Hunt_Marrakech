@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Updated Kenz Quest Code</title>
-</head>
-<body>
-    <pre><code>import streamlit as st
+import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components
 try:
@@ -750,6 +743,3 @@ else:
     elif current == 9:
         show_stop9_pottery()
     st.markdown(f"""<p style='text-align:center; opacity:0.7;'>📍 Step {current} of {total_stops}</p>""", unsafe_allow_html=True)
-</code></pre>
-</body>
-</html>
