@@ -320,7 +320,7 @@ def show_welcome_page():
         st.markdown("### 🪄 WebAR Genie")
         render_webar(welcome_url, height=620)
 
-def show_entry_riddle(x):
+def show_entry_riddle():
     stop = stop_titles[1]
     st.markdown(f"""
 <div class="notice" style="text-align:center; font-size:1.1rem;">
