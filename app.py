@@ -662,7 +662,7 @@ def show_stop4_saadian():
         <ul>
             <li>Royal Grandeur: Rare Italian Carrara marble and accents of pure gold commissioned by the "Golden Sultan."</li>
             <li>Artistic Mastery: A symphony of intricate Zellij tilework and hand-carved Muqarnas (honeycomb) plaster.</li>
-            <li>The Crown Jewel: The legendary Hall of Twelve Columns—widely considered one of the most stunning architectural monuments in Morocco.</li>
+            <li>The Crown Jewel: The famous hall of saadins tombs is considered one of the most stunning architectural monuments in Morocco.</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
