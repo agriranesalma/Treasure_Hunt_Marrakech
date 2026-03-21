@@ -133,7 +133,7 @@ stop_titles = {
 stops_data = {
     1: {
         "title": "Jemaa el-Fna — The Open-Air Theater",
-        "riddle": "I am a stage without a curtain, a book without pages, and a kitchen that never sleeps. I change my face when the sun sets, but my voice has remained the same for 800 years. Where am I?",
+        "riddle": "🧞 the genie will give you the first riddle, pick the correct answer",
         "riddle_options": ["A) Koutoubia Gardens", "B) Bab Agnaou", "C) Jemaa el-Fna", "D) Mouassine Square", "E) Bahia Palace", "F) Saadian Tombs"],
         "correct_riddle": "C) Jemaa el-Fna",
         "hook": "You are standing in the world’s oldest social media platform. Before TikTok, there was the Halqa. For centuries, storytellers, musicians, poets, healers, acrobats, and performers used this square to upload memory into people’s minds.",
@@ -306,7 +306,7 @@ def show_quiz_challenge(stop_num):
     else:
         st.info("Complete all 4 quizzes to unlock the next stop.")
 def show_welcome_page():
-    st.markdown('<h1 class="big-title">Welcome Traveler • مرحبًا بك أيها المسافر</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">Welcome Traveler • أهلاً بك أيها المسافر</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🧞 The Genie is waiting for you</div>', unsafe_allow_html=True)
     col1, col2 = st.columns([1.2, 1])
     with col1:
@@ -321,8 +321,8 @@ def show_welcome_page():
 def show_entry_riddle():
     st.markdown("""
     <div class="notice" style="text-align:center; font-size:1.1rem;">
-        📍 <strong>The user is Gueliz Marrakech</strong><br>
-        <small>🧭 Adventure starting from the modern heart of the Red City — you can be anywhere!</small>
+        📍 <strong>You are currently at Gueliz Marrakech</strong><br>
+        <small>tracking only used to unlock next stop and prove physical presence</small>
     </div>
     """, unsafe_allow_html=True)
     
@@ -357,7 +357,6 @@ def show_entry_riddle():
                     answers["riddle"] = None
                     st.rerun()
     with col2:
-        st.markdown("### 🧞 The Genie watches the square")
         render_webar(riddle_url_stop1, height=620)
 def show_stop1_story():
     stop = stops_data[1]
@@ -628,7 +627,7 @@ def show_stop9_pottery():
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">Explore Morocco Culturally • اكتشف المغرب</div>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">Secrets of the past, creativity of the present. • أسرار الماضي، إبداع الحاضر</div>', unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
     try:
         image = Image.open("morocco_regions_map.png")
