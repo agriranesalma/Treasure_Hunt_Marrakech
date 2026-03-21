@@ -454,8 +454,71 @@ def show_stop2_cafe():
     st.markdown("### 🧬 Fact 1: Origins of Humanity")
     st.markdown("""<div class="magic-card"><p>In 2017, scientists discovered that human remains at <strong>Jebel Irhoud</strong> are about <strong>300,000 years old</strong>...</p></div>""", unsafe_allow_html=True)
     st.image("fact1.jpg", use_container_width=True)
-    # (facts 2-4 omitted for brevity - unchanged)
+     # ================== FACT 2 ==================
+    st.markdown("### 🏛️ Fact 2: Ancient Roman City")
 
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        <strong>Volubilis</strong>, near Meknès, was a major Roman city over 2,000 years ago.
+        At its peak, it had temples, a basilica, and massive public buildings.
+        </p>
+        <p>
+        Today, it’s a UNESCO World Heritage site — with real Roman mosaics still intact.
+        </p>
+        <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("fact2.jpg", caption="", use_container_width=True)
+
+    # ================== FACT 3 ==================
+    st.markdown("### 🎓 Fact 3: The Oldest University")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        The <strong>University of al-Qarawiyyin</strong> in Fez was founded in 859 AD
+        by <strong>Fatima al-Fihri</strong>.
+        </p>
+        <p>
+        It is officially recognized as the <strong>oldest university in the world</strong>.
+        </p>
+        <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("fact3.jpg", caption="", use_container_width=True)
+
+    # ================== FACT 4 ==================
+    st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p>
+        <strong>Ibn Battuta</strong>, from Tangier, traveled over <strong>117,000 km</strong>
+        across Africa, Asia, and beyond.
+        </p>
+        <p>
+        His journey lasted nearly 30 years — making him one of the greatest travelers in history.
+        </p>
+        <p><strong> He traveled further than Marco Polo.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.image("fact4.jpg", caption="", use_container_width=True)
+
+    # ================== FUN MOMENT ==================
+    st.markdown("### 😂 Moroccan Break Time")
+
+    st.markdown("""
+    <div class="magic-card">
+        <p style="font-size:1.2rem;">
+        ليمونا دوزات امتحان، شحال جابت؟  
+        <br><strong>عسرة على عسرة 😭</strong>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
     show_quiz_challenge(2)
 
     # FIXED: Continue button only after quizzes
