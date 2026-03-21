@@ -681,7 +681,7 @@ def show_stop5_zellige_workshop():
     if st.session_state.quiz_unlocked.get(5, False):
         st.markdown('<h3 class="big-title">🔐 Partner Gate</h3>', unsafe_allow_html=True)
         st.markdown("""<div class="magic-card"><p>Enter partner code to continue</p></div>""", unsafe_allow_html=True)
-        code = st.text_input("Enter partner code to continue", placeholder="e.g. KENZQUEST2026", key="code_gate_stop5")
+        code = st.text_input("Enter partner code given to you by the zellige artisan master", placeholder="e.g. KENZQUEST2026", key="code_gate_stop5")
         if st.button("Unlock next stop", key="unlock_stop5"):
             if code.strip() == PARTNER_ACCESS_CODE:
                 st.session_state.current_stop = 6
