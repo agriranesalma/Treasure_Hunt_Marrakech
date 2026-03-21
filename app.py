@@ -320,15 +320,15 @@ def show_welcome_page():
         st.markdown("### 🪄 WebAR Genie")
         render_webar(welcome_url, height=620)
 def render_location_notice(location_name):
-    st.markdown(f"""
+    html = f"""
     <div class="notice" style="text-align:center; font-size:1.1rem;">
         📍 <strong>You are currently at {location_name}</strong><br>
-
         <small style="font-size:0.75rem; opacity:0.7;">
             tracking only used to unlock next stop and prove physical presence
         </small>
     </div>
-    """, unsafe_allow_html=True)
+    """
+    st.markdown(html, unsafe_allow_html=True)
 def show_entry_riddle():
     render_location_notice(stop_titles[1])
     stop = stops_data[1]
