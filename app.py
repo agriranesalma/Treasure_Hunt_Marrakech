@@ -178,7 +178,7 @@ quizzes_data = {
     4: { 
         "general": [
             {"q": "The Saadian dynasty is famous for the 'Battle of the Three Kings'—which European power did they defeat in 1578?", "options": ["Portugal", "England", "Italy", "Ottoman Empire"], "correct": "Portugal"},
-            {"q": "n 1600, Sultan Ahmed al-Mansur sent a high-level diplomatic embassy to London. Which famous English Queen did he form a strategic alliance with to challenge the Spanish Empire?", "options": ["Queen Mary I", "Queen Victoria", "Queen Elizabeth I", "Queen Anne"], "correct": "Queen Elizabeth I"}
+            {"q": "In 1600, Sultan Ahmed al-Mansur sent a high-level diplomatic embassy to London. Which famous English Queen did he form a strategic alliance with to challenge the Spanish Empire?", "options": ["Queen Mary I", "Queen Victoria", "Queen Elizabeth I", "Queen Anne"], "correct": "Queen Elizabeth I"}
         ],
         "detailed": [
             {"q": "Look at the pillars—how many large marble columns are supporting the central dome?", "correct": "12"},
