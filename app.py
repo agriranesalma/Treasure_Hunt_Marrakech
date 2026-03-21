@@ -320,13 +320,6 @@ def show_welcome_page():
         render_webar(welcome_url, height=620)
 
 def show_entry_riddle():
-    st.markdown("""
-    <div class="notice" style="text-align:center; font-size:1.1rem;">
-        📍 <strong>You are currently at Gueliz Marrakech</strong><br>
-        <small>tracking only used to unlock next stop and prove physical presence</small>
-    </div>
-    """, unsafe_allow_html=True)
-   
     stop = stops_data[1]
     if 1 not in st.session_state.stop_answers:
         st.session_state.stop_answers[1] = {"riddle": None, "unlocked": False}
