@@ -114,7 +114,6 @@ if "quiz_unlocked" not in st.session_state:
 if "pottery_code_entered" not in st.session_state:
     st.session_state.pottery_code_entered = False
 
-# NEW: Persistent quiz tracking for smooth UX
 if "quiz_correct_count" not in st.session_state:
     st.session_state.quiz_correct_count = {i: 0 for i in range(1, 10)}
 if "quiz_submitted" not in st.session_state:
@@ -471,32 +470,38 @@ def show_stop3_riddle():
     st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>Riddle</h3><p style="font-size:1.2rem;">I am a masterpiece hidden behind high walls... Twelve columns of stone hold up my ceiling...</p></div>""", unsafe_allow_html=True)
+
     options = ["A) Bahia Palace", "B) El Badi Palace", "C) Saadian Tombs", "D) Koutoubia Mosque"]
+
     if "stop3_answer" not in st.session_state:
         st.session_state.stop3_answer = None
-    cols = st.columns(2)
-    for i, opt in enumerate(options):
-        with cols[i % 2]:
-            if st.button(opt, key=f"stop3_{i}", use_container_width=True):
-                st.session_state.stop3_answer = opt
-                st.rerun()
 
-    show_quiz_challenge(3)
+    if st.session_state.stop3_answer is None:
+        cols = st.columns(2)
+        for i, opt in enumerate(options):
+            with cols[i % 2]:
+                if st.button(opt, key=f"stop3_{i}", use_container_width=True):
+                    st.session_state.stop3_answer = opt
+                    st.rerun()
+    else:
+        if st.session_state.stop3_answer == "C) Saadian Tombs":
+            st.success("✅ Correct! The hidden dynasty reveals itself... Now prove you're here with the Knowledge Challenge!")
 
-    # FIXED: Require BOTH riddle + all quizzes
-    if st.session_state.stop3_answer == "C) Saadian Tombs":
-        if st.session_state.quiz_unlocked.get(3, False):
-            st.success("✅ Correct! The hidden dynasty reveals itself...")
-            st.session_state.current_stop = 4
-            st.session_state.score += 20
-            st.rerun()
+            show_quiz_challenge(3)
+
+            if st.session_state.quiz_unlocked.get(3, False):
+                if st.button("➡️ Continue to Saadian Tombs", type="primary", use_container_width=True):
+                    st.session_state.current_stop = 4
+                    st.session_state.score += 20
+                    st.rerun()
+            else:
+                st.info("✅ Riddle solved! Complete all 4 Knowledge Challenges above to continue.")
+
         else:
-            st.info("✅ Riddle solved! Finish the Knowledge Challenge to proceed.")
-    elif st.session_state.stop3_answer is not None:
-        st.error("❌ Not quite... try again.")
-        if st.button("🔄 Retry"):
-            st.session_state.stop3_answer = None
-            st.rerun()
+            st.error("❌ Not quite... try again.")
+            if st.button("🔄 Retry Riddle", key="retry_stop3"):
+                st.session_state.stop3_answer = None
+                st.rerun()
 
 def show_stop4_saadian():
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
@@ -717,7 +722,6 @@ else:
     current = st.session_state.current_stop
     total_stops = 9
 
-    # FIXED: Fake "map tracking" message (not real GPS - pure immersion)
     if current in stop_titles:
         st.markdown(f"""
         <div class="notice" style="text-align:center; font-size:1.1rem;">
