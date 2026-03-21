@@ -857,7 +857,7 @@ def show_stop9_pottery():
     <div class="magic-card">
         <h3>                        What you will be making and taking home with you</h3>
         <p>
-                            Mini moroccan tagines with the mesmerizing colors of your choice
+                            Mini moroccan tagines with the mesmerizing colors of your choice 💙💜❤️🩷🩵💚
         </p>
     </div>
     """, unsafe_allow_html=True)
