@@ -770,8 +770,7 @@ def show_stop7_koutoubia():
     """, unsafe_allow_html=True)
     st.image("koutoubia.jpg", use_container_width=True)
     show_quiz_challenge(7)
-    if st.session_state.koutoubia_quiz_done:
-        st.markdown("""
+    st.markdown("""
         <div class="magic-card">
             <h3>🧵 Next stop: Berber Calligraphy</h3>
             <p>
