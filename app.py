@@ -839,9 +839,9 @@ elif st.session_state.page == "marrakech_safi":
         st.session_state.page = "home"
         st.rerun()
 else:
-    # ---------------- MAIN QUEST ROUTING (fake map already active above) ----------------
+    # ---------------- MAIN QUEST ROUTING  ----------------
     current = st.session_state.current_stop
-    total_stops = 8   # Bab Agnaou quiz removed → 8 stops total
+    total_stops = 9   
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
     if current in stop_titles:
@@ -862,7 +862,7 @@ else:
     elif current == 2:
         show_stop2_cafe()
     elif current == 3:
-        show_stop3_riddle()   # now leads straight to Saadian (no quiz)
+        show_stop3_riddle()   #
     elif current == 4:
         show_stop4_saadian()
     elif current == 5:
