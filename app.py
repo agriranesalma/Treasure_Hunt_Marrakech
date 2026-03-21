@@ -188,7 +188,7 @@ quizzes_data = {
     5: { 
         "general": [
             {"q": "Morocco is the only country in Africa that has coastline on which two major bodies of water?", "options": ["The Mediterranean Sea and the Atlantic Ocean", "The Red Sea and the Indian Ocean", "The Dead Sea and the Black Sea", "The Atlantic Ocean and the Nile River"], "correct": "The Mediterranean Sea and the Atlantic Ocean"},
-            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?", "options": ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
+            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?", "options": ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Dark rocks stand out against light sand"}
         ],
         "detailed": [
             {"q": "Watch the artisan for a moment. He is using a 'Manquach' (hammer). Is the head of the hammer rectangular or pointed at both ends?", "correct": "pointed at both ends"},
@@ -640,8 +640,28 @@ def show_stop4_saadian():
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
     st.image("saadian_tombs.jpg", use_container_width=True)
-    st.markdown("""<div class="magic-card"><h3>📜 A Lost Treasure Rediscovered</h3><p>Built in the late 16th century by Sultan Ahmed al-Mansur...</p></div>""", unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>💎 What makes it magical?</h3><ul><li>Royal Grandeur: Rare Italian Carrara marble...</li><li>The Crown Jewel: The legendary Hall of Columns—widely considered one of the most stunning architectural monuments in Morocco.</li></ul></div>""", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>📜 A Lost Treasure Rediscovered</h3>
+        <p>
+        Built in the late 16th century by Sultan Ahmed al-Mansur, the Saadian Tombs were a masterpiece of Italian marble and gold leaf.
+        </p>
+        <p>
+        When the Alawite dynasty rose to power, Sultan Moulay Ismail chose to wall off the site rather than destroy it. This was a deep sign of religious respect for the dead, which unintentionally turned the tombs into a perfectly preserved time capsule.
+        </p>
+        <p>For over 200 years, they remained a hidden sanctuary in the heart of Marrakech—until 1917, when aerial photography finally revealed the "lost" royal treasure from the sky.</p>
+    </div>
+    """, unsafe_allow_html=True)    
+    st.markdown("""
+    <div class="magic-card">
+        <h3>💎 What makes it magical?</h3>
+        <ul>
+            <li>Royal Grandeur: Rare Italian Carrara marble and accents of pure gold commissioned by the "Golden Sultan."</li>
+            <li>Artistic Mastery: A symphony of intricate Zellij tilework and hand-carved Muqarnas (honeycomb) plaster.</li>
+            <li>The Crown Jewel: The legendary Hall of Twelve Columns—widely considered one of the most stunning architectural monuments in Morocco.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
     st.image("saadian_inside.jpg", use_container_width=True)
     show_quiz_challenge(4)
     if st.session_state.quiz_unlocked.get(4, False):
