@@ -469,7 +469,7 @@ def show_partner_code_gate(next_label, next_stop_num):
     <div class="magic-card">
         <h2 style="text-align:center;">✨ Your Next Experience</h2>
         <p style="text-align:center; font-size:1.2rem;">
-        Lets actually get handsy and learn more about moroccan sahrawi culture
+        Lets actually get handsy and learn more about moroccan sahrawi culture. 
         You unlocked your visit to the jewlery artisan workshop, you won’t just observe…
         <br><strong>You will create.</strong>
         </p>
