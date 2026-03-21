@@ -480,7 +480,7 @@ def show_partner_code_gate(next_label, next_stop_num):
         </p>
     </div>
     """, unsafe_allow_html=True)
-    image = Image.open("sahrawijewlery.jpg")
+    image = Image.open("sahrawijewlery.png")
 
     width, height = image.size
 
