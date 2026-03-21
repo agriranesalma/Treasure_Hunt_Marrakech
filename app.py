@@ -319,16 +319,17 @@ def show_welcome_page():
     with col2:
         st.markdown("### 🪄 WebAR Genie")
         render_webar(welcome_url, height=620)
-
-def show_entry_riddle():
-    stop = stop_titles[1]
+def render_location_notice(location_name):
     st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
+    <div class="notice" style="text-align:center; font-size:1.1rem;">
+        📍 <strong>You are currently at {location_name}</strong>
 
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+        <small>tracking only used to unlock next stop and prove physical presence</small>
+    </div>
+    """, unsafe_allow_html=True)
+def show_entry_riddle():
+    location_name = stop_titles[1]
+    stop = stops_data[1]
     if 1 not in st.session_state.stop_answers:
         st.session_state.stop_answers[1] = {"riddle": None, "unlocked": False}
     answers = st.session_state.stop_answers[1]
@@ -362,14 +363,8 @@ def show_entry_riddle():
         render_webar(riddle_url_stop1, height=620)
 
 def show_stop1_story():
-    stop = stop_titles[1]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[2]
+    stop = stops_data[1]
     st.markdown(f'<h1 class="big-title">{stop["title"]}</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A square of memory, rhythm, and living history</div>', unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>⭐ The Living Stage</h3><p>{stop["hook"]}</p></div>""", unsafe_allow_html=True)
@@ -473,14 +468,7 @@ def show_stop1_story():
         st.warning("🔒 Complete all 4 Knowledge Challenges above to unlock the Silver Path Gate.")
 
 def show_partner_code_gate(next_label, next_stop_num):
-    stop = stop_titles[3]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[3]
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown("---")
     st.markdown("""
@@ -524,14 +512,7 @@ def show_partner_code_gate(next_label, next_stop_num):
             st.error("❌ Incorrect code. Try again.")
 
 def show_stop2_cafe():
-    stop = stop_titles[4]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[4]
     st.markdown('<h1 class="big-title">☕ Café Stop — A Moment to Breathe</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🫖 Pause, sip, and discover Morocco</div>', unsafe_allow_html=True)
     st.markdown("""
@@ -625,14 +606,7 @@ def show_stop2_cafe():
         st.warning("🔒 Complete all Knowledge Challenges to continue the journey.")
 
 def show_stop3_riddle(): 
-    stop = stop_titles[4]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[4]
     st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>Riddle</h3><p style="font-size:1.2rem;">I am a masterpiece hidden behind high walls... Twelve columns of stone hold up my ceiling...</p></div>""", unsafe_allow_html=True)
@@ -660,14 +634,7 @@ def show_stop3_riddle():
                 st.rerun()
 
 def show_stop4_saadian():
-    stop = stop_titles[5]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[5]
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
     st.image("saadian_tombs.jpg", use_container_width=True)
@@ -683,14 +650,7 @@ def show_stop4_saadian():
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
 
 def show_stop5_zellige_workshop():
-    stop = stop_titles[6]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[6]
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Discover the art of Moroccan tiles</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><p>Welcome to the Zellige workshop! Here you will see how Moroccan artisans craft these intricate geometric tiles by hand.</p></div>""", unsafe_allow_html=True)
@@ -712,14 +672,7 @@ def show_stop5_zellige_workshop():
         st.warning("🔒 Complete all Knowledge Challenges to access the partner code gate.")
 
 def show_stop6_cuisine():
-    stop = stop_titles[7]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[7]
     st.markdown('<h1 class="big-title">🍲 Moroccan Cuisine Class — Taste & Create</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>🌿 Welcome, chef!</h3><p>From the bustling markets of Marrakech...</p></div>""", unsafe_allow_html=True)
@@ -743,14 +696,7 @@ def show_stop6_cuisine():
         st.warning("🔒 Complete all Knowledge Challenges to access the instructor code gate.")
 
 def show_stop7_koutoubia():
-    stop = stop_titles[8]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[8]
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>✨ Why it matters</h3><p>The Koutoubia is one of Marrakech’s most famous landmarks...</p></div>""", unsafe_allow_html=True)
@@ -764,14 +710,7 @@ def show_stop7_koutoubia():
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
 
 def show_stop8_bahia():
-    stop = stop_titles[9]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[9]
     st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
     st.image("bahia_palace.jpg", use_container_width=True)
@@ -787,14 +726,7 @@ def show_stop8_bahia():
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
 
 def show_stop9_pottery():
-    stop = stop_titles[10]
-    st.markdown(f"""
-<div class="notice" style="text-align:center; font-size:1.1rem;">
-    📍 <strong>You are currently at {stop}</strong>
-
-    <small>tracking only used to unlock next stop and prove physical presence</small>
-</div>
-""", unsafe_allow_html=True)
+    location_name = stop_titles[10]
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
     st.image("pottery_workshop.jpg", use_container_width=True)
