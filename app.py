@@ -5,12 +5,14 @@ try:
     from streamlit_image_coordinates import streamlit_image_coordinates
 except ImportError:
     streamlit_image_coordinates = None
+
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="كنز المغرب • Trésor Marocain",
     layout="wide",
     page_icon="🗺️"
 )
+
 # ---------------- THEME / CSS ----------------
 st.markdown("""
 <style>
@@ -95,6 +97,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
 # ---------------- SESSION STATE ----------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
@@ -114,6 +117,7 @@ if "quiz_correct_count" not in st.session_state:
     st.session_state.quiz_correct_count = {i: 0 for i in range(1, 10)}
 if "quiz_submitted" not in st.session_state:
     st.session_state.quiz_submitted = {}
+
 # ---------------- CONSTANTS ----------------
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
@@ -121,7 +125,6 @@ PARTNER_ACCESS_CODE = "KENZQUEST2026"
 stop_titles = {
     1: "Jemaa el-Fna — The Open-Air Theater",
     2: "☕ Partner Café Stop",
-    3: "The Great Gate (Bab Agnaou)",
     4: "🏛️ Saadian Tombs",
     5: "🏺 Zellige Artisan Workshop",
     6: "🍲 Moroccan Cuisine Class",
@@ -129,7 +132,8 @@ stop_titles = {
     8: "🏛️ Bahia Palace",
     9: "🏺 Pottery / Souk"
 }
-# ---------------- STOP 1 CONTENT ----------------
+
+# ---------------- STOPS DATA ----------------
 stops_data = {
     1: {
         "title": "Jemaa el-Fna — The Open-Air Theater",
@@ -146,18 +150,20 @@ stops_data = {
         "next_stop_intro": "The next stop is a Hassani Silver Filigree artisan..."
     }
 }
+
+# ---------------- QUIZZES DATA (Bab Agnaou quiz completely removed) ----------------
 quizzes_data = {
-    1: { # Jemaa el-Fna
+    1: { 
         "general": [
             {"q": "Which 1975 peaceful march saw 350,000 Moroccans walk into the Sahara to assert national sovereignty?", "options": ["Green March", "Independence Walk", "Desert Caravan", "Atlas March"], "correct": "Green March"},
             {"q": "During World War II, Mohammed V famously refused to apply the Vichy government's anti-Semitic laws. Who was he protecting?", "options": ["The Moroccan Jewish community", "The French settlers", "The British soldiers", "The Spanish merchants"], "correct": "The Moroccan Jewish community"}
         ],
         "detailed": [
-            {"q": "Look at the official 'UNESCO World Heritage' plaque located near the square's entrance—what is the first word of the third line?", "correct": "humanity"},
+            {"q": "Look at the official 'UNESCO World Heritage' plaque located near the square's entrance—what is the first word of the second line?", "correct": "masterpiece"},
             {"q": "Find the nearest official Horse Carriage (Caleche) station. Look at the carriage license plates—what color is the background of the plate?", "correct": "green"}
         ]
     },
-    2: { # Partner Café Stop
+    2: { 
         "general": [
             {"q": "Which Moroccan city is so famous for filmmaking that it has hosted Gladiator, Game of Thrones, and The Mummy?", "options": ["Ouarzazate", "Casablanca", "Agadir", "Tangier"], "correct": "Ouarzazate"},
             {"q": "Morocco was the very first country in the world to recognize the independence of which superpower in 1777?", "options": ["USA", "France", "Russia", "China"], "correct": "USA"}
@@ -167,17 +173,7 @@ quizzes_data = {
             {"q": "Moroccan 'Atay' is a blend of three essential ingredients: Green tea, fresh mint, and what else?", "correct": "sugar"}
         ]
     },
-    3: { # The Great Gate (Bab Agnaou)
-        "general": [
-            {"q": "Which powerful dynasty built the massive stone gates of the Marrakech Kasbah in the 12th century?", "options": ["Almohad", "Saadian", "Alawite", "Idrisid"], "correct": "Almohad"},
-            {"q": "What was the primary purpose of the 'Bab Agnaou' gate during the Almohad era?", "options": ["Royal entrance to the palace", "Market for spices", "Military barracks", "Public library"], "correct": "Royal entrance to the palace"}
-        ],
-        "detailed": [
-            {"q": "Stand directly in front of Bab Agnaou right now. What is the unique color of the volcanic stone used to build this specific gate?", "correct": "blue-grey"},
-            {"q": "Look at the carvings around the arch—are the inscriptions written in the geometric Kufic script or flowing cursive?", "correct": "kufic"}
-        ]
-    },
-    4: { # Saadian Tombs
+    4: { 
         "general": [
             {"q": "The Saadian dynasty is famous for the 'Battle of the Three Kings'—which European power did they defeat in 1578?", "options": ["Portugal", "England", "Italy", "Ottoman Empire"], "correct": "Portugal"},
             {"q": "n 1600, Sultan Ahmed al-Mansur sent a high-level diplomatic embassy to London. Which famous English Queen did he form a strategic alliance with to challenge the Spanish Empire?", "options": ["Queen Mary I", "Queen Victoria", "Queen Elizabeth I", "Queen Anne"], "correct": "Queen Elizabeth I"}
@@ -187,17 +183,17 @@ quizzes_data = {
             {"q": "Look closely at the zellige floor patterns—what is the dominant color of the tiles surrounding the royal graves?", "correct": "green"}
         ]
     },
-    5: { # Zellige Workshop
+    5: { 
         "general": [
             {"q": "Morocco is the only country in Africa that has coastline on which two major bodies of water?", "options": ["The Mediterranean Sea and the Atlantic Ocean", "The Red Sea and the Indian Ocean", "The Dead Sea and the Black Sea", "The Atlantic Ocean and the Nile River"], "correct": "The Mediterranean Sea and the Atlantic Ocean"},
-            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?",  "options":  ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
+            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?", "options": ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
         ],
         "detailed": [
             {"q": "Watch the artisan for a moment. He is using a 'Manquach' (hammer). Is the head of the hammer rectangular or pointed at both ends?", "correct": "pointed at both ends"},
             {"q": "Pick up a discarded tile scrap from the floor. Touch the 'back' (non-glazed side). What color is the raw, unbaked clay?", "correct": "grey"}
         ]
     },
-    6: { # Cuisine Class 
+    6: { 
         "general": [
             {"q": "What is the name of the famous Moroccan 'head of the shop' spice blend that can contain over 30 ingredients?", "options": ["Ras el Hanout", "Harissa", "Chermoula", "Kamoun"], "correct": "Ras el Hanout"},
             {"q": "Morocco is one of the world's largest exporters of which 'red gold' spice grown in Taliouine?", "options": ["Saffron", "Paprika", "Cinnamon", "Cayenne"], "correct": "Saffron"}
@@ -207,7 +203,7 @@ quizzes_data = {
             {"q": "Observe the bread (Khobz) being prepared—before it is baked, what is traditionally sprinkled on top for texture?", "correct": "semolina"}
         ]
     },
-    7: { # Koutoubia Mosque
+    7: { 
         "general": [
             {"q": "Which famous tower in Seville, Spain, is considered the 'twin sister' of the Koutoubia minaret?", "options": ["Giralda", "Torre del Oro", "Alhambra", "Belem Tower"], "correct": "Giralda"},
             {"q": "How many golden copper orbs are stacked on the spire of the Koutoubia minaret?", "options": ["4", "3", "5", "1"], "correct": "4"}
@@ -217,7 +213,7 @@ quizzes_data = {
             {"q": "Look at the ruins of the 'old' mosque foundation next to the tower. Are the remaining column stumps circular or square?", "correct": "square"}
         ]
     },
-    8: { # Bahia Palace
+    8: { 
         "general": [
             {"q": "The Bahia Palace was built to be the greatest palace of its time. What does 'Bahia' translate to?", "options": ["The Brilliance", "The Secret", "The Fortress", "The Garden"], "correct": "The Brilliance"},
             {"q": "Which powerful Grand Vizier, who effectively ruled Morocco as a regent, lived here?", "options": ["Ba Ahmed", "Thami El Glaoui", "Lyautey", "Moulay Ismael"], "correct": "Ba Ahmed"}
@@ -227,20 +223,22 @@ quizzes_data = {
             {"q": "Look up at the ceilings around you—what material and style are the carved ceilings made of?", "correct": "cedar wood"}
         ]
     },
-    9: { # Pottery / Souk
+    9: { 
         "general": [
             {"q": "The blue pottery of Fez gets its iconic color from which mineral?", "options": ["Cobalt", "Copper", "Iron", "Zinc"], "correct": "Cobalt"},
             {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "options": ["Farnatchi", "Hammam", "Souk", "Riad"], "correct": "Farnatchi"}
         ],
         "detailed": [
-            {"q": "Look at the large display plates (Taws) in the shop.  What animal is on it", "correct": "Peacock"}, 
+            {"q": "Look at the large display plates (Taws) in the shop. What animal is on it", "correct": "Peacock"},
             {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Is the texture sandy/rough or smooth like glass?", "correct": "sandy/rough"}
         ]
     }
 }
+
 # ---------------- HELPERS ----------------
 def render_webar(url, height=680):
     components.iframe(url, height=height, scrolling=True)
+
 def show_quiz_challenge(stop_num):
     """Fixed quiz system: permanent success messages, progress tracking, unlock only after ALL 4 correct"""
     st.markdown("---")
@@ -305,6 +303,7 @@ def show_quiz_challenge(stop_num):
             st.success("🎉 All challenges completed! The path to the next treasure is now open.")
     else:
         st.info("Complete all 4 quizzes to unlock the next stop.")
+
 def show_welcome_page():
     st.markdown('<h1 class="big-title">Welcome Traveler • أهلاً بك أيها المسافر</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🧞 The Genie is waiting for you</div>', unsafe_allow_html=True)
@@ -318,6 +317,7 @@ def show_welcome_page():
     with col2:
         st.markdown("### 🪄 WebAR Genie")
         render_webar(welcome_url, height=620)
+
 def show_entry_riddle():
     st.markdown("""
     <div class="notice" style="text-align:center; font-size:1.1rem;">
@@ -325,7 +325,7 @@ def show_entry_riddle():
         <small>tracking only used to unlock next stop and prove physical presence</small>
     </div>
     """, unsafe_allow_html=True)
-    
+   
     stop = stops_data[1]
     if 1 not in st.session_state.stop_answers:
         st.session_state.stop_answers[1] = {"riddle": None, "unlocked": False}
@@ -358,6 +358,7 @@ def show_entry_riddle():
                     st.rerun()
     with col2:
         render_webar(riddle_url_stop1, height=620)
+
 def show_stop1_story():
     stop = stops_data[1]
     st.markdown(f'<h1 class="big-title">{stop["title"]}</h1>', unsafe_allow_html=True)
@@ -434,7 +435,6 @@ def show_stop1_story():
             letter-spacing: 0.6px;
         }
     </style>
-
     <div class="royal-quote-container">
         <div class="royal-title">Iconic Words from His Majesty</div>
         <div class="arabic-quote">
@@ -462,6 +462,7 @@ def show_stop1_story():
         show_partner_code_gate(next_label=stops_data[1].get("next_stop_label"), next_stop_num=2)
     else:
         st.warning("🔒 Complete all 4 Knowledge Challenges above to unlock the Silver Path Gate.")
+
 def show_partner_code_gate(next_label, next_stop_num):
     st.markdown('<h2 class="big-title"> Silver Path Gate</h2>', unsafe_allow_html=True)
     st.markdown("---")
@@ -469,7 +470,7 @@ def show_partner_code_gate(next_label, next_stop_num):
     <div class="magic-card">
         <h2 style="text-align:center;">✨ Your Next Experience</h2>
         <p style="text-align:center; font-size:1.2rem;">
-        Lets actually get handsy and learn more about moroccan sahrawi culture. 
+        Lets actually get handsy and learn more about moroccan sahrawi culture.
         You unlocked your visit to the jewlery artisan workshop, you won’t just observe…
         <br><strong>You will create.</strong>
         </p>
@@ -504,11 +505,10 @@ def show_partner_code_gate(next_label, next_stop_num):
             st.rerun()
         else:
             st.error("❌ Incorrect code. Try again.")
+
 def show_stop2_cafe():
     st.markdown('<h1 class="big-title">☕ Café Stop — A Moment to Breathe</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">🫖 Pause, sip, and discover Morocco</div>', unsafe_allow_html=True)
-
-    # ---------------- INTRO ----------------
     st.markdown("""
     <div class="magic-card">
         <h3>🌿 Take a break, traveler</h3>
@@ -519,19 +519,13 @@ def show_stop2_cafe():
         <p><strong>But in Morocco… even a tea break tells stories.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
-    # ---------------- TEA IMAGE ----------------
     st.image(
         "moroccan_tea.jpg",
         caption="Moroccan mint tea — a symbol of hospitality",
         use_container_width=True
     )
-
     st.info("💡 While you sip your tea… explore these incredible facts about Morocco.")
-
-    # ================== FACT 1 ==================
     st.markdown("### 🧬 Fact 1: Origins of Humanity")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -545,13 +539,8 @@ def show_stop2_cafe():
         <p><strong>🤯 Imagine: Humanity may have started right here.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
-    # IMAGE PLACEHOLDER
     st.image("fact1.jpg", caption="", use_container_width=True)
-
-    # ================== FACT 2 ==================
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -564,12 +553,8 @@ def show_stop2_cafe():
         <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact2.jpg", caption="", use_container_width=True)
-
-    # ================== FACT 3 ==================
     st.markdown("### 🎓 Fact 3: The Oldest University")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -582,12 +567,8 @@ def show_stop2_cafe():
         <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact3.jpg", caption="", use_container_width=True)
-
-    # ================== FACT 4 ==================
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
-
     st.markdown("""
     <div class="magic-card">
         <p>
@@ -600,16 +581,12 @@ def show_stop2_cafe():
         <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-
     st.image("fact4.jpg", caption="", use_container_width=True)
-
-    # ================== FUN MOMENT ==================
     st.markdown("### 😂 Moroccan Break Time")
-
     st.markdown("""
     <div class="magic-card">
         <p style="font-size:1.2rem;">
-        ليمونا دوزات امتحان، شحال جابت؟  
+        ليمونا دوزات امتحان، شحال جابت؟
         <br><strong>عسرة على عسرة 😭</strong>
         </p>
     </div>
@@ -617,11 +594,12 @@ def show_stop2_cafe():
     show_quiz_challenge(2)
     if st.session_state.quiz_unlocked.get(2, False):
         if st.button("➡️ Continue the Journey", type="primary", use_container_width=True):
-            st.session_state.current_stop = 3
+            st.session_state.current_stop = 3   # now goes straight to the Saadian riddle (Bab Agnaou quiz removed)
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue the journey.")
-def show_stop3_riddle():
+
+def show_stop3_riddle():   # This riddle now directly unlocks Saadian Tombs (Bab Agnaou quiz fully removed)
     st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>Riddle</h3><p style="font-size:1.2rem;">I am a masterpiece hidden behind high walls... Twelve columns of stone hold up my ceiling...</p></div>""", unsafe_allow_html=True)
@@ -637,20 +615,17 @@ def show_stop3_riddle():
                     st.rerun()
     else:
         if st.session_state.stop3_answer == "C) Saadian Tombs":
-            st.success("✅ Correct! The hidden dynasty reveals itself... Now prove you're here with the Knowledge Challenge!")
-            show_quiz_challenge(3)
-            if st.session_state.quiz_unlocked.get(3, False):
-                if st.button("➡️ Continue to Saadian Tombs", type="primary", use_container_width=True):
-                    st.session_state.current_stop = 4
-                    st.session_state.score += 20
-                    st.rerun()
-            else:
-                st.info("✅ Riddle solved! Complete all 4 Knowledge Challenges above to continue.")
+            st.success("✅ Correct! The hidden dynasty reveals itself... Continue to the Saadian Tombs!")
+            if st.button("➡️ Continue to Saadian Tombs", type="primary", use_container_width=True):
+                st.session_state.current_stop = 4
+                st.session_state.score += 20
+                st.rerun()
         else:
             st.error("❌ Not quite... try again.")
             if st.button("🔄 Retry Riddle", key="retry_stop3"):
                 st.session_state.stop3_answer = None
                 st.rerun()
+
 def show_stop4_saadian():
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
@@ -665,6 +640,7 @@ def show_stop4_saadian():
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
+
 def show_stop5_zellige_workshop():
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Discover the art of Moroccan tiles</div>', unsafe_allow_html=True)
@@ -685,6 +661,7 @@ def show_stop5_zellige_workshop():
                 st.error("❌ Incorrect code. Try again.")
     else:
         st.warning("🔒 Complete all Knowledge Challenges to access the partner code gate.")
+
 def show_stop6_cuisine():
     st.markdown('<h1 class="big-title">🍲 Moroccan Cuisine Class — Taste & Create</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">👩‍🍳 Cook, savor, and discover Morocco</div>', unsafe_allow_html=True)
@@ -707,6 +684,7 @@ def show_stop6_cuisine():
                 st.error("❌ Incorrect code.")
     else:
         st.warning("🔒 Complete all Knowledge Challenges to access the instructor code gate.")
+
 def show_stop7_koutoubia():
     st.markdown('<h1 class="big-title">🕌 Koutoubia Mosque</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">A Marrakech landmark of power, faith, and design</div>', unsafe_allow_html=True)
@@ -719,6 +697,7 @@ def show_stop7_koutoubia():
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
+
 def show_stop8_bahia():
     st.markdown('<h1 class="big-title">🏛️ Bahia Palace</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A masterpiece of Moroccan elegance</div>', unsafe_allow_html=True)
@@ -733,6 +712,7 @@ def show_stop8_bahia():
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
+
 def show_stop9_pottery():
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
@@ -755,13 +735,13 @@ def show_stop9_pottery():
         if user_name:
             certificate_html = f"""<html><head><meta charset="utf-8"><title>Kenz Quest Certificate</title><style>body {{font-family: 'Georgia', serif;text-align: center;padding: 60px;margin: 30px;background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.transparenttextures.com/patterns/arabesque.png');border: 15px double #b8860b;}} h1 {{color: #8b0000;font-size: 42px;}} .name {{font-size: 34px;font-weight: bold;margin: 30px 0;color: #2c2c2c;}}</style></head><body><h1>🏆 Certificate of Exploration</h1><h2>Kenz Quest • Trésor Marocain</h2><p class="text">This certificate is proudly awarded to</p><div class="name">{user_name}</div><p class="text">The Remarkable Traveler who followed the path of stories, craft, and memory across the heart of Morocco.</p><div class="footer">🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦</div></body></html>"""
             st.download_button("📄 Download Your Certificate", data=certificate_html.encode("utf-8"), file_name=f"Kenz_Quest_Certificate_{user_name}.html", mime="text/html")
+
 # ---------------- ROUTING ----------------
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap');
-
 .mini-tagline {
     font-family: 'Dancing Script', cursive;
     font-size: 16px;
@@ -770,7 +750,6 @@ if st.session_state.page == "home":
     margin-top: -10px;
 }
 </style>
-
 <div class="mini-tagline">
 Secrets of the past, creativity of the present. • أسرار الماضي، إبداع الحاضر
 </div>
@@ -859,9 +838,9 @@ elif st.session_state.page == "marrakech_safi":
         st.session_state.page = "home"
         st.rerun()
 else:
-    # ---------------- MAIN QUEST ROUTING ----------------
+    # ---------------- MAIN QUEST ROUTING (fake map already active above) ----------------
     current = st.session_state.current_stop
-    total_stops = 9
+    total_stops = 8   # Bab Agnaou quiz removed → 8 stops total
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
     st.progress(current / total_stops)
     if current == 1:
@@ -875,7 +854,7 @@ else:
     elif current == 2:
         show_stop2_cafe()
     elif current == 3:
-        show_stop3_riddle()
+        show_stop3_riddle()   # now leads straight to Saadian (no quiz)
     elif current == 4:
         show_stop4_saadian()
     elif current == 5:
