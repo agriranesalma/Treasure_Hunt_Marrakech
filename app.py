@@ -369,9 +369,6 @@ def show_stop1_story():
     st.text("🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
-    import streamlit as st
-
-    import streamlit as st
 
     st.markdown(
     """
