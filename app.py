@@ -233,7 +233,7 @@ quizzes_data = {
             {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "options": ["Farnatchi", "Hammam", "Souk", "Riad"], "correct": "Farnatchi"}
         ],
         "detailed": [
-            {"q": "Look at the large display plates (Taws) in the shop.  What animal is on it", "correct": "1"},  give me options here 
+            {"q": "Look at the large display plates (Taws) in the shop.  What animal is on it", "correct": "Peacock"}, 
             {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Is the texture sandy/rough or smooth like glass?", "correct": "sandy/rough"}
         ]
     }
