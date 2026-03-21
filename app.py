@@ -369,6 +369,7 @@ def show_stop1_story():
     st.text("🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class=magic-card"><h3>snippet of his magesty speech during the iconic visit</h3><p>إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي، وسيكون هناك فقط المغرب الموحد</p></div>""")
     st.markdown(f"""<div class="magic-card"><h3>🔱 The Circle of Protection</h3><p>{stop["legend"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🛤️ The Journey Continues</h3><p>{stop["transition"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("### 🎧 Listen to Hassani Poetry")
