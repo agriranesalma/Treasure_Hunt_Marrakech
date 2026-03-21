@@ -369,84 +369,96 @@ def show_stop1_story():
     st.text("🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
+    import streamlit as st
+
     st.markdown(
     """
     <style>
-        .royal-card {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #f5f5f5;
-            padding: 2.2rem 2.5rem;
+        .royal-quote-container {
+            background: rgba(15, 15, 25, 0.58);          /* semi-transparent dark overlay — keeps bg visible */
+            backdrop-filter: blur(6px);                   /* glass-like effect, very subtle */
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 215, 0, 0.22);   /* faint golden border */
             border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.55);
-            margin: 2rem 0;
-            border: 1px solid rgba(255, 215, 0, 0.18);
-            direction: rtl;
-            text-align: right;
-            font-family: 'Georgia', 'Times New Roman', serif;
+            padding: 2.2rem 2.4rem;
+            margin: 2rem auto;
+            max-width: 780px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
             position: relative;
             overflow: hidden;
         }
-        .royal-card::before {
+
+        .royal-quote-container::before {
             content: "";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 60%);
+            inset: 0;
             pointer-events: none;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.07) 0%, transparent 60%);
         }
+
         .royal-title {
             color: #ffd700;
-            font-size: 1.65rem;
-            margin: 0 0 1.3rem 0;
+            color: #ffeb3b;                               /* brighter gold variant */
+            font-size: 2.1rem;
+            font-weight: 700;
             text-align: center;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            margin: 0 0 1.8rem 0;
+            text-shadow: 
+                0 0 8px rgba(255, 215, 0, 0.7),
+                0 0 18px rgba(255, 215, 0, 0.4),
+                0 2px 12px rgba(0,0,0,0.6);
+            letter-spacing: 1.2px;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
-        .arabic-text {
-            font-size: 1.28rem;
-            line-height: 1.9;
-            margin-bottom: 1.8rem;
-            color: #e8f0ff;
+
+        .arabic-quote {
+            font-size: 1.32rem;
+            line-height: 2.05;
+            color: #f8faff;
+            text-align: right;
+            direction: rtl;
+            margin-bottom: 1.9rem;
+            font-family: 'Traditional Arabic', 'Arial', serif;
         }
-        .english-translation {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #d4dfff;
-            border-top: 1px solid rgba(255,215,0,0.15);
-            padding-top: 1.4rem;
-            font-style: italic;
+
+        .english-quote {
+            font-size: 1.18rem;
+            line-height: 1.85;
+            color: #e0eaff;
             text-align: left;
             direction: ltr;
+            font-style: italic;
+            padding-top: 1.3rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.18);
         }
-        .english-translation::before {
-            content: "↳ English:";
+
+        .english-quote::before {
+            content: "↳ Translation:";
             display: block;
-            color: #ffd700;
+            color: #ffeb3b;
             font-style: normal;
-            font-weight: bold;
-            margin-bottom: 0.6rem;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.6px;
         }
     </style>
 
-    <div class="royal-card">
+    <div class="royal-quote-container">
         <div class="royal-title">Iconic Words from His Majesty</div>
-        
-        <div class="arabic-text">
+
+        <div class="arabic-quote">
             إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي، 
             وسيكون هناك فقط المغرب الموحد.
         </div>
 
-        <div class="english-translation">
+        <div class="english-quote">
             “Our symbolic arrival at this place proclaims that henceforth there shall remain no North and South 
             except in the ordinary geographical sense. There will be only one united Morocco.”
         </div>
     </div>
     """,
     unsafe_allow_html=True
-    )
+)
     st.markdown(f"""<div class="magic-card"><h3>🔱 The Circle of Protection</h3><p>{stop["legend"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🛤️ The Journey Continues</h3><p>{stop["transition"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("### 🎧 Listen to Hassani Poetry")
