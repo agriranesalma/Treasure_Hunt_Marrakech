@@ -371,13 +371,82 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(
     """
-    <div class="magic-card">
-        <h3>Snippet of His Majesty's speech during the iconic visit</h3>
-        <p>إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي، وسيكون هناك فقط المغرب الموحد</p>
+    <style>
+        .royal-card {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f5f5f5;
+            padding: 2.2rem 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 215, 0, 0.18);
+            direction: rtl;
+            text-align: right;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .royal-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .royal-title {
+            color: #ffd700;
+            font-size: 1.65rem;
+            margin: 0 0 1.3rem 0;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        .arabic-text {
+            font-size: 1.28rem;
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            color: #e8f0ff;
+        }
+        .english-translation {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #d4dfff;
+            border-top: 1px solid rgba(255,215,0,0.15);
+            padding-top: 1.4rem;
+            font-style: italic;
+            text-align: left;
+            direction: ltr;
+        }
+        .english-translation::before {
+            content: "↳ English:";
+            display: block;
+            color: #ffd700;
+            font-style: normal;
+            font-weight: bold;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.5px;
+        }
+    </style>
+
+    <div class="royal-card">
+        <div class="royal-title">Iconic Words from His Majesty</div>
+        
+        <div class="arabic-text">
+            إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي، 
+            وسيكون هناك فقط المغرب الموحد.
+        </div>
+
+        <div class="english-translation">
+            “Our symbolic arrival at this place proclaims that henceforth there shall remain no North and South 
+            except in the ordinary geographical sense. There will be only one united Morocco.”
+        </div>
     </div>
     """,
     unsafe_allow_html=True
-)
+    )
     st.markdown(f"""<div class="magic-card"><h3>🔱 The Circle of Protection</h3><p>{stop["legend"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🛤️ The Journey Continues</h3><p>{stop["transition"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("### 🎧 Listen to Hassani Poetry")
