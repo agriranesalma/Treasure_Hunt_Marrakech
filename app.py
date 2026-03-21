@@ -159,8 +159,8 @@ quizzes_data = {
     },
     2: { # Partner Café Stop
         "general": [
-            {"q": "The University of al-Qarawiyyin in Fez is recognized by Guinness World Records as what?", "options": ["Oldest degree-granting university", "Largest library", "First medical school", "Oldest mosque"], "correct": "Oldest degree-granting university"},
-            {"q": "What legendary woman used her inheritance to found the Al-Qarawiyyin in 859 AD?", "options": ["Fatima al-Fihri", "Sayyida al-Hurra", "Lalla Fatima", "Queen Zaynab"], "correct": "Fatima al-Fihri"}
+            {"q": "Which Moroccan city is so famous for filmmaking that it has hosted Gladiator, Game of Thrones, and The Mummy?", ["Ouarzazate", "Casablanca", "Agadir", "Tangier"], "correct": "Ouarzazate"},
+            {"q": "Morocco was the very first country in the world to recognize the independence of which superpower in 1777?", "options": ["USA", "France", "Russia", "China"], "correct": "USA"}
         ],
         "detailed": [
             {"q": "In Moroccan tea culture, why is the tea traditionally poured from a great height into the glass?", "correct": "to create foam"},
@@ -180,7 +180,7 @@ quizzes_data = {
     4: { # Saadian Tombs
         "general": [
             {"q": "The Saadian dynasty is famous for the 'Battle of the Three Kings'—which European power did they defeat in 1578?", "options": ["Portugal", "England", "Italy", "Ottoman Empire"], "correct": "Portugal"},
-            {"q": "The Italian marble used in these tombs was famously traded by Sultan Ahmed al-Mansur for what Moroccan commodity?", "options": ["Sugar", "Salt", "Saffron", "Argan Oil"], "correct": "Sugar"}
+            {"q": "n 1600, Sultan Ahmed al-Mansur sent a high-level diplomatic embassy to London. Which famous English Queen did he form a strategic alliance with to challenge the Spanish Empire?", "options": ["Queen Mary I", "Queen Victoria", "Queen Elizabeth I", "Queen Anne"], "correct": "Queen Elizabeth I"}
         ],
         "detailed": [
             {"q": "Stand in the Hall of the Twelve Columns. Look at the pillars—how many large marble columns are supporting the central dome?", "correct": "12"},
@@ -189,15 +189,15 @@ quizzes_data = {
     },
     5: { # Zellige Workshop
         "general": [
-            {"q": "The complex geometric patterns in Zellige are based on which principle to avoid representing living beings?", "options": ["Aniconism", "Abstractism", "Linearity", "Symmetry"], "correct": "Aniconism"},
-            {"q": "Which city is the historic heart of Moroccan ceramic and Zellige production?", "options": ["Fez", "Casablanca", "Agadir", "Ouarzazate"], "correct": "Fez"}
+            {"q": "Morocco is the only country in Africa that has coastline on which two major bodies of water?", "options": ["The Mediterranean Sea and the Atlantic Ocean", "The Red Sea and the Indian Ocean", "The Dead Sea and the Black Sea", "The Atlantic Ocean and the Nile River"], "correct": "The Mediterranean Sea and the Atlantic Ocean"},
+            {"q": "Morocco is home to one of the best places in the world to find 'Space Rocks' (Meteorites). Why are they so much easier to find in the Moroccan Sahara than anywhere else?": ["Dark rocks stand out against light sand", "Natural magnetic pull of the Atlas Mountains", "Higher frequency of meteor strikes in North Africa", "The dry climate prevents the rocks from eroding"], "correct": "Fez"}
         ],
         "detailed": [
             {"q": "Watch the artisan for a moment. He is using a 'Manquach' (hammer). Is the head of the hammer rectangular or pointed at both ends?", "correct": "pointed at both ends"},
             {"q": "Pick up a discarded tile scrap from the floor. Touch the 'back' (non-glazed side). What color is the raw, unbaked clay?", "correct": "grey"}
         ]
     },
-    6: { # Cuisine Class
+    6: { # Cuisine Class 
         "general": [
             {"q": "What is the name of the famous Moroccan 'head of the shop' spice blend that can contain over 30 ingredients?", "options": ["Ras el Hanout", "Harissa", "Chermoula", "Kamoun"], "correct": "Ras el Hanout"},
             {"q": "Morocco is one of the world's largest exporters of which 'red gold' spice grown in Taliouine?", "options": ["Saffron", "Paprika", "Cinnamon", "Cayenne"], "correct": "Saffron"}
@@ -210,7 +210,7 @@ quizzes_data = {
     7: { # Koutoubia Mosque
         "general": [
             {"q": "Which famous tower in Seville, Spain, is considered the 'twin sister' of the Koutoubia minaret?", "options": ["Giralda", "Torre del Oro", "Alhambra", "Belem Tower"], "correct": "Giralda"},
-            {"q": "How many golden copper orbs are traditionally stacked on the spire of the Koutoubia minaret?", "options": ["4", "3", "5", "1"], "correct": "4"}
+            {"q": "How many golden copper orbs are stacked on the spire of the Koutoubia minaret?", "options": ["4", "3", "5", "1"], "correct": "4"}
         ],
         "detailed": [
             {"q": "Stand on the side of the tower facing the gardens. Look at the upper windows. What is the shape of the stone arch above the window: Pointed, Horseshoe, or Scalloped?", "correct": "scalloped"},
@@ -233,7 +233,7 @@ quizzes_data = {
             {"q": "What is the name of the traditional clay oven used to slow-cook meat dishes like Tangia?", "options": ["Farnatchi", "Hammam", "Souk", "Riad"], "correct": "Farnatchi"}
         ],
         "detailed": [
-            {"q": "Look at the large display plates (Taws) in the shop. Find one with a 'Hand of Fatima' (Khamsa). How many 'eyes' are painted inside the palm of that specific design?", "correct": "1"},
+            {"q": "Look at the large display plates (Taws) in the shop.  What animal is on it", "correct": "1"},  give me options here 
             {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Is the texture sandy/rough or smooth like glass?", "correct": "sandy/rough"}
         ]
     }
