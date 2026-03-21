@@ -369,15 +369,14 @@ def show_stop1_story():
     st.text("🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
-
     st.markdown(
     """
     <style>
         .royal-quote-container {
-            background: rgba(15, 15, 25, 0.58);          /* semi-transparent dark overlay — keeps bg visible */
-            backdrop-filter: blur(6px);                   /* glass-like effect, very subtle */
+            background: rgba(15, 15, 25, 0.58); /* semi-transparent dark overlay — keeps bg visible */
+            backdrop-filter: blur(6px); /* glass-like effect, very subtle */
             -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 215, 0, 0.22);   /* faint golden border */
+            border: 1px solid rgba(255, 215, 0, 0.22); /* faint golden border */
             border-radius: 16px;
             padding: 2.2rem 2.4rem;
             margin: 2rem auto;
@@ -386,7 +385,6 @@ def show_stop1_story():
             position: relative;
             overflow: hidden;
         }
-
         .royal-quote-container::before {
             content: "";
             position: absolute;
@@ -394,22 +392,19 @@ def show_stop1_story():
             pointer-events: none;
             background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.07) 0%, transparent 60%);
         }
-
         .royal-title {
             color: #ffd700;
-            color: #ffeb3b;                               /* brighter gold variant */
             font-size: 2.1rem;
             font-weight: 700;
             text-align: center;
             margin: 0 0 1.8rem 0;
-            text-shadow: 
+            text-shadow:
                 0 0 8px rgba(255, 215, 0, 0.7),
                 0 0 18px rgba(255, 215, 0, 0.4),
                 0 2px 12px rgba(0,0,0,0.6);
             letter-spacing: 1.2px;
             font-family: 'Georgia', 'Times New Roman', serif;
         }
-
         .arabic-quote {
             font-size: 1.32rem;
             line-height: 2.05;
@@ -419,7 +414,6 @@ def show_stop1_story():
             margin-bottom: 1.9rem;
             font-family: 'Traditional Arabic', 'Arial', serif;
         }
-
         .english-quote {
             font-size: 1.18rem;
             line-height: 1.85;
@@ -430,7 +424,6 @@ def show_stop1_story():
             padding-top: 1.3rem;
             border-top: 1px solid rgba(255, 215, 0, 0.18);
         }
-
         .english-quote::before {
             content: "↳ Translation:";
             display: block;
@@ -444,14 +437,12 @@ def show_stop1_story():
 
     <div class="royal-quote-container">
         <div class="royal-title">Iconic Words from His Majesty</div>
-
         <div class="arabic-quote">
-            إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي، 
+            إن مجيئنا الرمزي إلى هذا المكان ليؤذن بأنه لن يبقى بعده شمال وجنوب إلا في الاصطلاح الجغرافي العادي،
             وسيكون هناك فقط المغرب الموحد.
         </div>
-
         <div class="english-quote">
-            “Our symbolic arrival at this place proclaims that henceforth there shall remain no North and South 
+            “Our symbolic arrival at this place proclaims that henceforth there shall remain no North and South
             except in the ordinary geographical sense. There will be only one united Morocco.”
         </div>
     </div>
