@@ -768,7 +768,7 @@ def show_stop7_koutoubia():
         The Koutoubia is one of Marrakech’s most famous landmarks and a symbol of the city.
         Its minaret rises 77 meters above the medina and dominates the skyline. UNESCO highlights it as one of the
         major monuments of the Medina of Marrakesh. 
-        It was built under the Almohads, a Berber-led movement/dynasty, 
+        It was built under the Almohads, a Berber-led movement/dynasty
         </p>
     </div>
     """, unsafe_allow_html=True)
