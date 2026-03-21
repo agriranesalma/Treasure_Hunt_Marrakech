@@ -839,7 +839,6 @@ def show_stop9_pottery():
     render_location_notice(stop_titles[10])
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
-    st.image("pottery_workshop.jpg", use_container_width=True)
     st.markdown("""
     <div class="magic-card">
         <h3>🌍 A Craft from the Earth</h3>
@@ -854,6 +853,16 @@ def show_stop9_pottery():
         <p><strong>🔥 From earth… to fire… to art.</strong></p>
     </div>
     """, unsafe_allow_html=True)
+    st.image("pottery_workshop.jpg", use_container_width=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>What YOU will be making and taking home with you</h3>
+        <p>
+        Mini moroccan tagines with the mesmerizing colors of your choice
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.image("pottery_products.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
