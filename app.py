@@ -840,6 +840,20 @@ def show_stop9_pottery():
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
     st.image("pottery_workshop.jpg", use_container_width=True)
+    st.markdown("""
+    <div class="magic-card">
+        <h3>🌍 A Craft from the Earth</h3>
+        <p>
+        Moroccan pottery dates back thousands of years. Clay from the earth is shaped by hand,
+        dried under the sun, and fired in traditional ovens.
+        </p>
+        <p>
+        Each piece is unique — bowls, plates, tagines — all carrying patterns inspired by nature,
+        geometry, and culture.
+        </p>
+        <p><strong>🔥 From earth… to fire… to art.</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
     st.image("pottery_products.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
