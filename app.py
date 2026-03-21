@@ -371,6 +371,8 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
     import streamlit as st
 
+    import streamlit as st
+
     st.markdown(
     """
     <style>
