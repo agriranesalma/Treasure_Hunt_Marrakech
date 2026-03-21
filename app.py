@@ -366,7 +366,7 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>🏛️ A World Treasure</h3><p>{stop["unesco"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🎭 What surrounds you</h3><p>{stop["atmosphere"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory, they tell us about the moroccan spirit. Names like <strong>Lalla Aïcha kandicha</strong> echo through the rhythms of <strong>Gnawa</strong>.</p></div>""", unsafe_allow_html=True)
-    st.markdown("### 🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
+    st.text("### 🧞 Let the genie tell you about her story and what she symbolizes as an anti colonial moroccan legend, enjoy the Gnawa music about her")
     components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🔱 The Circle of Protection</h3><p>{stop["legend"]}</p></div>""", unsafe_allow_html=True)
