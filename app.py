@@ -1035,6 +1035,7 @@ Secrets of the past, creativity of the present. • أسرار الماضي، إ
 elif st.session_state.page == "marrakech_safi":
     st.markdown('<h1 class="big-title">Marrakech-Safi</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
+    st.markdown('<h3 class="section-header">🗺️ Cliquez sur une province / اضغط على عمالة</h3>', unsafe_allow_html=True)
     try:
         image = Image.open("marrakech_safi.png")
         target_w = 600
