@@ -139,8 +139,8 @@ if "quiz_submitted" not in st.session_state:
     st.session_state.quiz_submitted = {}
 
 # CONSTANTS 
-welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
-riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
+welcome_url = "https://mywebar.com/p/Project_0_wcpjvevha7"
+riddle_url_stop1 = "https://mywebar.com/p/Project_1_klazdf0q48"
 PARTNER_ACCESS_CODE = "KENZQUEST2026"
 stop_titles = {
     1: "Gueliz",
@@ -393,7 +393,7 @@ def show_stop1_story():
     st.markdown(f"""<div class="magic-card"><h3>🏛️ A World Treasure</h3><p>{stop["unesco"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="magic-card"><h3>🎭 What surrounds you</h3><p>{stop["atmosphere"]}</p></div>""", unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><h3>🎶 A hidden story in the music</h3><p>Some songs in this square are not just music — they are memory, they tell us about the moroccan spirit. Names like <strong>Lalla Aïcha kandicha</strong> echo through the rhythms of <strong>Gnawa</strong> <br> Aicha Kandicha is more than a legend; in the Moroccan imagination, she becomes a fierce symbol of resistance. Through her mystery, power, and untamed presence, she stands for a people who never fully bowed to domination, carrying in her shadow the spirit of defiance, dignity, and freedom. In this reading, she is not fear alone — she is Morocco’s deep memory of strength, a timeless guardian of identity against every attempt to erase it.</p></div>""", unsafe_allow_html=True)
-    components.iframe("https://mywebar.com/p/Project_2_ncf4wq5286", height=700, scrolling=True)
+    components.iframe("https://mywebar.com/p/Project_2_zd8xgf3tpf", height=700, scrolling=True)
     st.markdown(f"""<div class="magic-card"><h3>🇲🇦 Memory & Sovereignty</h3><p>{stop["national_memory"]}</p></div>""", unsafe_allow_html=True)
     st.markdown(
     """
