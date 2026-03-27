@@ -6,14 +6,14 @@ try:
 except ImportError:
     streamlit_image_coordinates = None
 
-# ---------------- PAGE CONFIG ----------------
+# PAGE CONFIG
 st.set_page_config(
     page_title="كنز المغرب • Trésor Marocain",
     layout="wide",
     page_icon="🗺️"
 )
 
-# ---------------- THEME / CSS ----------------
+# THEME / CSS 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
@@ -98,7 +98,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- SESSION STATE ----------------
+# SESSION STATE 
 if "page" not in st.session_state:
     st.session_state.page = "home"
 if "current_stop" not in st.session_state:
@@ -118,7 +118,7 @@ if "quiz_correct_count" not in st.session_state:
 if "quiz_submitted" not in st.session_state:
     st.session_state.quiz_submitted = {}
 
-# ---------------- CONSTANTS ----------------
+# CONSTANTS 
 welcome_url = "https://mywebar.com/p/Project_0_ckwoq2vq9l"
 riddle_url_stop1 = "https://mywebar.com/p/Project_1_to00xjn24"
 PARTNER_ACCESS_CODE = "KENZQUEST2026"
@@ -135,7 +135,7 @@ stop_titles = {
     10: "🏺 Pottery / Souk"
 }
 
-# ---------------- STOPS DATA ----------------
+# STOPS DATA 
 stops_data = {
     1: {
         "title": "Jemaa el-Fna — The Open-Air Theater",
@@ -153,7 +153,7 @@ stops_data = {
     }
 }
 
-# ---------------- QUIZZES DATA (Bab Agnaou quiz completely removed) ----------------
+#  QUIZZES DATA 
 quizzes_data = {
     1: { 
         "general": [
@@ -237,7 +237,7 @@ quizzes_data = {
     }
 }
 
-# ---------------- HELPERS ----------------
+#  HELPERS
 def render_webar(url, height=680):
     components.iframe(url, height=height, scrolling=True)
 
@@ -601,7 +601,7 @@ def show_stop2_cafe():
     show_quiz_challenge(2)
     if st.session_state.quiz_unlocked.get(2, False):
         if st.button("➡️ Continue the Journey", type="primary", use_container_width=True):
-            st.session_state.current_stop = 3   # now goes straight to the Saadian riddle (Bab Agnaou quiz removed)
+            st.session_state.current_stop = 3 
             st.rerun()
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue the journey.")
@@ -838,7 +838,7 @@ def show_stop8_bahia():
     else:
         st.warning("🔒 Complete all Knowledge Challenges to continue.")
 
-def show_stop9_pottery():
+def show_stop9_tapis():
     render_location_notice(stop_titles[10])
     st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
@@ -856,7 +856,7 @@ def show_stop9_pottery():
         <p><strong>🔥 From earth… to fire… to art.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("pottery_workshop.jpg", use_container_width=True)
+    st.image("tapis_display.jpg", use_container_width=True)
     st.markdown("""
     <div class="magic-card">
         <h3>                        What you will be making and taking home with you</h3>
@@ -866,7 +866,7 @@ def show_stop9_pottery():
     </div>
     """, unsafe_allow_html=True)
     
-    st.image("pottery_products.jpg", use_container_width=True)
+    st.image("mini_tapis.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
         st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your pottery master to enjoy <strong>40% off</strong></p></div>""", unsafe_allow_html=True)
@@ -962,7 +962,7 @@ def show_stop9_pottery():
             """
             st.download_button("📄 Download Your Certificate", data=certificate_html.encode("utf-8"), file_name=f"Kenz_Quest_Certificate_{user_name}.html", mime="text/html")
 
-# ---------------- ROUTING ----------------
+# ROUTING 
 if st.session_state.page == "home":
     st.markdown('<h1 class="big-title">Kenz Quest - مهمة الكنز</h1>', unsafe_allow_html=True)
     st.markdown("""
@@ -1065,7 +1065,7 @@ elif st.session_state.page == "marrakech_safi":
         st.session_state.page = "home"
         st.rerun()
 else:
-    # ---------------- MAIN QUEST ROUTING  ----------------
+    # MAIN QUEST ROUTING
     current = st.session_state.current_stop
     total_stops = 9   
     st.markdown(f'<h3 style="text-align:center;">🏆 Score: {st.session_state.score} pts</h3>', unsafe_allow_html=True)
@@ -1093,5 +1093,5 @@ else:
     elif current == 8:
         show_stop8_bahia()
     elif current == 9:
-        show_stop9_pottery()
+        show_stop9_tapis()
     st.markdown(f"""<p style='text-align:center; opacity:0.7;'>📍 Step {current} of {total_stops}</p>""", unsafe_allow_html=True)
