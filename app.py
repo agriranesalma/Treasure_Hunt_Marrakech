@@ -252,7 +252,7 @@ quizzes_data = {
         ],
         "detailed": [
             {"q": "The blue pottery of Fez gets its iconic color from which mineral?", "correct": "Cobalt"},
-            {"q": "Touch the edge of a 'raw' (unpainted) tagine pot. Whats is the texture like?", "correct": "sandy"}
+            {"q": "What is the main color of natural wool before dyeing?", "correct": "white"}
         ]
     }
 }
