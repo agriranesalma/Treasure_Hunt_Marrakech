@@ -16,85 +16,89 @@ st.set_page_config(
 # THEME / CSS 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
-.stApp {
-    background: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
-                url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop')
-                no-repeat center center fixed;
-    background-size: cover;
-    color: white !important;
-}
-[data-testid="stHeader"] { background: transparent !important; }
-.main .block-container {
-    padding-top: 0.5rem !important;
-    padding-left: 3% !important;
-    padding-right: 3% !important;
-    max-width: 95% !important;
-}
-.big-title {
-    font-family: 'Kaushan Script', cursive !important;
-    font-size: clamp(2.8rem, 7vw, 5rem) !important;
-    font-weight: 900 !important;
-    text-align: center !important;
-    background: linear-gradient(to right, #e31e24 40%, #ffffff 50%, #006400 60%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-clip: text !important;
-    display: block !important;
-    width: 100% !important;
-    line-height: 1.15 !important;
-    margin-bottom: 0.2rem !important;
-}
-.tag-subtitle {
-    font-size: clamp(1.2rem, 3.5vw, 2.2rem);
-    font-weight: 800;
-    text-align: center;
-    color: white !important;
-    text-shadow: 2px 2px 15px rgba(0,0,0,1);
-    margin-top: 0.4rem !important;
-    margin-bottom: 1.4rem !important;
-    letter-spacing: 1px;
-}
-.magic-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,215,0,0.22);
-    border-radius: 24px;
-    padding: 1.1rem 1.2rem;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-    backdrop-filter: blur(12px);
-    margin: 0.6rem 0;
-}
-.magic-card h3, .magic-card h4, .magic-card p, .magic-card li {
-    color: white !important;
-}
-.stButton > button {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: white !important;
-    border-radius: 14px;
-    border: 2px solid #e31e24;
-    font-size: 1.05rem;
-    padding: 0.9rem 1rem;
-    transition: all 0.25s ease;
-}
-.stButton > button:hover {
-    background-color: #e31e24;
-    transform: translateY(-1px);
-    box-shadow: 0 18px 30px rgba(227,30,36,0.35);
-}
-.stTextInput input {
-    border-radius: 12px !important;
-}
-.notice {
-    background: rgba(0,200,83,0.12);
-    border: 1px solid rgba(0,200,83,0.28);
-    border-radius: 18px;
-    padding: 0.9rem 1rem;
-    margin: 0.7rem 0;
-}
-.small-center {
-    text-align:center;
-    opacity:0.95;
-}
+    /* 🔥 ONE-LINE HACK: Force dark mode for EVERYONE (fixes sister's device) */
+    [data-testid="stApp"] { color-scheme: dark !important; }
+
+    @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+    
+    .stApp {
+        background: linear-gradient(rgba(0,0,0,0.84), rgba(0,0,0,0.84)),
+                    url('https://images.unsplash.com/photo-1531230689007-0b32d7a7c33e?q=80&w=2070&auto=format&fit=crop')
+                    no-repeat center center fixed;
+        background-size: cover;
+        color: white !important;
+    }
+    [data-testid="stHeader"] { background: transparent !important; }
+    .main .block-container {
+        padding-top: 0.5rem !important;
+        padding-left: 3% !important;
+        padding-right: 3% !important;
+        max-width: 95% !important;
+    }
+    .big-title {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: clamp(2.8rem, 7vw, 5rem) !important;
+        font-weight: 900 !important;
+        text-align: center !important;
+        background: linear-gradient(to right, #e31e24 40%, #ffffff 50%, #006400 60%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+        background-clip: text !important;
+        display: block !important;
+        width: 100% !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.2rem !important;
+    }
+    .tag-subtitle {
+        font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+        font-weight: 800;
+        text-align: center;
+        color: white !important;
+        text-shadow: 2px 2px 15px rgba(0,0,0,1);
+        margin-top: 0.4rem !important;
+        margin-bottom: 1.4rem !important;
+        letter-spacing: 1px;
+    }
+    .magic-card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,215,0,0.22);
+        border-radius: 24px;
+        padding: 1.1rem 1.2rem;
+        box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+        backdrop-filter: blur(12px);
+        margin: 0.6rem 0;
+    }
+    .magic-card h3, .magic-card h4, .magic-card p, .magic-card li {
+        color: white !important;
+    }
+    .stButton > button {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: white !important;
+        border-radius: 14px;
+        border: 2px solid #e31e24;
+        font-size: 1.05rem;
+        padding: 0.9rem 1rem;
+        transition: all 0.25s ease;
+    }
+    .stButton > button:hover {
+        background-color: #e31e24;
+        transform: translateY(-1px);
+        box-shadow: 0 18px 30px rgba(227,30,36,0.35);
+    }
+    .stTextInput input {
+        border-radius: 12px !important;
+    }
+    .notice {
+        background: rgba(0,200,83,0.12);
+        border: 1px solid rgba(0,200,83,0.28);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        margin: 0.7rem 0;
+    }
+    .small-center {
+        text-align:center;
+        opacity:0.95;
+    }
 </style>
 """, unsafe_allow_html=True)
 
