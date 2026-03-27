@@ -242,7 +242,7 @@ quizzes_data = {
         ],
         "detailed": [
             {"q": "Walk into the massive Court of Honor (the huge open marble floor). Count the number of small fountains embedded in the floor of this specific courtyard.", "correct": "2"},
-            {"q": "Look up at the ceilings around you—what material and style are the carved ceilings made of?", "correct": "cedar wood"}
+            {"q": "Look up at the ceilings around you—what material and style are the carved ceilings made of?", "correct": "wood"}
         ]
     },
     9: { 
@@ -630,12 +630,8 @@ def show_stop3_riddle():
     render_location_notice(stop_titles[4])
     st.markdown('<h1 class="big-title">🧩 A Royal Secret Awaits</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Solve to unlock the hidden dynasty</div>', unsafe_allow_html=True)
-    st.markdown("""<div class="magic-card"><h3>Riddle</h3><p style="font-size:1.2rem;">I hold the stories of a royal line,
-Hidden for centuries, away from time.
-Intricate carvings mark my walls,
-Where history whispers through my halls.
-Visitors enter to see the past’s embrace,
-A secret resting place in Marrakech’s space....</p></div>""", unsafe_allow_html=True)
+    st.markdown("### 🪄 WebAR Genie, Tap to make him appear!")
+    render_webar("https://mywebar.com/p/Project_3_ji51ig53ky")
     options = ["A) Bahia Palace", "B) El Badi Palace", "C) Saadian Tombs", "D) Koutoubia Mosque"]
     if "stop3_answer" not in st.session_state:
         st.session_state.stop3_answer = None
