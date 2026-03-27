@@ -864,16 +864,11 @@ def show_stop9_tapis():
     st.markdown('<div class="tag-subtitle">This is a story you can walk on… and today, <strong>you will weave your own.</strong></div>', unsafe_allow_html=True)
     st.markdown("""
     <div class="magic-card">
-        <h3>🌍 A Craft from the Earth</h3>
-        <p>
-        Moroccan pottery dates back thousands of years. Clay from the earth is shaped by hand,
-        dried under the sun, and fired in traditional ovens.
-        </p>
-        <p>
-        Each piece is unique — bowls, plates, tagines — all carrying patterns inspired by nature,
-        geometry, and culture.
-        </p>
-        <p><strong>🔥 From earth… to fire… to art.</strong></p>
+    <p style="font-size:1.18rem; line-height:1.7;">
+    In the heart of Morocco, the Zarbia rug is more than decoration — it is a living map of Berber soul. <br><br>
+    Each knot carries prayers for protection, journeys across dunes, and stories passed from mother to daughter for generations. <br><br>
+    <strong>Now it’s your turn to add your own chapter to this ancient craft.</strong>
+    </p>
     </div>
     """, unsafe_allow_html=True)
     st.image("tapis_display.jpg", use_container_width=True)
@@ -881,7 +876,7 @@ def show_stop9_tapis():
     <div class="magic-card">
         <h3>                        What you will be making and taking home with you</h3>
         <p>
-                            Mini moroccan tagines with the mesmerizing colors of your choice 💙💜❤️🩷🩵💚
+                            Mini moroccan zarbia with the mesmerizing colors of your choice 💙💜❤️🩷🩵💚
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -889,9 +884,9 @@ def show_stop9_tapis():
     st.image("mini_tapis.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
-        st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your pottery master to enjoy <strong>40% off</strong></p></div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your Zarbia master to enjoy <strong>20% off</strong></p></div>""", unsafe_allow_html=True)
         if not st.session_state.pottery_code_entered:
-            code = st.text_input("Enter the pottery master code", placeholder="e.g. KENZQUEST2026", key="pottery_master_code")
+            code = st.text_input("Enter the Zarbia master code", placeholder="e.g. KENZQUEST2026", key="pottery_master_code")
             if st.button("Unlock Certificate", type="primary"):
                 if code.strip() == PARTNER_ACCESS_CODE:
                     st.session_state.pottery_code_entered = True
