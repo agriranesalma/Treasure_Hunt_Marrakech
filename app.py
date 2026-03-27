@@ -860,8 +860,8 @@ def show_stop8_bahia():
 
 def show_stop9_tapis():
     render_location_notice(stop_titles[10])
-    st.markdown('<h1 class="big-title">🏺 Moroccan Pottery</h1>', unsafe_allow_html=True)
-    st.markdown('<div class="tag-subtitle">✨ The art of earth and fire</div>', unsafe_allow_html=True)
+    st.markdown('<h1 class="big-title">🏺 Moroccan Zarbia Rug</h1>', unsafe_allow_html=True)
+    st.markdown('<div class="tag-subtitle">This is a story you can walk on… and today, <strong>you will weave your own.</strong></div>', unsafe_allow_html=True)
     st.markdown("""
     <div class="magic-card">
         <h3>🌍 A Craft from the Earth</h3>
