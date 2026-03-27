@@ -336,7 +336,7 @@ def show_welcome_page():
             st.session_state.stop1_phase = "riddle"
             st.rerun()
     with col2:
-        st.markdown("### 🪄 WebAR Genie")
+        st.markdown("### 🪄 WebAR Genie, Tap to make him appear!")
         render_webar(welcome_url, height=620)
 def render_location_notice(location_name):
     html = f"""
@@ -381,6 +381,7 @@ def show_entry_riddle():
                     answers["riddle"] = None
                     st.rerun()
     with col2:
+        st.markdown("### 🪄 WebAR Genie, Tap to make him appear!")
         render_webar(riddle_url_stop1, height=620)
 
 def show_stop1_story():
@@ -1096,7 +1097,7 @@ else:
     elif current == 2:
         show_stop2_cafe()
     elif current == 3:
-        show_stop3_riddle()   #
+        show_stop3_riddle()  
     elif current == 4:
         show_stop4_saadian()
     elif current == 5:
