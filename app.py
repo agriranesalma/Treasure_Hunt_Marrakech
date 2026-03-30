@@ -847,7 +847,7 @@ def show_stop8_bahia():
     st.image("bahia_inside.jpg", use_container_width=True)
     show_quiz_challenge(8)
     if st.session_state.quiz_unlocked.get(8, False):
-        if st.button("➡️ Continue to Pottery Shop", type="primary", use_container_width=True):
+        if st.button("➡️ Continue to the next stop", type="primary", use_container_width=True):
             st.session_state.current_stop = 9
             st.session_state.score += 5
             st.rerun()
