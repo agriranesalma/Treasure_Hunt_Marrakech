@@ -152,7 +152,7 @@ stop_titles = {
     7: "🍲 Moroccan Cuisine Class",
     8: "🕌 Koutoubia Mosque",
     9: "🏛️ Bahia Palace",
-    10: "🏺 Pottery / Souk"
+    10: "🧶 Zarbia"
 }
 
 # STOPS DATA 
