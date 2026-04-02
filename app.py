@@ -191,7 +191,7 @@ quizzes_data = {
             {"q": "Morocco was the very first country in the world to recognize the independence of which country in 1777?", "options": ["USA", "France", "Russia", "China"], "correct": "USA"}
         ],
         "detailed": [
-            {"q": "In Moroccan tea culture, why is the tea traditionally poured from a great height into the glass?", "correct": "to create foam"},
+            {"q": "In Moroccan tea culture, the tea traditionally poured from a great height into the glass to creat what?", "correct": "foam"},
             {"q": "Moroccan 'Atay' is a blend of three essential ingredients: Green tea, fresh mint, and what else?", "correct": "sugar"}
         ]
     },
