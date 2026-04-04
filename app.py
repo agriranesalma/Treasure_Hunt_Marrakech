@@ -899,49 +899,52 @@ def show_stop9_tapis():
     <meta charset="utf-8">
     <title>Kenz Quest Certificate</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+        
         body {{
             font-family: 'Georgia', serif;
             text-align: center;
-            padding: 80px 40px;
+            padding: 80px 50px;
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
+            background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)),
                         url('https://www.beistle.com/media/catalog/product/cache/5a0fd8e7b8a7eea595073e3b8a7e3f0b39/5/5/55305_i1_plastic-treasure-map.jpg') 
                         center/cover no-repeat fixed;
             border: 22px double #d4af77;
             color: #f5e8c7;
-            box-shadow: inset 0 0 80px rgba(184, 134, 11, 0.6);
+            box-shadow: inset 0 0 120px rgba(184, 134, 11, 0.5);
         }}
         h1 {{
+            font-family: 'Kaushan Script', cursive;
             color: #ffeb3b;
-            font-size: 52px;
-            margin-bottom: 8px;
-            text-shadow: 4px 4px 12px rgba(0,0,0,0.9);
+            font-size: 54px;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 15px rgba(0,0,0,0.95);
         }}
         h2 {{
             color: #ffd700;
-            font-size: 28px;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            font-size: 29px;
+            margin-bottom: 45px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
         }}
         .name {{
-            font-size: 42px;
+            font-size: 44px;
             font-weight: bold;
-            margin: 50px 0 35px;
+            margin: 55px 0 40px;
             color: #fff;
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.95);
+            text-shadow: 3px 3px 12px rgba(0,0,0,0.95);
         }}
         .text {{
-            font-size: 19px;
-            line-height: 1.75;
+            font-size: 19.5px;
+            line-height: 1.8;
             margin: 28px 0;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.85);
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.9);
         }}
         .footer {{
-            margin-top: 60px;
+            margin-top: 65px;
             font-size: 17px;
             color: #ffeb3b;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
         }}
     </style>
 </head>
