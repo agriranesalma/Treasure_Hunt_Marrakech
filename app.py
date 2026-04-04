@@ -902,46 +902,46 @@ def show_stop9_tapis():
         body {{
             font-family: 'Georgia', serif;
             text-align: center;
-            padding: 60px;
-            margin: 30px;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+            padding: 80px 40px;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
                         url('https://www.beistle.com/media/catalog/product/cache/5a0fd8e7b8a7eea595073e3b8a7e3f0b39/5/5/55305_i1_plastic-treasure-map.jpg') 
-                        center/cover no-repeat;
-            border: 18px double #b8860b;
-            box-shadow: 0 0 30px rgba(184,134,11,0.4);
+                        center/cover no-repeat fixed;
+            border: 22px double #d4af77;
             color: #f5e8c7;
+            box-shadow: inset 0 0 80px rgba(184, 134, 11, 0.6);
         }}
         h1 {{
             color: #ffeb3b;
-            font-size: 48px;
-            margin-bottom: 10px;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+            font-size: 52px;
+            margin-bottom: 8px;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.9);
         }}
         h2 {{
             color: #ffd700;
-            margin-bottom: 30px;
             font-size: 28px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }}
         .name {{
-            font-size: 38px;
+            font-size: 42px;
             font-weight: bold;
-            margin: 40px 0 30px;
+            margin: 50px 0 35px;
             color: #fff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.95);
         }}
         .text {{
             font-size: 19px;
-            line-height: 1.7;
-            margin: 22px 0;
-            color: #f5e8c7;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            line-height: 1.75;
+            margin: 28px 0;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.85);
         }}
         .footer {{
-            margin-top: 50px;
+            margin-top: 60px;
             font-size: 17px;
             color: #ffeb3b;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
         }}
     </style>
 </head>
