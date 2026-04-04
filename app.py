@@ -906,7 +906,7 @@ def show_stop9_tapis():
             margin: 0;
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)),
-                        url('https://www.beistle.com/media/catalog/product/5/5/55305_i1_plastic-treasure-map.jpg') 
+                        url('https://t3.ftcdn.net/jpg/01/21/80/16/360_F_121801600_CMAfgueYYBiq0w88E1r5Lkklp7Hl1AO4.jpg') 
                         center/cover no-repeat fixed;
             border: 22px double #d4af77;
             color: #f5e8c7;
