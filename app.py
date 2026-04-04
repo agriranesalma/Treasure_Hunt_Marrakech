@@ -961,12 +961,6 @@ def show_stop9_tapis():
     </p>
 
     <p class="text">
-        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,<br>
-        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,<br>
-        you uncovered the layers of a land shaped by history and spirit.
-    </p>
-
-    <p class="text">
         You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,<br>
         stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,<br>
         and finally shaped earth into art with your own hands through pottery.
