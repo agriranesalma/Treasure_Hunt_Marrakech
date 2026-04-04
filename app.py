@@ -899,8 +899,6 @@ def show_stop9_tapis():
     <meta charset="utf-8">
     <title>Kenz Quest Certificate</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
-        
         body {{
             font-family: 'Georgia', serif;
             text-align: center;
@@ -908,11 +906,11 @@ def show_stop9_tapis():
             margin: 0;
             min-height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.88)),
-                        url('https://www.beistle.com/media/catalog/product/cache/5a0fd8e7b8a7eea595073e3b8a7e3f0b39/5/5/55305_i1_plastic-treasure-map.jpg') 
+                        url('https://www.beistle.com/media/catalog/product/5/5/55305_i1_plastic-treasure-map.jpg') 
                         center/cover no-repeat fixed;
             border: 22px double #d4af77;
             color: #f5e8c7;
-            box-shadow: inset 0 0 120px rgba(184, 134, 11, 0.5);
+            box-shadow: inset 0 0 120px rgba(184, 134, 11, 0.6);
         }}
         h1 {{
             font-family: 'Kaushan Script', cursive;
