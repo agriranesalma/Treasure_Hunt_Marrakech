@@ -894,83 +894,95 @@ def show_stop9_tapis():
         user_name = st.text_input("Enter your name for your certificate:")
         if user_name:
             certificate_html = f"""
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <title>Kenz Quest Certificate</title>
-                <style>
-                    body {{
-                        font-family: 'Georgia', serif;
-                        text-align: center;
-                        padding: 60px;
-                        margin: 30px;
-                        background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
-                                    url('https://www.transparenttextures.com/patterns/arabesque.png');
-                        border: 15px double #b8860b;
-                    }}
-                    h1 {{
-                        color: #8b0000;
-                        font-size: 42px;
-                        margin-bottom: 10px;
-                    }}
-                    h2 {{
-                        color: #b8860b;
-                        margin-bottom: 30px;
-                    }}
-                    .name {{
-                        font-size: 34px;
-                        font-weight: bold;
-                        margin: 30px 0;
-                        color: #2c2c2c;
-                    }}
-                    .text {{
-                        font-size: 18px;
-                        line-height: 1.6;
-                        margin: 20px 0;
-                    }}
-                    .footer {{
-                        margin-top: 40px;
-                        font-size: 16px;
-                        color: #555;
-                    }}
-                </style>
-            </head>
-            <body>
-    
-                <h1>🏆 Certificate of Exploration</h1>
-                <h2>Kenz Quest • Trésor Marocain</h2>
-    
-                <p class="text">This certificate is proudly awarded to</p>
-    
-                <div class="name">{user_name}</div>
-    
-                <p class="text">
-        The Remarkable Traveler who followed the path of stories, craft, and memory
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Kenz Quest Certificate</title>
+    <style>
+        body {{
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding: 60px;
+            margin: 30px;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                        url('https://www.beistle.com/media/catalog/product/cache/5a0fd8e7b8a7eea595073e3b8a7e3f0b39/5/5/55305_i1_plastic-treasure-map.jpg') 
+                        center/cover no-repeat;
+            border: 18px double #b8860b;
+            box-shadow: 0 0 30px rgba(184,134,11,0.4);
+            color: #f5e8c7;
+        }}
+        h1 {{
+            color: #ffeb3b;
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+        }}
+        h2 {{
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-size: 28px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }}
+        .name {{
+            font-size: 38px;
+            font-weight: bold;
+            margin: 40px 0 30px;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+        }}
+        .text {{
+            font-size: 19px;
+            line-height: 1.7;
+            margin: 22px 0;
+            color: #f5e8c7;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }}
+        .footer {{
+            margin-top: 50px;
+            font-size: 17px;
+            color: #ffeb3b;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }}
+    </style>
+</head>
+<body>
+
+    <h1>🏆 Certificate of Exploration</h1>
+    <h2>Kenz Quest • Trésor Marocain</h2>
+
+    <p class="text">This certificate is proudly awarded to</p>
+
+    <div class="name">{user_name}</div>
+
+    <p class="text">
+        The Remarkable Traveler who followed the path of stories, craft, and memory<br>
         across the heart of Morocco.
     </p>
+
     <p class="text">
-        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,
-        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,
+        From the living stage of Jemaa el-Fna, to the delicate art of silver filigree,<br>
+        from moments of reflection over mint tea to the hidden majesty of the Saadian Tombs,<br>
         you uncovered the layers of a land shaped by history and spirit.
     </p>
-    
+
     <p class="text">
-        You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,
-        stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,
+        You traced the geometry of Zellige, tasted the richness of Moroccan cuisine,<br>
+        stood before the timeless Koutoubia, wandered through the elegance of Bahia Palace,<br>
         and finally shaped earth into art with your own hands through pottery.
     </p>
-    
+
     <p class="text">
-        Through curiosity, creativity, and a true explorer’s heart,
-        you did not just visit Morocco —
-        <strong>you experienced its soul.</strong>
+        Through curiosity, creativity, and a true explorer’s heart,<br>
+        you did not just visit Morocco — <strong>you experienced its soul.</strong>
     </p>
-<div class="footer">
-    🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
-</div>
-            </body>
-            </html>
-            """
+
+    <div class="footer">
+        🇲🇦 A journey through Moroccan heritage, craftsmanship, flavor, and architecture 🇲🇦
+    </div>
+
+</body>
+</html>
+"""
             st.download_button("📄 Download Your Certificate", data=certificate_html.encode("utf-8"), file_name=f"Kenz_Quest_Certificate_{user_name}.html", mime="text/html")
 
 # ROUTING 
