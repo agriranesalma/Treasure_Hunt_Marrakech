@@ -481,7 +481,7 @@ def show_stop1_story():
     if st.button("🎧 Play the voice of the desert"):
         audio_file = open("hassani_poetry.mp3", "rb")
         st.audio(audio_file.read(), format="audio/mp3")
-    st.image("sahara.png", caption="The Sahara — where poetry travels with the wind", use_container_width=True)
+    st.image("images/sahara.png", caption="The Sahara — where poetry travels with the wind", use_container_width=True)
     show_quiz_challenge(1)
     if st.session_state.quiz_unlocked.get(1, False):
         show_partner_code_gate(next_label=stops_data[1].get("next_stop_label"), next_stop_num=2)
@@ -508,7 +508,7 @@ def show_partner_code_gate(next_label, next_stop_num):
     </div>
     """, unsafe_allow_html=True)
     st.image(
-        "sahrawijewlery.png",
+        "images/sahrawijewlery.png",
         caption="A traditional Sahrawi silver piece you will learn to create",
         use_container_width=True
     )
@@ -547,7 +547,7 @@ def show_stop2_cafe():
     </div>
     """, unsafe_allow_html=True)
     st.image(
-        "moroccan_tea.jpg",
+        "images/moroccan_tea.jpg",
         caption="Moroccan mint tea — a symbol of hospitality",
         use_container_width=True
     )
@@ -566,7 +566,7 @@ def show_stop2_cafe():
         <p><strong>🤯 Imagine: Humanity may have started right here.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("fact1.jpg", caption="", use_container_width=True)
+    st.image("images/fact1.jpg", caption="", use_container_width=True)
     st.markdown("### 🏛️ Fact 2: Ancient Roman City")
     st.markdown("""
     <div class="magic-card">
@@ -580,7 +580,7 @@ def show_stop2_cafe():
         <p><strong>It’s like walking inside Ancient Rome… in Morocco.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("fact2.jpg", caption="", use_container_width=True)
+    st.image("images/fact2.jpg", caption="", use_container_width=True)
     st.markdown("### 🎓 Fact 3: The Oldest University")
     st.markdown("""
     <div class="magic-card">
@@ -594,7 +594,7 @@ def show_stop2_cafe():
         <p><strong>👩🏻‍💼 A woman founded it over 1,100 years ago.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("fact3.jpg", caption="", use_container_width=True)
+    st.image("images/fact3.jpg", caption="", use_container_width=True)
     st.markdown("### 🌍 Fact 4: The Ultimate Traveler")
     st.markdown("""
     <div class="magic-card">
@@ -608,7 +608,7 @@ def show_stop2_cafe():
         <p><strong> He traveled further than Marco Polo.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("fact4.jpg", caption="", use_container_width=True)
+    st.image("images/fact4.jpg", caption="", use_container_width=True)
     st.markdown("### 😂 Moroccan Break Time")
     st.markdown("""
     <div class="magic-card">
@@ -659,7 +659,7 @@ def show_stop4_saadian():
     render_location_notice(stop_titles[5])
     st.markdown('<h1 class="big-title">🏛️ Saadian Tombs</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">✨ A hidden royal necropolis</div>', unsafe_allow_html=True)
-    st.image("saadian_tombs.jpg", use_container_width=True)
+    st.image("images/saadian_tombs.jpg", use_container_width=True)
     st.markdown("""
     <div class="magic-card">
         <h3>📜 A Lost Treasure Rediscovered</h3>
@@ -682,7 +682,7 @@ def show_stop4_saadian():
         </ul>
     </div>
     """, unsafe_allow_html=True)
-    st.image("saadian_inside.jpg", use_container_width=True)
+    st.image("images/saadian_inside.jpg", use_container_width=True)
     show_quiz_challenge(4)
     if st.session_state.quiz_unlocked.get(4, False):
         if st.button("➡️ Continue to Zellige Workshop", type="primary", use_container_width=True):
@@ -696,7 +696,7 @@ def show_stop5_zellige_workshop():
     st.markdown('<h1 class="big-title">🏺 Zellige Artisan Workshop</h1>', unsafe_allow_html=True)
     st.markdown('<div class="tag-subtitle">Discover the art of Moroccan tiles</div>', unsafe_allow_html=True)
     st.markdown("""<div class="magic-card"><p>Welcome to the Zellige workshop! Here you will see how Moroccan artisans craft these intricate geometric tiles by hand.</p></div>""", unsafe_allow_html=True)
-    st.image("zellige_workshop.jpg", caption="Handcrafted Zellige Tiles YOU WILL BE MAKING AT THE SHOP", use_container_width=True)
+    st.image("images/zellige_workshop.jpg", caption="Handcrafted Zellige Tiles YOU WILL BE MAKING AT THE SHOP", use_container_width=True)
     show_quiz_challenge(5)
     if st.session_state.quiz_unlocked.get(5, False):
         st.markdown('<h3 class="big-title">🔐 Partner Gate</h3>', unsafe_allow_html=True)
@@ -788,7 +788,7 @@ def show_stop7_koutoubia():
         </p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("koutoubia.jpg", use_container_width=True)
+    st.image("images/koutoubia.jpg", use_container_width=True)
     show_quiz_challenge(7)
     st.markdown("""
         <div class="magic-card">
@@ -844,7 +844,7 @@ def show_stop8_bahia():
         <p><strong>🤯 Every ceiling, every tile, every door is handmade.</strong></p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("bahia_inside.jpg", use_container_width=True)
+    st.image("images/bahia_inside.jpg", use_container_width=True)
     show_quiz_challenge(8)
     if st.session_state.quiz_unlocked.get(8, False):
         if st.button("➡️ Continue to the next stop", type="primary", use_container_width=True):
@@ -867,7 +867,7 @@ def show_stop9_tapis():
     </p>
     </div>
     """, unsafe_allow_html=True)
-    st.image("tapis_display.jpg", use_container_width=True)
+    st.image("images/tapis_display.jpg", use_container_width=True)
     st.markdown("""
     <div class="magic-card">
         <h3>                        What you will be making and taking home with you</h3>
@@ -877,7 +877,7 @@ def show_stop9_tapis():
     </div>
     """, unsafe_allow_html=True)
     
-    st.image("mini_tapis.jpg", use_container_width=True)
+    st.image("images/mini_tapis.jpg", use_container_width=True)
     show_quiz_challenge(9)
     if st.session_state.quiz_unlocked.get(9, False):
         st.markdown("""<div class="magic-card"><h3>🎁 Special Offer</h3><p>Give this code "Legacy_Ladies_2026" to your Zarbia master to enjoy <strong>20% off</strong></p></div>""", unsafe_allow_html=True)
@@ -1000,7 +1000,7 @@ Secrets of the past, creativity of the present. • أسرار الماضي، إ
 """, unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Click on a region / اضغط على جهة</h3>', unsafe_allow_html=True)
     try:
-        image = Image.open("morocco_regions_map.png")
+        image = Image.open("images/morocco_regions_map.png")
         target_w = 700
         w, h = image.size
         ratio = target_w / float(w)
@@ -1055,7 +1055,7 @@ elif st.session_state.page == "marrakech_safi":
     st.markdown('<div class="tag-subtitle">📍 مراكش آسفي</div>', unsafe_allow_html=True)
     st.markdown('<h3 class="section-header">🗺️ Cliquez sur une province / اضغط على عمالة</h3>', unsafe_allow_html=True)
     try:
-        image = Image.open("marrakech_safi.png")
+        image = Image.open("images/marrakech_safi.png")
         target_w = 600
         w, h = image.size
         ratio = target_w / float(w)
